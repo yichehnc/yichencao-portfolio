@@ -61,33 +61,6 @@ window.PORTFOLIO_PROJECTS = [
     sections: [],
   },
   {
-    slug: "yichenarch-portfolio",
-    title: "Yichen's Portfolio",
-    cardTitle: "Yichen Arch Portfolio",
-    date: "2024",
-    roles: "Portfolio design",
-    client: "Template project",
-    category: "Portfolio System",
-    filters: ["UI"],
-    aspect: "1 / 1",
-    image: "https://framerusercontent.com/images/QnTwexOKTmAxZ03e1aiOTXmgfk.jpg",
-    summary:
-      "A minimal portfolio design template for designers seeking a sleek, uncluttered platform to showcase project work.",
-    sections: [
-      {
-        title: "Key Features",
-        body:
-          "<p>The template uses a clean layout, smooth transitions, and day and night modes to keep project work at the center. It avoids unnecessary distractions while still feeling polished and responsive.</p>",
-      },
-      {
-        title: "Result",
-        image: "https://framerusercontent.com/images/VPcuQiEz83ROWKTYhDQVPZLdIw.jpg",
-        body:
-          "<p>The finished template delivers a clean, responsive showcase with refined interactions and a strong project-first structure.</p>",
-      },
-    ],
-  },
-  {
     slug: "kinetic",
     title: "Kinetic",
     cardTitle: "Kinetic",
