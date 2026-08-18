@@ -274,6 +274,25 @@ h2 {
     auto;
 }
 
+.project-visual-mlai {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.24) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22) 1px, transparent 1px),
+    radial-gradient(circle at 22% 16%, rgba(255, 231, 128, 0.28), transparent 28%),
+    radial-gradient(circle at 78% 76%, rgba(80, 188, 168, 0.32), transparent 34%),
+    #18222b;
+  background-size:
+    30px 30px,
+    30px 30px,
+    auto,
+    auto,
+    auto;
+}
+
+.project-visual-mlai span {
+  color: #f7f3ea;
+}
+
 .project-card-body {
   display: grid;
   gap: 12px;

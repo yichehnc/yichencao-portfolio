@@ -167,7 +167,13 @@
               <dd>${project.client}</dd>
             </div>
           </dl>
-          <img class="case-image hero-image" src="${project.image}" alt="${project.title}" />
+          ${
+            project.image
+              ? `<img class="case-image hero-image" src="${project.image}" alt="${project.title}" />`
+              : `<div class="case-image hero-image project-visual project-visual-${project.accent || "default"}" aria-hidden="true">
+                  <span>${project.cardTitle}</span>
+                </div>`
+          }
         </section>
         <div class="case-sections">
           ${project.sections

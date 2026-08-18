@@ -55,6 +55,31 @@ window.PORTFOLIO_PROJECTS = [
     sections: [],
   },
   {
+    slug: "yichenarch-portfolio",
+    title: "Yichen's Portfolio",
+    cardTitle: "Yichen Arch Portfolio",
+    date: "2024",
+    roles: "Portfolio design",
+    client: "Template project",
+    category: "Portfolio System",
+    image: "https://framerusercontent.com/images/QnTwexOKTmAxZ03e1aiOTXmgfk.jpg",
+    summary:
+      "A minimal portfolio design template for designers seeking a sleek, uncluttered platform to showcase project work.",
+    sections: [
+      {
+        title: "Key Features",
+        body:
+          "<p>The template uses a clean layout, smooth transitions, and day and night modes to keep project work at the center. It avoids unnecessary distractions while still feeling polished and responsive.</p>",
+      },
+      {
+        title: "Result",
+        image: "https://framerusercontent.com/images/VPcuQiEz83ROWKTYhDQVPZLdIw.jpg",
+        body:
+          "<p>The finished template delivers a clean, responsive showcase with refined interactions and a strong project-first structure.</p>",
+      },
+    ],
+  },
+  {
     slug: "kinetic",
     title: "Kinetic",
     cardTitle: "Kinetic",
@@ -80,6 +105,25 @@ window.PORTFOLIO_PROJECTS = [
     image: "https://framerusercontent.com/images/AqKBWEaTEL8afQhaFyRadQiGfw.png?width=1125&height=2162",
     summary: "Vibe-coded project exploring lightweight interaction and playful decision flow.",
     sections: [],
+  },
+  {
+    slug: "mlai-founder-tools",
+    title: "MLAI Founder Tools",
+    cardTitle: "MLAI Founder Tools",
+    date: "2026",
+    roles: "Product Design Engineer",
+    client: "MLAI",
+    category: "Founder Tools · Product Design",
+    summary:
+      "An internal Framer case-study page exists for MLAI Founder Tools, but the detail content was not exposed through the connected MCP session.",
+    accent: "mlai",
+    sections: [
+      {
+        title: "Snapshot Note",
+        body:
+          "<p>This page is included because Framer MCP lists /projects/mlai-founder-tools in the current project. The page is not available on the published production or staging URLs, and the current MCP session returned an error when reading its page XML, so this static MVP keeps the route present without inventing the unpublished case-study content.</p>",
+      },
+    ],
   },
   {
     slug: "inflection-repair",
