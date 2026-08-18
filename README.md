@@ -1,6 +1,6 @@
 # Yichen Cao Portfolio
 
-Static portfolio exported from the Framer CMS snapshot and hard-coded for simple hosting.
+Static portfolio rebuilt from the current published Framer snapshot and hard-coded for simple hosting.
 
 ## Run Locally
 

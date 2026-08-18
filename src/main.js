@@ -61,7 +61,7 @@
         <section id="case-studies" class="work-section section-shell" aria-labelledby="work-title">
           <div class="section-heading">
             <span>01</span>
-            <h2 id="work-title">Case Studies</h2>
+            <h2 id="work-title">Projects</h2>
           </div>
           <div class="project-grid">
             ${projects

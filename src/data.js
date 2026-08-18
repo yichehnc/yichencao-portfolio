@@ -1,173 +1,204 @@
 window.PORTFOLIO_PROJECTS = [
   {
-    slug: "kinetic",
-    title: "Kinetic Network",
-    cardTitle: "Kinetic Network",
-    date: "2026",
-    roles: "Product designer, front-end prototype",
-    client: "Healthtech concept",
-    category: "Product Design, Web App, Healthtech",
-    externalUrl: "https://kinetic-inky.vercel.app/",
+    slug: "relish",
+    title: "Relish: Your Local Food Guide",
+    cardTitle: "Relish: Your Local Food Guide",
+    date: "2024",
+    roles: "Product Designer, Manager, Front-end Dev",
+    client: "Holberton AU (Demo Day at Canva)",
+    category: "UX UI Coding · 2024",
+    image: "https://framerusercontent.com/images/sC2zdVg4SpO1LWqGi8NhZETFyc.jpg?width=1043&height=1474",
     summary:
-      "Kinetic Network helps physiotherapy clinics securely share anonymised treatment records, earn credits, and access prior care history for better continuity of care.",
-    accent: "kinetic",
+      "Relish is designed to cater to the needs of foodies and explorers who are always on the lookout for new dining experiences.",
+    sections: [
+      {
+        title: "Problem & Approach",
+        body:
+          '<p>Existing apps like Google Maps and Yelp can\'t filter out restaurants you\'ve already visited. Relish solves this with a Quiz feature for first-time users, a "Feeling Hungry?" button for instant suggestions, and a "Have I Been There" tracker that auto-removes visited spots from recommendations.</p>',
+      },
+      {
+        title: "Building Relish",
+        body:
+          "<p>Built with React + Vite on the front end, Django and Yelp Fusion API on the back, PostgreSQL for storage, deployed on Netlify and AWS. We used MoSCoW prioritization to land an MVP and ran Scrum sprints throughout, including sprint planning, stand-ups, and retros.</p>",
+      },
+      {
+        title: "Result",
+        body:
+          "<p>A gamified, user-centric dining discovery experience with badges, awards, and curated lists that closes gaps in current restaurant apps and connects users with local businesses.</p>",
+      },
+    ],
+  },
+  {
+    slug: "cloud-mind",
+    title: "Cloud Mind",
+    cardTitle: "Cloud Mind",
+    date: "2026",
+    roles: "Vibe Coding, Interactive Art",
+    client: "Independent project",
+    category: "Vibe Coding. Interactive Art. 2026",
+    externalUrl: "https://cloud-mind-kappa.vercel.app/",
+    image: "https://framerusercontent.com/images/dnlDXphVJ2haGrm7Nj3o938qkQ.png?width=1522&height=1060",
+    summary: "Interactive art and vibe-coded web experiment.",
     sections: [],
   },
   {
-    slug: "relish",
-    title: "Relish: Your Local Food Guide",
-    cardTitle: "Relish: Local Food & Services",
-    date: "Apr 2024 - July 2024",
-    roles: "Product designer, Front-end Engineer",
-    client: "Project at Holberton School",
-    category: "Product, Front-end, Mobile & Web design",
-    actionLabel: "View Code on Github",
-    actionUrl: "https://github.com/",
-    image: "https://framerusercontent.com/images/NRgZc7fNAzgGazVmd3EyRZQldw.png",
+    slug: "archived-portfolio",
+    title: "Archived Portfolio",
+    cardTitle: "Archived Portfolio",
+    date: "2022",
+    roles: "Architecture portfolio",
+    client: "Archive",
+    category: "Architecture · 2022",
+    externalUrl: "https://yichenc3.wixsite.com/ysitebeta",
+    image: "https://framerusercontent.com/images/aGy3MmrvyCVHPFms8W5rkUffiw.png?width=1580&height=959",
+    summary: "Archived architecture portfolio.",
+    sections: [],
+  },
+  {
+    slug: "kinetic",
+    title: "Kinetic",
+    cardTitle: "Kinetic",
+    date: "2026",
+    roles: "Vibe Coding",
+    client: "Independent project",
+    category: "Vibe Coding 2026",
+    externalUrl: "https://kinetic-inky.vercel.app/",
+    image: "https://framerusercontent.com/images/dyNZQ0u1MOAbdLOF7JSxGP4fzo.png?width=1151&height=1080",
     summary:
-      "Relish helps adventurous food lovers discover new dining experiences with preference-led recommendations, location search, visit tracking, and quick booking details.",
-    sections: [
-      {
-        title: "Problem Statement",
-        body:
-          "<p>Relish is designed for adventurous food lovers looking to explore new dining experiences. We identified gaps in current restaurant search apps like Google Maps and Yelp, particularly their inability to filter out previously visited restaurants.</p><p>After analyzing these limitations, we integrated enhanced recommending and filtering features into Relish. The quiz feature tackles the cold-start problem by helping first-time users define their preferences, so recommendations feel useful from the start.</p><p>The search and recommendation features streamline discovery, while the user-friendly interface keeps browsing, deciding, and booking effortless.</p>",
-      },
-      {
-        title: "Key Features",
-        image: "https://framerusercontent.com/images/SCtKZhvKPKhCbbrNdYT6f5IE8A.jpg",
-        body:
-          "<p>Where to Eat lets users explore dining options by entering a location or enabling current-location access. What to Eat helps users find a dish or cuisine, while the Feeling Hungry button offers spontaneous suggestions.</p><p>Have I Been There tracks visited restaurants and removes them from future recommendations. Book a Table gives quick access to phone numbers and Yelp reviews. Milestones and awards add a celebratory layer to the experience.</p>",
-      },
-      {
-        title: "The Journey of Building Relish",
-        image: "https://framerusercontent.com/images/GEZui7wfbR420pF8Mg3NbxYJ5c.jpg",
-        body:
-          "<p>We began with research into gaps in the restaurant app market, then used tools like Miro, Slack, and Trello to coordinate the product roadmap. The MVP focused on Where to Eat, What to Eat, and Have I Been There.</p><p>Development followed Scrum rituals, including sprint planning, daily stand-ups, sprint reviews, retrospectives, and backlog refinements. This helped the team stay flexible while testing across devices and browsers.</p>",
-      },
-      {
-        title: "Tech-driven Solutions",
-        image: "https://framerusercontent.com/images/9iOyjWcHkQMJlu3AG3oBiBYZV9g.jpg",
-        body:
-          "<p>Relish used React and Vite on the front end, Django as a secure proxy for Yelp Fusion API data, and PostgreSQL for preference and visit history. The frontend was deployed on Netlify, with backend services hosted on AWS.</p><p>The result combines curated recommendations, filters, gamified awards, and a clear visual interface for local food discovery.</p>",
-      },
-    ],
+      "Kinetic Network helps physiotherapy clinics securely share anonymised treatment records, earn credits, and access prior care history for better continuity of care.",
+    sections: [],
+  },
+  {
+    slug: "think-less",
+    title: "Think Less",
+    cardTitle: "Think Less",
+    date: "2026",
+    roles: "Vibe Coding",
+    client: "Independent project",
+    category: "Vibe Coding. 2026",
+    externalUrl: "https://think-less.vercel.app/",
+    image: "https://framerusercontent.com/images/AqKBWEaTEL8afQhaFyRadQiGfw.png?width=1125&height=2162",
+    summary: "Vibe-coded project exploring lightweight interaction and playful decision flow.",
+    sections: [],
+  },
+  {
+    slug: "inflection-repair",
+    title: "Inflection: Repair",
+    cardTitle: "Inflection: Repair",
+    date: "2022",
+    roles: "Publication editor",
+    client: "Inflection Journal",
+    category: "Publication. Editor. 2022",
+    externalUrl: "https://www.inflectionjournal.com/copy-of-past-issues-volume-8",
+    image: "https://framerusercontent.com/images/uHs3hV3ufW4LG01LJTT6XvpR08.png?width=461&height=536",
+    summary: "Editorial and publication work for Inflection: Repair.",
+    sections: [],
   },
   {
     slug: "walley-bank",
     title: "Walley Bank: Fintech Savings Solution",
-    cardTitle: "Walley Bank: Fintech Services",
-    date: "Sep 2024 - Nov 2024",
+    cardTitle: "Walley Bank",
+    date: "2024",
     roles: "UI Designer",
-    client: "Individual Project at RMIT",
-    category: "Branding, Mobile & Web design",
-    actionLabel: "View Prototype",
-    actionUrl: "https://www.figma.com/",
-    image: "https://framerusercontent.com/images/mXBFJP0HR2nH4mV4QBRFi7M1dE.png",
+    client: "Individual Project, RMIT University",
+    category: "UI · 2024",
+    image: "https://framerusercontent.com/images/mXBFJP0HR2nH4mV4QBRFi7M1dE.png?width=2400&height=1800",
     summary:
-      "A fintech app concept for young professionals who need a secure, simple, and responsive way to manage savings, budgets, payments, and transactions.",
+      "A fintech app that empowers users with a seamless and intuitive way to manage their savings, built for tech-savvy young professionals who value convenience and simplicity.",
     sections: [
       {
-        title: "Problem Statement",
+        title: "Problem & Approach",
         body:
-          "<p>Walley Bank is a fintech platform designed to empower users with a seamless and intuitive way to manage savings. The MVP website focuses on creating a secure, user-friendly, and aesthetically clear experience for personal finance.</p>",
+          "<p>Walley Bank is a fintech platform designed for managing savings. The MVP focused on UI design that's secure, user-friendly, and aesthetically pleasing, building on comprehensive UX research.</p>",
       },
       {
         title: "Key Features",
-        image: "https://framerusercontent.com/images/bS1Zgou0sNMl3JRzumr4vex8QE.png",
         body:
-          "<p>Savings goals let users allocate money into personalized categories and visualize progress. Budgeting tools split income into savings and spending buckets based on user-defined percentages.</p><p>The interface also supports subtle balance displays, responsive account management, transaction insights, customizable notifications, editable payments, and downloadable statements.</p>",
-      },
-      {
-        title: "Design Objectives",
-        image: "https://framerusercontent.com/images/cM0qUiiZh6RZ4DMxb1YnENPRY.png",
-        body:
-          "<p>The design prioritizes simplicity and consistency across desktop, tablet, and mobile. Through interviews and usability tests, the project refined balance visibility, recurring payment editing, and savings transparency.</p>",
+          "<p>Personalized savings goals with dynamic dashboards, automated budgeting that splits income into savings and spending buckets, subtle balance display for privacy, transaction tracking, and customizable notifications. Designed mobile-first for trust and clarity.</p>",
       },
       {
         title: "Result",
-        image: "https://framerusercontent.com/images/bS1Zgou0sNMl3JRzumr4vex8QE.png",
         body:
-          "<p>The final MVP includes a high-fidelity prototype, responsive layouts for dashboard, payments, profile, and help pages, plus a modular component library for future scaling.</p>",
+          "<p>A high-fidelity prototype with responsive layouts for Dashboard, Payments, Profile, and Help, plus a modular component library for future scaling. User testing led to refinements like discreet balance visuals, clearer recurring-payment editing, and better savings transparency.</p>",
       },
     ],
+  },
+  {
+    slug: "suso",
+    title: "SuSo",
+    cardTitle: "SuSo",
+    date: "2025",
+    roles: "UX",
+    client: "University of Melbourne",
+    category: "UX 2025",
+    externalUrl: "https://www.unimelb.edu.au/newsroom/news/2025/july/support-sorted",
+    image: "https://framerusercontent.com/images/UZkU1TkNygKwgalShvxggm7SMc.jpg?width=1431&height=938",
+    summary: "UX project featured by the University of Melbourne.",
+    sections: [],
   },
   {
     slug: "rea-redesign",
     title: "Redesigning REA's Inspection Experience",
-    cardTitle: "The REA Website Redesign",
-    date: "Aug 2024 - Oct 2024",
+    cardTitle: "REA Inspection Redesign",
+    date: "2024",
     roles: "UX Designer",
-    client: "Individual project at RMIT",
-    category: "UX Case study",
-    actionLabel: "View Research",
-    actionUrl:
-      "https://www.figma.com/board/J8EUsLPRDgLWYWsN39OBbr/UX-Research---Redesigning-REA's-Inspection-Experience",
-    image: "https://framerusercontent.com/images/2yaFwOMwuddTPu24G8kUp45tz0.png",
+    client: "Individual Project, RMIT University",
+    category: "UX · 2024",
+    image: "https://framerusercontent.com/images/TG6U7awZ5dwLShUjFWyBnw7QNg.jpg?width=1864&height=1338",
     summary:
-      "A UX case study focused on improving inspection planning for property buyers scheduling multiple visits in a single day.",
+      "Enhancing the inspection planning and management experience on REA, making it easier for property buyers to schedule multiple visits in a single day.",
     sections: [
       {
         title: "Problem Statement",
         body:
-          "<p>This UX case study improves inspection planning and management on the REA website. Research uncovered friction around adding properties to plans, resolving conflicting inspection times, and viewing critical decision details while scheduling.</p>",
+          "<p>Through user research and interviews, three pain points emerged: difficulty adding properties to an inspection plan, conflicting inspection times that made planning inefficient, and limited visibility of critical details like price and interest level during planning.</p>",
       },
       {
         title: "Research Process",
-        image: "https://framerusercontent.com/images/V6h20PPZcE0SAnuXDCp81iTh5Q.png",
         body:
-          "<p>The process included desk research, interviews with experienced REA users, ideation, storyboarding, sketches, a paper prototype, and moderated usability testing. Each step translated research findings into clearer planning interactions.</p>",
-      },
-      {
-        title: "Key Design Updates",
-        image: "https://framerusercontent.com/images/GEZui7wfbR420pF8Mg3NbxYJ5c.jpg",
-        body:
-          "<p>Using an impact-effort matrix, I prioritized route planning, clearer Add Notes and Add to Plan actions, and better content clarity. Larger ideas included centralizing Manage All Inspections and adding voice-to-text note taking.</p>",
+          '<p>Desk research mapped the full user journey from search to inspection. User interviews surfaced scheduling challenges. Storyboards and a paper prototype tested early ideas, then moderated usability tests shaped the next iteration. I used an Impact-Effort matrix to prioritize route planning, better visibility for "Add Notes" and "Add to Plan", and centralized inspection management.</p>',
       },
       {
         title: "Result",
-        image: "https://framerusercontent.com/images/wylCEIiznpIBGNJCuHWWArVRlos.png",
         body:
-          "<p>The medium-fidelity prototype made inspection conflicts visible, added interest-level markers, integrated map details, and introduced a fixed planner bar so users could manage schedules without losing context.</p>",
+          "<p>A clickable medium-fidelity prototype with prominent conflict resolution within the planner, visual interest-level markers, integrated map and route planning, and a fixed planner bar so users keep context. Every decision was backed by research and usability testing.</p>",
       },
     ],
   },
+  {
+    slug: "invisible-cities",
+    title: "Invisible Cities",
+    cardTitle: "Invisible Cities",
+    date: "2025",
+    roles: "Vibe Coding",
+    client: "Independent project",
+    category: "Vibe Coding · 2025",
+    externalUrl: "https://invisible-cities-tau.vercel.app/",
+    image: "https://framerusercontent.com/images/9CMdPHud3xgo2IjBkuZTnhpRdc.jpg?width=1024&height=1024",
+    summary: "Vibe-coded interactive project inspired by imagined cities and spatial storytelling.",
+    sections: [],
+  },
 ];
 
-window.PORTFOLIO_COMING_SOON = [
-  {
-    title: "VFX portfolio - Coming Soon",
-    category: "Design Visualisation, 3D Animation",
-    image: "https://framerusercontent.com/images/QnTwexOKTmAxZ03e1aiOTXmgfk.jpg",
-  },
-  {
-    title: "VFX portfolio - Coming Soon",
-    category: "Design Visualisation, 3D Animation",
-    image: "https://framerusercontent.com/images/wSE34HN6WV6NJI84nIQiXusU.jpg",
-  },
-  {
-    title: "VFX portfolio - Coming Soon",
-    category: "Design Visualisation, 3D Animation",
-    image: "https://framerusercontent.com/images/wXNQcAw1aFT1ej9bEiukyTjY.jpg",
-  },
-];
+window.PORTFOLIO_COMING_SOON = [];
 
 window.PORTFOLIO_BACKGROUND = [
   {
     period: "Jul 2024 - Nov 2024",
     title: "UX UI Design, RMIT, Victoria Digital Jobs Program",
     body:
-      "Led design initiatives using Figma and Adobe Creative Suite to create user-centric design systems, including wireframes and prototypes, based on user research and usability tests. Conducted evaluative and generative research to inform design decisions and refined designs from qualitative and quantitative feedback.",
+      "Led design initiatives using Figma and Adobe Creative Suite to create user-centric design systems, including wireframes and prototypes, based on user research and usability tests. Conducted both evaluative and generative research to inform design decisions, ensuring alignment with user needs and product requirements. Synthesised qualitative and quantitative user feedback to refine designs, ensuring actionable insights were delivered to product teams.",
   },
   {
     period: "Oct 2023 - Jul 2024",
     title: "Software Engineering, Holberton School Australia",
     body:
-      "Developed scalable web applications using HTML, CSS, JavaScript, React, Node.js, Python, Flask, MongoDB, and Git. Collaborated with cross-functional teams to iterate on UX/UI solutions and deliver feasible design outcomes.",
+      "Developed scalable web applications using HTML, CSS, JavaScript, React, Node.js, Python, Flask, MongoDB, and Git. Collaborated with cross-functional teams to iterate on UX/UI solutions, ensuring agile delivery and feasible design outcomes with different stakeholders.",
   },
   {
     period: "Feb 2020 - Dec 2022",
     title: "Master of Architecture, University of Melbourne",
     body:
-      "Graduated with First Class Honors. Specialized in design visualisation using Rhinoceros, 3ds Max, V-Ray, Unreal Engine, and Blender.",
+      "Graduated with First Class Honors (WAM 80). Specialized in Design Visualisation involving industry standard 3D modeling and Visualisation software Rhinoceros, 3ds Max, V-Ray, Unreal Engine, and Blender.",
   },
 ];
