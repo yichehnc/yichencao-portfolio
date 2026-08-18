@@ -264,7 +264,6 @@ h1 {
 
 .section-shell {
   padding: 96px 0;
-  border-top: 1px solid var(--line);
 }
 
 .section-heading {
@@ -273,6 +272,7 @@ h1 {
   gap: 24px;
   align-items: start;
   margin-bottom: 40px;
+  text-shadow: 0 1px 18px rgba(245, 241, 232, 0.75);
 }
 
 .section-heading span,
@@ -420,7 +420,7 @@ h2 {
 
 .timeline {
   display: grid;
-  border-top: 1px solid var(--line);
+  gap: 10px;
 }
 
 .timeline-item {
@@ -428,7 +428,6 @@ h2 {
   grid-template-columns: 220px minmax(0, 1fr);
   gap: 40px;
   padding: 32px 0;
-  border-bottom: 1px solid var(--line);
 }
 
 .timeline-item > p {
@@ -456,7 +455,6 @@ h2 {
   gap: 32px;
   align-items: end;
   padding: 88px 0 40px;
-  border-top: 1px solid var(--line);
 }
 
 .collab {
