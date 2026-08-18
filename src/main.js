@@ -11,6 +11,10 @@
     return fromProjectPage ? `../${slug}/` : `Case-study/${slug}/`;
   }
 
+  function projectHref(project) {
+    return project.externalUrl || projectUrl(project.slug);
+  }
+
   function homeUrl() {
     return currentPath.includes("/projects/") || currentPath.includes("/Case-study/") ? "../../" : "./";
   }
@@ -64,8 +68,16 @@
               .map(
                 (project) => `
                   <article class="project-card" data-category="${project.category}">
-                    <a href="${projectUrl(project.slug)}" aria-label="Open ${project.title}">
-                      <img src="${project.image}" alt="${project.title}" loading="lazy" />
+                    <a href="${projectHref(project)}" aria-label="Open ${project.title}" ${
+                  project.externalUrl ? 'target="_blank" rel="noreferrer"' : ""
+                }>
+                      ${
+                        project.image
+                          ? `<img src="${project.image}" alt="${project.title}" loading="lazy" />`
+                          : `<div class="project-visual project-visual-${project.accent || "default"}" aria-hidden="true">
+                              <span>${project.cardTitle}</span>
+                            </div>`
+                      }
                       <div class="project-card-body">
                         <h3>${project.cardTitle}</h3>
                         <p>${project.category}</p>

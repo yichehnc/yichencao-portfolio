@@ -239,6 +239,41 @@ h2 {
   background: var(--panel);
 }
 
+.project-visual {
+  display: grid;
+  width: 100%;
+  aspect-ratio: 1.08;
+  place-items: center;
+  padding: 22px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(203, 90, 67, 0.25), transparent 34%),
+    radial-gradient(circle at 78% 72%, rgba(38, 99, 118, 0.28), transparent 30%),
+    linear-gradient(135deg, #f8f5ed, #dfe8df);
+}
+
+.project-visual span {
+  max-width: 9ch;
+  color: var(--ink);
+  font-size: clamp(32px, 4vw, 58px);
+  font-weight: 620;
+  line-height: 0.95;
+}
+
+.project-visual-kinetic {
+  background:
+    linear-gradient(90deg, rgba(23, 23, 23, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(23, 23, 23, 0.08) 1px, transparent 1px),
+    radial-gradient(circle at 25% 18%, rgba(67, 117, 203, 0.28), transparent 30%),
+    radial-gradient(circle at 75% 78%, rgba(203, 90, 67, 0.3), transparent 32%),
+    #eef3ed;
+  background-size:
+    28px 28px,
+    28px 28px,
+    auto,
+    auto,
+    auto;
+}
+
 .project-card-body {
   display: grid;
   gap: 12px;

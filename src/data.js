@@ -1,5 +1,19 @@
 window.PORTFOLIO_PROJECTS = [
   {
+    slug: "kinetic",
+    title: "Kinetic Network",
+    cardTitle: "Kinetic Network",
+    date: "2026",
+    roles: "Product designer, front-end prototype",
+    client: "Healthtech concept",
+    category: "Product Design, Web App, Healthtech",
+    externalUrl: "https://kinetic-inky.vercel.app/",
+    summary:
+      "Kinetic Network helps physiotherapy clinics securely share anonymised treatment records, earn credits, and access prior care history for better continuity of care.",
+    accent: "kinetic",
+    sections: [],
+  },
+  {
     slug: "relish",
     title: "Relish: Your Local Food Guide",
     cardTitle: "Relish: Local Food & Services",
