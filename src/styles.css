@@ -420,41 +420,22 @@ h2 {
 
 .skill-carousel {
   display: grid;
-  gap: 18px;
-  margin: 0 0 42px;
-}
-
-.skill-carousel-heading {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 18px;
-  align-items: baseline;
-  justify-content: space-between;
-}
-
-.skill-carousel-heading p {
-  margin: 0;
-  font-size: 17px;
-  font-weight: 700;
-}
-
-.skill-carousel-heading span {
-  color: var(--muted);
-  font-size: 14px;
+  max-width: min(720px, 100%);
+  margin-top: 36px;
 }
 
 .skill-marquee {
   overflow: hidden;
-  padding: 8px 0;
-  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  padding: 8px 0 10px;
+  mask-image: linear-gradient(90deg, #000 0%, #000 84%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 84%, transparent);
 }
 
 .skill-track {
   display: flex;
   width: max-content;
-  gap: 14px;
-  animation: skill-scroll 34s linear infinite;
+  gap: 38px;
+  animation: skill-scroll 28s linear infinite;
 }
 
 .skill-marquee:hover .skill-track {
@@ -462,35 +443,20 @@ h2 {
 }
 
 .skill-chip {
-  display: inline-flex;
-  width: 172px;
-  min-height: 72px;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  border: 1px solid rgba(23, 23, 23, 0.1);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.46);
-  box-shadow: 0 16px 42px rgba(23, 23, 23, 0.05);
-  color: var(--soft-ink);
-  font-size: 15px;
-  font-weight: 650;
-  white-space: nowrap;
+  display: grid;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 18px 46px rgba(23, 23, 23, 0.06);
 }
 
 .skill-icon {
-  display: grid;
-  width: 42px;
-  height: 42px;
-  flex: 0 0 42px;
-  place-items: center;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 30% 26%, rgba(255, 255, 255, 0.58), transparent 36%),
-    var(--tool-color);
-  color: #fff;
-  font-size: 13px;
-  font-weight: 800;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
 }
 
 @keyframes skill-scroll {
@@ -729,7 +695,9 @@ dd {
   }
 
   .skill-chip {
-    width: 148px;
+    width: 52px;
+    height: 52px;
+    flex-basis: 52px;
   }
 
   .footer div {
@@ -760,15 +728,14 @@ dd {
   }
 
   .skill-chip {
-    width: 136px;
-    min-height: 66px;
-    padding: 10px 12px;
+    width: 48px;
+    height: 48px;
+    flex-basis: 48px;
   }
 
   .skill-icon {
-    width: 36px;
-    height: 36px;
-    flex-basis: 36px;
+    width: 24px;
+    height: 24px;
   }
 
   .collab {

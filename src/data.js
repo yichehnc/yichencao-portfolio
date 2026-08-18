@@ -225,18 +225,15 @@ window.PORTFOLIO_PROJECTS = [
 window.PORTFOLIO_COMING_SOON = [];
 
 window.PORTFOLIO_TOOLS = [
-  { name: "Figma", mark: "Fi", color: "#0acf83" },
-  { name: "Framer", mark: "Fr", color: "#111111" },
-  { name: "React", mark: "Re", color: "#61dafb" },
-  { name: "JavaScript", mark: "JS", color: "#f7df1e" },
-  { name: "TypeScript", mark: "TS", color: "#3178c6" },
-  { name: "Python", mark: "Py", color: "#3776ab" },
-  { name: "Git", mark: "Git", color: "#f05032" },
-  { name: "Adobe CC", mark: "Ai", color: "#ff9a00" },
-  { name: "Rhino", mark: "Rh", color: "#5f6970" },
-  { name: "Blender", mark: "Bl", color: "#f5792a" },
-  { name: "Unreal", mark: "Un", color: "#2c2f34" },
-  { name: "V-Ray", mark: "Vr", color: "#45a7df" },
+  { name: "Framer", icon: "https://cdn.simpleicons.org/framer/0099ff" },
+  { name: "Figma", icon: "https://cdn.simpleicons.org/figma" },
+  { name: "Adobe Photoshop", icon: "https://cdn.simpleicons.org/adobephotoshop/31a8ff" },
+  { name: "Adobe Illustrator", icon: "https://cdn.simpleicons.org/adobeillustrator/ff9a00" },
+  { name: "GitHub", icon: "https://cdn.simpleicons.org/github/111111" },
+  { name: "Slack", icon: "https://cdn.simpleicons.org/slack" },
+  { name: "Blender", icon: "https://cdn.simpleicons.org/blender/f5792a" },
+  { name: "Procreate", icon: "https://cdn.simpleicons.org/procreate/111111" },
+  { name: "Python", icon: "https://cdn.simpleicons.org/python" },
 ];
 
 window.PORTFOLIO_BACKGROUND = [

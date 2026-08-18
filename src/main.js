@@ -26,18 +26,13 @@
 
     return `
       <div class="skill-carousel" aria-label="Software skills">
-        <div class="skill-carousel-heading">
-          <p>Software & Tools</p>
-          <span>${tools.length} across design, code, and visualisation</span>
-        </div>
         <div class="skill-marquee">
           <div class="skill-track">
             ${repeatedTools
               .map(
                 (tool) => `
-                  <div class="skill-chip" style="--tool-color: ${tool.color}">
-                    <span class="skill-icon" aria-hidden="true">${tool.mark}</span>
-                    <span>${tool.name}</span>
+                  <div class="skill-chip" title="${tool.name}">
+                    <img class="skill-icon" src="${tool.icon}" alt="${tool.name}" loading="lazy" />
                   </div>
                 `
               )
@@ -212,6 +207,7 @@
             <p class="hello">Hello! I'm Yichen.</p>
             <h1>Tech-savvy Product Designer, crafting digital experiences that bridge creativity and function.</h1>
             <a class="primary-link" href="https://cal.com/" target="_blank" rel="noreferrer">Let's Connect</a>
+            ${renderToolCarousel()}
           </div>
           <div class="hero-orbit" aria-label="Project filters">
             <button class="filter-pill" type="button" data-filter="UX" aria-pressed="false">UX</button>
@@ -231,7 +227,6 @@
             <span>02</span>
             <h2 id="background-title">Background</h2>
           </div>
-          ${renderToolCarousel()}
           <div class="timeline">
             ${background
               .map(
