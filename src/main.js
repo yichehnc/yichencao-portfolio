@@ -21,6 +21,7 @@
 
   function shell(content) {
     return `
+      <div class="interactive-grid-bg" aria-hidden="true"></div>
       <header class="site-header">
         <a class="brand" href="${homeUrl()}" aria-label="Yichen Cao home">
           <span>Yichen Cao</span>
@@ -41,6 +42,24 @@
         </div>
       </footer>
     `;
+  }
+
+  function attachInteractiveGrid() {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let frame = 0;
+
+    function setPosition(event) {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        document.documentElement.style.setProperty("--grid-x", `${event.clientX}px`);
+        document.documentElement.style.setProperty("--grid-y", `${event.clientY}px`);
+        document.body.classList.add("is-grid-hot");
+      });
+    }
+
+    document.addEventListener("pointermove", setPosition, { passive: true });
+    document.addEventListener("pointerleave", () => document.body.classList.remove("is-grid-hot"));
+    if (reduceMotion) document.body.classList.add("reduce-grid-motion");
   }
 
   function renderHome() {
@@ -294,4 +313,6 @@
   } else {
     renderHome();
   }
+
+  attachInteractiveGrid();
 })();
