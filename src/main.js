@@ -44,6 +44,79 @@
   }
 
   function renderHome() {
+    const projectItems = [...projects, ...comingSoon.map((item) => ({ ...item, muted: true }))];
+
+    function aspectHeightWeight(aspect) {
+      const [wide, tall] = String(aspect || "1 / 1")
+        .split("/")
+        .map((part) => Number(part.trim()));
+      return wide > 0 && tall > 0 ? tall / wide : 1;
+    }
+
+    function columnCount() {
+      if (window.matchMedia("(max-width: 679px)").matches) return 1;
+      if (window.matchMedia("(max-width: 1023px)").matches) return 2;
+      return 3;
+    }
+
+    function projectCard(project) {
+      return `
+        <article class="project-card${project.muted ? " is-muted" : ""}" data-category="${project.category}">
+          ${
+            project.muted
+              ? `
+                <div class="project-card-inner">
+                  <img src="${project.image}" alt="" loading="lazy" style="--project-aspect: ${project.aspect || "1 / 1"}" />
+                  <div class="project-card-body">
+                    <h3>${project.title}</h3>
+                    <p>${project.category}</p>
+                  </div>
+                </div>
+              `
+              : `
+                <a href="${projectHref(project)}" aria-label="Open ${project.title}" ${
+                  project.externalUrl ? 'target="_blank" rel="noreferrer"' : ""
+                }>
+                  ${
+                    project.image
+                      ? `<img src="${project.image}" alt="${project.title}" loading="lazy" style="--project-aspect: ${
+                          project.aspect || "1 / 1"
+                        }" />`
+                      : `<div class="project-visual project-visual-${project.accent || "default"}" style="--project-aspect: ${
+                          project.aspect || "1 / 1"
+                        }" aria-hidden="true">
+                            <span>${project.cardTitle}</span>
+                          </div>`
+                  }
+                  <div class="project-card-body">
+                    <h3>${project.cardTitle}</h3>
+                    <p>${project.category}</p>
+                  </div>
+                </a>
+              `
+          }
+        </article>
+      `;
+    }
+
+    function renderMasonry() {
+      const count = columnCount();
+      const columns = Array.from({ length: count }, () => ({ height: 0, cards: [] }));
+
+      projectItems.forEach((project) => {
+        const shortest = columns.reduce((best, column) => (column.height < best.height ? column : best), columns[0]);
+        shortest.cards.push(project);
+        shortest.height += aspectHeightWeight(project.aspect) + 0.28;
+      });
+
+      const grid = document.querySelector(".project-grid");
+      if (!grid) return;
+      grid.innerHTML = columns
+        .map((column) => `<div class="project-column">${column.cards.map(projectCard).join("")}</div>`)
+        .join("");
+      grid.dataset.columns = String(count);
+    }
+
     app.innerHTML = shell(`
       <main>
         <section class="hero">
@@ -63,44 +136,7 @@
             <span>01</span>
             <h2 id="work-title">Projects</h2>
           </div>
-          <div class="project-grid">
-            ${projects
-              .map(
-                (project) => `
-                  <article class="project-card" data-category="${project.category}">
-                    <a href="${projectHref(project)}" aria-label="Open ${project.title}" ${
-                  project.externalUrl ? 'target="_blank" rel="noreferrer"' : ""
-                }>
-                      ${
-                        project.image
-                          ? `<img src="${project.image}" alt="${project.title}" loading="lazy" />`
-                          : `<div class="project-visual project-visual-${project.accent || "default"}" aria-hidden="true">
-                              <span>${project.cardTitle}</span>
-                            </div>`
-                      }
-                      <div class="project-card-body">
-                        <h3>${project.cardTitle}</h3>
-                        <p>${project.category}</p>
-                      </div>
-                    </a>
-                  </article>
-                `
-              )
-              .join("")}
-            ${comingSoon
-              .map(
-                (item) => `
-                  <article class="project-card is-muted">
-                    <img src="${item.image}" alt="" loading="lazy" />
-                    <div class="project-card-body">
-                      <h3>${item.title}</h3>
-                      <p>${item.category}</p>
-                    </div>
-                  </article>
-                `
-              )
-              .join("")}
-          </div>
+          <div class="project-grid" aria-live="polite"></div>
         </section>
         <section id="background" class="background-section section-shell" aria-labelledby="background-title">
           <div class="section-heading">
@@ -125,6 +161,14 @@
         </section>
       </main>
     `);
+
+    renderMasonry();
+
+    let resizeFrame = 0;
+    window.addEventListener("resize", () => {
+      window.cancelAnimationFrame(resizeFrame);
+      resizeFrame = window.requestAnimationFrame(renderMasonry);
+    });
   }
 
   function renderProject(slug) {
