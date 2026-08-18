@@ -45,6 +45,12 @@
 
   function renderHome() {
     const projectItems = [...projects, ...comingSoon.map((item) => ({ ...item, muted: true }))];
+    const filterTerms = {
+      UX: ["ux", "user", "research", "product design", "product designer"],
+      UI: ["ui", "interface", "branding", "visual", "prototype"],
+      Code: ["code", "coding", "front-end", "developer", "engineer", "react", "vite", "web app"],
+    };
+    let activeFilter = "";
 
     function aspectHeightWeight(aspect) {
       const [wide, tall] = String(aspect || "1 / 1")
@@ -57,6 +63,31 @@
       if (window.matchMedia("(max-width: 679px)").matches) return 1;
       if (window.matchMedia("(max-width: 1023px)").matches) return 2;
       return 3;
+    }
+
+    function searchableText(project) {
+      return [
+        project.title,
+        project.cardTitle,
+        project.category,
+        project.roles,
+        project.client,
+        project.summary,
+        ...(project.sections || []).flatMap((section) => [section.title, section.body]),
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+    }
+
+    function matchesFilter(project) {
+      if (!activeFilter) return true;
+      if (Array.isArray(project.filters)) return project.filters.includes(activeFilter);
+      const text = searchableText(project);
+      return filterTerms[activeFilter].some((term) => {
+        const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        return new RegExp(`(^|[^a-z0-9])${escaped}([^a-z0-9]|$)`, "i").test(text);
+      });
     }
 
     function projectCard(project) {
@@ -102,8 +133,9 @@
     function renderMasonry() {
       const count = columnCount();
       const columns = Array.from({ length: count }, () => ({ height: 0, cards: [] }));
+      const visibleItems = projectItems.filter(matchesFilter);
 
-      projectItems.forEach((project) => {
+      visibleItems.forEach((project) => {
         const shortest = columns.reduce((best, column) => (column.height < best.height ? column : best), columns[0]);
         shortest.cards.push(project);
         shortest.height += aspectHeightWeight(project.aspect) + 0.28;
@@ -111,10 +143,18 @@
 
       const grid = document.querySelector(".project-grid");
       if (!grid) return;
-      grid.innerHTML = columns
-        .map((column) => `<div class="project-column">${column.cards.map(projectCard).join("")}</div>`)
-        .join("");
+      grid.innerHTML = visibleItems.length
+        ? columns.map((column) => `<div class="project-column">${column.cards.map(projectCard).join("")}</div>`).join("")
+        : `<p class="empty-filter">No projects match ${activeFilter} yet.</p>`;
       grid.dataset.columns = String(count);
+    }
+
+    function updateFilterButtons() {
+      document.querySelectorAll(".filter-pill").forEach((button) => {
+        const isActive = button.dataset.filter === activeFilter;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
     }
 
     app.innerHTML = shell(`
@@ -125,10 +165,10 @@
             <h1>Tech-savvy Product Designer, crafting digital experiences that bridge creativity and function.</h1>
             <a class="primary-link" href="https://cal.com/" target="_blank" rel="noreferrer">Let's Connect</a>
           </div>
-          <div class="hero-orbit" aria-hidden="true">
-            <span>UX</span>
-            <span>UI</span>
-            <span>Code</span>
+          <div class="hero-orbit" aria-label="Project filters">
+            <button class="filter-pill" type="button" data-filter="UX" aria-pressed="false">UX</button>
+            <button class="filter-pill" type="button" data-filter="UI" aria-pressed="false">UI</button>
+            <button class="filter-pill" type="button" data-filter="Code" aria-pressed="false">Code</button>
           </div>
         </section>
         <section id="case-studies" class="work-section section-shell" aria-labelledby="work-title">
@@ -163,6 +203,16 @@
     `);
 
     renderMasonry();
+    updateFilterButtons();
+
+    document.querySelectorAll(".filter-pill").forEach((button) => {
+      button.addEventListener("click", () => {
+        activeFilter = activeFilter === button.dataset.filter ? "" : button.dataset.filter;
+        updateFilterButtons();
+        renderMasonry();
+        document.querySelector("#case-studies")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
 
     let resizeFrame = 0;
     window.addEventListener("resize", () => {
