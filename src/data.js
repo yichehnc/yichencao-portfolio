@@ -224,6 +224,21 @@ window.PORTFOLIO_PROJECTS = [
 
 window.PORTFOLIO_COMING_SOON = [];
 
+window.PORTFOLIO_TOOLS = [
+  { name: "Figma", mark: "Fi", color: "#0acf83" },
+  { name: "Framer", mark: "Fr", color: "#111111" },
+  { name: "React", mark: "Re", color: "#61dafb" },
+  { name: "JavaScript", mark: "JS", color: "#f7df1e" },
+  { name: "TypeScript", mark: "TS", color: "#3178c6" },
+  { name: "Python", mark: "Py", color: "#3776ab" },
+  { name: "Git", mark: "Git", color: "#f05032" },
+  { name: "Adobe CC", mark: "Ai", color: "#ff9a00" },
+  { name: "Rhino", mark: "Rh", color: "#5f6970" },
+  { name: "Blender", mark: "Bl", color: "#f5792a" },
+  { name: "Unreal", mark: "Un", color: "#2c2f34" },
+  { name: "V-Ray", mark: "Vr", color: "#45a7df" },
+];
+
 window.PORTFOLIO_BACKGROUND = [
   {
     period: "Jul 2024 - Nov 2024",

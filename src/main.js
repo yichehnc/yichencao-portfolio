@@ -1,6 +1,7 @@
 (function () {
   const projects = window.PORTFOLIO_PROJECTS || [];
   const comingSoon = window.PORTFOLIO_COMING_SOON || [];
+  const tools = window.PORTFOLIO_TOOLS || [];
   const background = window.PORTFOLIO_BACKGROUND || [];
   const app = document.querySelector("#app");
   const currentPath = window.location.pathname.replace(/\/index\.html$/, "").replace(/\/+$/, "");
@@ -17,6 +18,34 @@
 
   function homeUrl() {
     return currentPath.includes("/projects/") || currentPath.includes("/Case-study/") ? "../../" : "./";
+  }
+
+  function renderToolCarousel() {
+    if (!tools.length) return "";
+    const repeatedTools = [...tools, ...tools];
+
+    return `
+      <div class="skill-carousel" aria-label="Software skills">
+        <div class="skill-carousel-heading">
+          <p>Software & Tools</p>
+          <span>${tools.length} across design, code, and visualisation</span>
+        </div>
+        <div class="skill-marquee">
+          <div class="skill-track">
+            ${repeatedTools
+              .map(
+                (tool) => `
+                  <div class="skill-chip" style="--tool-color: ${tool.color}">
+                    <span class="skill-icon" aria-hidden="true">${tool.mark}</span>
+                    <span>${tool.name}</span>
+                  </div>
+                `
+              )
+              .join("")}
+          </div>
+        </div>
+      </div>
+    `;
   }
 
   function shell(content) {
@@ -202,6 +231,7 @@
             <span>02</span>
             <h2 id="background-title">Background</h2>
           </div>
+          ${renderToolCarousel()}
           <div class="timeline">
             ${background
               .map(
