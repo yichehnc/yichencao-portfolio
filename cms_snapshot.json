@@ -1,0 +1,68 @@
+{
+  "collection": "Projects",
+  "collectionId": "sKECFFs8H",
+  "snapshotDate": "2026-04-28",
+  "items": [
+    {
+      "slug": "relish",
+      "title": "Relish: Your Local Food Guide",
+      "date": "2024",
+      "roles": "Product designer, manager, Front-end Dev",
+      "client": "Holberton AU, Demo at Canva (Team: 1 Product Designer; 2 Developers)",
+      "heroImage": "https://framerusercontent.com/images/NRgZc7fNAzgGazVmd3EyRZQldw.png",
+      "summary": "Relish is designed to cater to the needs of foodies and explorers who are always on the lookout for new dining experiences.",
+      "sections": [
+        {"header": "Problem Statement", "image": null},
+        {"header": "Key Features - Discover Local Food with Ease", "image": "https://framerusercontent.com/images/SCtKZhvKPKhCbbrNdYT6f5IE8A.jpg"},
+        {"header": "The Journey of Building Relish", "image": "https://framerusercontent.com/images/GEZui7wfbR420pF8Mg3NbxYJ5c.jpg"},
+        {"header": "Tech-driven Solutions", "image": "https://framerusercontent.com/images/9iOyjWcHkQMJlu3AG3oBiBYZV9g.jpg"}
+      ]
+    },
+    {
+      "slug": "walley-bank",
+      "title": "Walley Bank: Fintech Savings Solution",
+      "date": "2024",
+      "roles": "UI Designer",
+      "client": "Individual Project, RMIT University",
+      "heroImage": "https://framerusercontent.com/images/mXBFJP0HR2nH4mV4QBRFi7M1dE.png",
+      "summary": "This fintech app empowers users with a seamless way to manage their savings, track expenses, and budget. Target audience: tech-savvy young professionals.",
+      "sections": [
+        {"header": "Problem Statement", "image": null},
+        {"header": "Key Features", "image": "https://framerusercontent.com/images/bS1Zgou0sNMl3JRzumr4vex8QE.png"},
+        {"header": "Responsive Design", "image": "https://framerusercontent.com/images/cM0qUiiZh6RZ4DMxb1YnENPRY.png"},
+        {"header": "Result", "image": "https://framerusercontent.com/images/bS1Zgou0sNMl3JRzumr4vex8QE.png"}
+      ]
+    },
+    {
+      "slug": "rea-redesign",
+      "title": "Redesigning REA's Inspection Experience",
+      "date": "Aug 2024 - Oct 2024",
+      "roles": "UX Designer",
+      "client": "Individual Project at RMIT",
+      "heroImage": "https://framerusercontent.com/images/2yaFwOMwuddTPu24G8kUp45tz0.png",
+      "summary": "Enhancing User Experience for Real Estate Planning",
+      "sections": [
+        {"header": "Problem Statement", "image": null},
+        {"header": "Research Process", "image": "https://framerusercontent.com/images/V6h20PPZcE0SAnuXDCp81iTh5Q.png"},
+        {"header": "Streamlining REA's Inspection Planning with Key Design Updates", "image": "https://framerusercontent.com/images/GEZui7wfbR420pF8Mg3NbxYJ5c.jpg"},
+        {"header": "Result", "image": "https://framerusercontent.com/images/wylCEIiznpIBGNJCuHWWArVRlos.png"}
+      ]
+    },
+    {
+      "slug": "yichenarch-portfolio",
+      "title": "Yichen's Portfolio",
+      "date": "",
+      "roles": "",
+      "client": "",
+      "heroImage": "https://framerusercontent.com/images/QnTwexOKTmAxZ03e1aiOTXmgfk.jpg",
+      "summary": "Minimal Portfolio Design Template — sleek, clutter-free, designed for designers seeking a visually striking platform.",
+      "sections": [
+        {"header": "Key Features", "image": null},
+        {"header": "Other features", "image": "https://framerusercontent.com/images/wSE34HN6WV6NJI84nIQiXusU.jpg"},
+        {"header": "Why should you use it?", "image": "https://framerusercontent.com/images/wXNQcAw1aFT1ej9bEiukyTjY.jpg"},
+        {"header": "Result", "image": "https://framerusercontent.com/images/VPcuQiEz83ROWKTYhDQVPZLdIw.jpg"}
+      ]
+    }
+  ],
+  "fullCmsResponse": "see Framer CMS sKECFFs8H — original raw data preserved in conversation log"
+}

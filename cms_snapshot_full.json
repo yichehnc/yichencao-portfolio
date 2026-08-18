@@ -1,0 +1,140 @@
+{
+  "_note": "Complete original CMS text content for all 4 Projects items, captured before the CMS was deleted on 2026-04-28. HTML formatting from CMS formattedText fields is preserved as raw HTML strings.",
+  "collection": "Projects",
+  "collectionId": "sKECFFs8H",
+  "items": [
+    {
+      "slug": "relish",
+      "id": "E2AQWmdWS",
+      "title": "Relish: Your Local Food Guide",
+      "originalCardTitle": "Relish: Local Food & Services",
+      "date": "2024",
+      "roles": "Product designer, manager, Front-end Dev",
+      "client": "Holberton AU, Demo at Canva  (Team: 1 Product Designer; 2 Developers)",
+      "externalLink": "https://www.figma.com/board/J8EUsLPRDgLWYWsN39OBbr/UX-Research---Redesigning-REA's-Inspection-Experience?node-id=0-1&t=kmBedoHXTa9SemRM-1",
+      "heroImage": "https://framerusercontent.com/images/NRgZc7fNAzgGazVmd3EyRZQldw.png",
+      "summary": "Relish is designed to cater to the needs of foodies and explorers who are always on the lookout for new dining experiences.",
+      "sections": [
+        {
+          "header": "Problem Statment",
+          "image": null,
+          "body_html": "<p>Relish is designed for adventurous food lovers looking to explore new dining experiences. We identified gaps in current restaurant search apps like <strong>Google Maps</strong> and <strong>Yelp</strong>, particularly their inability to <strong>filter out previously visited restaurants</strong>.</p><p>After analyzing these limitations, we integrated enhanced <strong>recommending</strong> and <strong>filtering features</strong> into Relish. One standout solution is our <strong>Quiz feature</strong>, designed to tackle the <strong>cold-start problem</strong> by helping first-time users define their preferences. This approach ensures personalized recommendations right from the start.</p><p>Our app uses these preferences to refine recommendations fetched from <strong>APIs</strong>, narrowing down the list to meet user needs. Additionally, the <strong>'Feeling Hungry?' button</strong> provides instant suggestions of <strong>10-20</strong> similar cuisines or dishes, perfect for users struggling to decide.</p><p>The <strong>search</strong> and <strong>recommendation features</strong> streamline the discovery of new restaurants, while the <strong>user-friendly UI design</strong> ensures seamless navigation and an intuitive user experience. Relish combines smart technology with thoughtful design to make dining exploration effortless and enjoyable.</p>"
+        },
+        {
+          "header": "Key Features - Discover Local Food with Ease",
+          "image": "https://framerusercontent.com/images/SCtKZhvKPKhCbbrNdYT6f5IE8A.jpg",
+          "body_html": "<p><strong>Where to Eat </strong>lets you explore dining options by entering a location or simply enabling access to your current location. By default, we've set it to Melbourne CBD for quick and convenient searches.</p><p><strong>What to Eat</strong> helps you find the perfect dish or cuisine—just type in your favorite and receive tailored restaurant recommendations. Unsure of what to eat? Try your luck with our Feeling Hungry? button for spontaneous suggestions!</p><p><strong>Have I Been There </strong>feature allows you to track restaurants you've visited, automatically removing them from future recommendations. You can always revisit your saved spots in your profile.</p><p><strong>Book a Table</strong> feature streamlines your reservation experience, offering quick access to details like phone numbers and Yelp reviews to help you make informed choices with a single click.</p><p>Furthermore, You can track your Milestones and earn <strong>Relish Awards</strong> to make every visit a memorable experience. When the award is not achieved we design the mystery card for you to take a guess. You can always view newly added awards in your profile and <strong>we will celebrate every moment when you unlock a new award!</strong></p>"
+        },
+        {
+          "header": "The Journey of Building Relish",
+          "image": "https://framerusercontent.com/images/GEZui7wfbR420pF8Mg3NbxYJ5c.jpg",
+          "body_html": "<p>Creating Relish has been a detailed, iterative process, outlined in our <strong>Product Roadmap</strong>. We began with in-depth research to identify gaps in the restaurant app market, aiming to develop an app that truly stands out. Throughout the process, tools like <strong>Miro</strong>, <strong>Slack</strong>, and <strong>Trello</strong> helped us brainstorm, coordinate, and track our progress from initial concepts through to the final product. To define our <strong>Minimum Viable Product (MVP)</strong>, we employed the <strong>MoSCoW</strong> prioritization method, focusing on the essential features like Where to Eat, What to Eat, and Have I Been There. This approach helped us deliver a fully functional <strong>MVP </strong>within a tight timeline, with additional features like an award system added later to enhance user engagement.</p>",
+          "body_html_continued": "<p>To manage development, we adopted the <strong>Scrum methodology</strong>, running regular <strong>sprint planning</strong> sessions, <strong>daily stand-ups</strong>, <strong>sprint reviews</strong>, <strong>retrospectives</strong>, and <strong>backlog refinements</strong>. Although challenging at first, this <strong>agile approach</strong> allowed us to collaborate effectively, address issues as they arose, and stay flexible to changes. As we approach launch, we continue to iterate based on user feedback, testing on various devices and browsers, and resolving bugs to ensure a seamless experience.</p>"
+        },
+        {
+          "header": "Tech-driven Solutions",
+          "image": "https://framerusercontent.com/images/9iOyjWcHkQMJlu3AG3oBiBYZV9g.jpg",
+          "body_html": "<p><strong>User Input</strong>: <strong>Google Maps API</strong> enables location settings and cravings like 'sushi' or 'ramen,' refined with price and distance filters.</p><ul><li><p><strong>Frontend</strong>: <strong>React</strong> + <strong>Vite</strong> ensure a fast, responsive interface.</p></li><li><p><strong>Backend</strong>: <strong>Django</strong> integrates with the <strong>Yelp Fusion API</strong> via a secure proxy for reliable data.</p></li><li><p><strong>Database</strong>: <strong>PostgreSQL</strong> stores user preferences, filtering out visited restaurants for personalized results.</p></li><li><p><strong>Deployment</strong>: Frontend on <strong>Netlify</strong>; backend and database on <strong>AWS</strong> for <strong>scalability </strong>and <strong>security</strong>.</p></li><li><p><strong>Features</strong>: Gamified awards, curated recommendations, and intuitive UI enhance user engagement.</p></li><li><p><strong>User-Centric Design:</strong> Results are displayed through a <strong>curated list</strong> in a <strong>consistent, visually intuitive UI</strong>, designed for easy navigation and interaction.</p></li><li><p><strong>Gamified UX:</strong> Integrated <strong>badges</strong> and <strong>award systems</strong> enhance engagement, transforming exploration into a rewarding experience.</p></li></ul><p>We aimed to addresses gaps in current apps, encouraging new dining exploration while fostering local business connections.</p><p>Moving forward, we will consider scaling and improved notifications. We will also continue to ensure our design is up-to-date with any challenges or new developments in the future.</p>"
+        }
+      ]
+    },
+    {
+      "slug": "walley-bank",
+      "id": "v66aUE3sB",
+      "title": "Walley Bank: Fintech Savings Solution",
+      "date": "2024",
+      "roles": "UI Designer",
+      "client": "Individual Project, RMIT University",
+      "heroImage": "https://framerusercontent.com/images/mXBFJP0HR2nH4mV4QBRFi7M1dE.png",
+      "summary": "This fintech app is designed to empower users with a seamless and intuitive way to manage their savings. The app enables users to manage their accounts quickly and securely, as well as track their expenses and manage their budgets. Our target audience is young professionals who are tech-savvy, digitally connected, and value convenience and simplicity.",
+      "sections": [
+        {
+          "header": "Problem Statement",
+          "image": null,
+          "body_html": "<p>Walley Bank is a fintech platform designed to empower users with a seamless and intuitive way to manage their savings. This project explores the user interface (UI) design of WalleyBank's MVP website, building on comprehensive UX research. The design focuses on creating a secure, user-friendly, and aesthetically pleasing experience for managing finances.</p>"
+        },
+        {
+          "header": "Key Features",
+          "image": "https://framerusercontent.com/images/bS1Zgou0sNMl3JRzumr4vex8QE.png",
+          "body_html": "<p><strong>Savings Goals:</strong></p><ul><li><p>Allocate funds into personalized categories for short-term or long-term goals.</p></li><li><p>Visualize your progress with dynamic dashboards.</p></li></ul><p><strong>Automated Budgeting Tools:</strong></p><ul><li><p>Split income into savings and spending buckets based on user-defined percentages.</p></li><li><p>Maintain transparency and control over your expenses.</p></li></ul><p><strong>Enhanced Security:</strong></p><ul><li><p>Subtle display of account balances to ensure privacy.</p></li><li><p>Responsive design ensuring security across devices.</p></li></ul><p><strong>Transaction Tracking:</strong></p><ul><li><p>Detailed insights into savings and expenditures.</p></li><li><p>Provide users with confidence and clarity in their financial journey.</p></li></ul><p><strong>Personalized Account Management:</strong></p><ul><li><p>Tailored features like customizable notifications, editable payments, and downloadable statements.</p></li></ul>"
+        },
+        {
+          "header": "Responsive Design",
+          "image": "https://framerusercontent.com/images/cM0qUiiZh6RZ4DMxb1YnENPRY.png",
+          "body_html": "<p>Walley Bank's design prioritizes simplicity to ensure an intuitive and user-friendly experience. The interface is crafted for effortless navigation, allowing users to confidently manage their savings without feeling overwhelmed. Whether it's checking balances or setting up savings goals, every feature is designed with clarity and ease in mind.</p><p><strong>Consistency</strong> is a key focus, with a cohesive design system that maintains a clean and professional aesthetic across all pages. By standardizing visual elements and interactions, Walley Bank creates a seamless experience, enhancing user trust and satisfaction.</p><p><strong>Responsiveness</strong> is at the core of the design, ensuring the platform works flawlessly on any device—desktop, tablet, or mobile. This adaptability guarantees users can access and manage their finances anytime, anywhere, without compromising on usability.</p>",
+          "body_html_continued": "<h3>Usability Tests &amp; Insights</h3><p>Through extensive user interviews and usability tests, I synthesized feedback to inform refinements, paving the way for the MVP's release and subsequent iterations. Some critical insights that shaped the design solutions:</p><p><strong>Balance Display:</strong> Users preferred smaller, more discreet account balance visuals to enhance perceived security.</p><p><strong>Editable Payments:</strong> Clear pathways for modifying recurring payments were prioritized to improve user flexibility.</p><p><strong>Savings Transparency:</strong> Users wanted greater visibility of transactions within their savings accounts to track and celebrate progress.</p>"
+        },
+        {
+          "header": "Result",
+          "image": "https://framerusercontent.com/images/bS1Zgou0sNMl3JRzumr4vex8QE.png",
+          "body_html": "<p><strong>Iterations and Outcome</strong></p><p>The Walley Bank UI design balances functionality with user delight, helping users achieve financial milestones while fostering trust and engagement.</p><p>The MVP comprises:</p><ul><li><p>A high-fidelity prototype for usability testing.</p></li><li><p>Responsive layouts for core pages: Dashboard, Payments, Profile, and Help.</p></li><li><p>A modular component library for scalability in future versions.</p></li></ul>"
+        }
+      ]
+    },
+    {
+      "slug": "rea-redesign",
+      "id": "kzAHlOzcV",
+      "title": "Redesigning REA's Inspection Experience",
+      "date": "Aug 2024 - Oct 2024",
+      "roles": "UX Designer",
+      "client": "Individual Project at RMIT",
+      "heroImage": "https://framerusercontent.com/images/2yaFwOMwuddTPu24G8kUp45tz0.png",
+      "summary": "Enhancing User Experience for Real Estate Planning",
+      "sections": [
+        {
+          "header": "Problem Statement",
+          "image": null,
+          "body_html": "<p>This UX case study focuses on improving the <strong>inspection planning and management experience</strong> on the REA website. The goal was to address inefficiencies and streamline the process for property buyers scheduling multiple visits in a single day.</p><p>Through <strong>user research</strong> and interviews, key pain points emerged:</p><ul><li><p>Difficulty <strong>adding properties</strong> to an inspection plan.</p></li><li><p><strong>Conflicting inspection times</strong> made planning inefficient.</p></li><li><p>Limited visibility of critical details like price and interest level during the planning process.</p></li></ul>"
+        },
+        {
+          "header": "Research Process",
+          "image": "https://framerusercontent.com/images/V6h20PPZcE0SAnuXDCp81iTh5Q.png",
+          "body_html": "<p><strong>Desk Research:</strong><br>The desk research explored the full user journey, from initial property search to final inspection planning.</p><p><strong>User Interviews:</strong><br>Conducted with experienced REA users, uncovering challenges in managing inspections and resolving scheduling conflicts.</p><p><strong>Ideation &amp; Sketching:</strong><br>Created storyboards and sketches based on user insights to address pain points.</p><p><strong>Low-Fidelity Prototype:</strong><br>Developed a paper prototype to visualize potential solutions.</p><p><strong>Usability Testing:</strong><br>Moderated tests provided actionable feedback on the low-fi prototype, shaping the next iteration.</p><p>This thorough <strong>UX research</strong> process ensures each design choice was informed by <strong>research findings</strong>:</p><ul><li><p>Addressed pain points related to planning inefficiencies.</p></li><li><p>Improved <strong>visibility</strong> of essential details for informed decision-making.</p></li><li><p>Enhanced <strong>usability</strong> by integrating feedback from usability testing.</p></li></ul>"
+        },
+        {
+          "header": "Streamlining REA's Inspection Planning with Key Design Updates",
+          "image": "https://framerusercontent.com/images/GEZui7wfbR420pF8Mg3NbxYJ5c.jpg",
+          "body_html": "<p>Using the <em>Impact-Effort Matrix</em>, I prioritized features to enhance the user experience:</p><ul><li><p><strong>High-impact, low-effort</strong>: <strong>Route planning</strong>, improving visibility for <strong>'Add Notes'</strong> and <strong>'Add to Plan'</strong>, and refining content clarity.</p></li><li><p><strong>High-impact, high-effort</strong>: Centralizing the <strong>'Manage All Inspections'</strong> feature and adding <strong>voice-to-text note-taking</strong>.</p></li><li><p><strong>Lower-priority</strong>: Features like displaying buyer interest offer minimal value.</p></li></ul><p>This approach ensures focus on <strong>high-value improvements</strong> while balancing development resources effectively.</p>"
+        },
+        {
+          "header": "Result",
+          "image": "https://framerusercontent.com/images/wylCEIiznpIBGNJCuHWWArVRlos.png",
+          "body_html": "<p><strong>Medium-Fidelity Prototype</strong></p><p>A <strong>clickable prototype</strong> was developed to refine the user experience, focusing on usability and efficiency:</p><ul><li><p><strong>Conflict Resolution:</strong> Highlighted inspection conflicts prominently within the planner.</p></li><li><p><strong>Interest Level Display:</strong> Added visual markers to prioritize properties of interest.</p></li><li><p><strong>Integrated Map Information:</strong> Provided clear route planning details within the inspection section.</p></li><li><p><strong>Fixed Planner Bar:</strong> Enabled users to manage schedules without losing context.</p></li></ul><p>Every design decision was backed by research insights, ensuring solutions addressed user needs. By refining visibility, prioritization, and usability, the inspection planning tool delivers a more intuitive and user-friendly experience. Usability testing was conducted and synthesized to inform iterations. Moving forward, I will continue to refine these features for optimal results.</p>"
+        }
+      ]
+    },
+    {
+      "slug": "yichenarch-portfolio",
+      "id": "gvNwMoWki",
+      "title": "Yichen's Portfolio",
+      "date": "",
+      "roles": "",
+      "client": "",
+      "heroImage": "https://framerusercontent.com/images/QnTwexOKTmAxZ03e1aiOTXmgfk.jpg",
+      "summary": "Introducing our Minimal Portfolio Design Template — a sleek and clutter-free solution designed for designers seeking a visually striking platform to showcase their projects. This template offers a seamless and intuitive user experience, emphasizing simplicity and elegance.",
+      "sections": [
+        {
+          "header": "Key Features",
+          "image": null,
+          "body_html": "<p><strong>Clean and Clutter-Free Design</strong>: The template ensures that your projects take center stage with a minimalist layout, avoiding unnecessary distractions and allowing your work to shine.<br><strong>Smooth Transitions:</strong> Elevate your portfolio with seamless transitions between sections, providing a polished and engaging user experience. Effortlessly guide visitors through your projects with fluid animations.<br><strong>Day Mode and Night Mode:</strong> Tailor your portfolio's appearance to match different preferences or viewing environments. Switch effortlessly between Day Mode and Night Mode, ensuring optimal visibility and a comfortable browsing experience.</p>"
+        },
+        {
+          "header": "Other features",
+          "image": "https://framerusercontent.com/images/wSE34HN6WV6NJI84nIQiXusU.jpg",
+          "body_html": "<p><strong>Project Focus:</strong> Each project is presented with meticulous attention to detail, allowing users to delve into your work without the need for unnecessary clicks or overwhelming details. Streamlined project pages provide a clear narrative for each piece in your portfolio.<br><strong>Responsive Design:</strong> The template is optimized for various devices, ensuring a consistent and visually pleasing experience for visitors on desktops, tablets, and smartphones.<br><strong>Interactive Elements:</strong> Incorporate subtle interactive elements to engage users, such as hover effects and click animations, enhancing the overall user experience and making your portfolio memorable.</p>"
+        },
+        {
+          "header": "Why should you use it?",
+          "image": "https://framerusercontent.com/images/wXNQcAw1aFT1ej9bEiukyTjY.jpg",
+          "body_html": "<p>In essence, our Minimal Portfolio Design Template offers a sophisticated and user-centric solution for designers aiming to showcase their projects elegantly. Elevate your portfolio with this thoughtfully crafted template that prioritizes simplicity, user engagement, and a seamless display of your creative work.</p>",
+          "body_html_continued": "<p><strong>Drag-and-Drop Simplicity:</strong> Framer leverages a user-friendly drag-and-drop interface. This ensures that even users with minimal coding experience can effortlessly build and modify interactive prototypes and user interfaces for their portfolios.<br><strong>Pre-Built Component Library:</strong> Framer provides a rich library of pre-built UI components such as buttons, menus, and forms. This feature significantly expedites the template creation process, eliminating the need to code individual elements from scratch. Designers can seamlessly piece together their portfolios using these readily available components.</p>"
+        },
+        {
+          "header": "Result",
+          "image": "https://framerusercontent.com/images/VPcuQiEz83ROWKTYhDQVPZLdIw.jpg",
+          "body_html": "<p>The result of building this template for designers has been nothing short of extraordinary, as echoed by enthusiastic testimonials:</p><p>\"This is really beautiful! And it ticks every single box. The aesthetics, interaction, the user experience—everything is really, really good. You guys did such an amazing job!\"</p>"
+        }
+      ]
+    }
+  ]
+}
