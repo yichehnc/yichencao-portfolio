@@ -226,14 +226,14 @@ window.PORTFOLIO_COMING_SOON = [];
 
 window.PORTFOLIO_TOOLS = [
   { name: "Framer", icon: "https://cdn.simpleicons.org/framer/0099ff" },
-  { name: "Figma", icon: "https://cdn.simpleicons.org/figma" },
+  { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
   { name: "Adobe Photoshop", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg" },
   { name: "Adobe Illustrator", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" },
   { name: "GitHub", icon: "https://cdn.simpleicons.org/github/111111" },
   { name: "Slack", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg" },
-  { name: "Blender", icon: "https://cdn.simpleicons.org/blender/f5792a" },
+  { name: "Blender", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/blender/blender-original.svg" },
   { name: "Procreate", icon: "https://upload.wikimedia.org/wikipedia/commons/0/03/Procreate_logo.png" },
-  { name: "Python", icon: "https://cdn.simpleicons.org/python" },
+  { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
 ];
 
 window.PORTFOLIO_BACKGROUND = [
