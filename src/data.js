@@ -128,6 +128,7 @@ window.PORTFOLIO_PROJECTS = [
     category: "Founder Tools · Product Design",
     filters: ["UX", "UI", "Code"],
     aspect: "4 / 3",
+    externalUrl: "https://mlai.au/vibe-raising",
     summary:
       "An internal Framer case-study page exists for MLAI Founder Tools, but the detail content was not exposed through the connected MCP session.",
     accent: "mlai",
