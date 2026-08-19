@@ -102,14 +102,34 @@ window.PORTFOLIO_PROJECTS = [
     filters: ["Vibe Coding", "UX", "UI"],
     aspect: "4 / 3",
     externalUrl: "https://mlai.au/vibe-raising",
+    actionUrl: "https://mlai.au/vibe-raising",
+    actionLabel: "View live project",
     summary:
-      "An internal Framer case-study page exists for MLAI Founder Tools, but the detail content was not exposed through the connected MCP session.",
+      "A founder-facing update tool that helps early-stage teams build investor trust before they raise.",
+    subtitle:
+      "Product design, front-end build, and product strategy for a monthly founder update workflow.",
+    meta: [
+      { label: "Role", value: "Product Design Engineer" },
+      { label: "Timeline", value: "2026 · Ongoing" },
+      { label: "Tools", value: "Figma, Framer, React, AI prototyping" },
+      { label: "Impact", value: "Clearer investor updates and a reusable founder workflow" },
+    ],
     accent: "mlai",
     sections: [
       {
-        title: "Snapshot Note",
+        title: "Overview",
         body:
-          "<p>This page is included because Framer MCP lists /projects/mlai-founder-tools in the current project. The page is not available on the published production or staging URLs, and the current MCP session returned an error when reading its page XML, so this static MVP keeps the route present without inventing the unpublished case-study content.</p>",
+          "<p>MLAI Founder Tools explores how founders can turn monthly operating updates into a lightweight relationship-building system. The product gives teams a clearer way to collect progress, shape updates, and share momentum before a formal raise.</p><p>This placeholder overview keeps the structure in place while leaving the final content open for editing.</p>",
+      },
+      {
+        title: "Design Journey",
+        body:
+          "<p><strong>01 · Framing.</strong> Map the founder and investor relationship around trust, cadence, and proof of progress.</p><p><strong>02 · Workflow.</strong> Turn a messy monthly update into a guided draft, review, and publish flow.</p><p><strong>03 · Interface.</strong> Keep the experience direct and confidence-building, with product moments that make progress feel concrete.</p>",
+      },
+      {
+        title: "The Proof",
+        body:
+          "<p>The project is live as a working MLAI page and presents the core promise: helping founders start investor conversations early through consistent monthly updates.</p><p>Proof points to expand later: user feedback, conversion signals, number of updates created, founder interviews, or investor response quality.</p>",
       },
     ],
   },

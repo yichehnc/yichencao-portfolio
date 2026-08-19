@@ -286,13 +286,20 @@
     }
 
     document.title = `${project.title} - Yichen Cao`;
+    const metaItems =
+      project.meta || [
+        { label: "Date", value: project.date },
+        { label: "Role", value: project.roles },
+        { label: "Context", value: project.client },
+      ];
+
     app.innerHTML = shell(`
       <main class="case-study">
         <a class="back-link" href="${homeUrl()}#case-studies">Back</a>
         <section class="case-hero">
           <div class="case-title">
             <h1>${project.title}</h1>
-            <p>${project.summary}</p>
+            <p>${project.subtitle || project.summary}</p>
             ${
               project.actionUrl
                 ? `<a class="primary-link" href="${project.actionUrl}" target="_blank" rel="noreferrer">${project.actionLabel}</a>`
@@ -300,18 +307,16 @@
             }
           </div>
           <dl class="meta-list">
-            <div>
-              <dt>Date</dt>
-              <dd>${project.date}</dd>
-            </div>
-            <div>
-              <dt>Role</dt>
-              <dd>${project.roles}</dd>
-            </div>
-            <div>
-              <dt>Context</dt>
-              <dd>${project.client}</dd>
-            </div>
+            ${metaItems
+              .map(
+                (item) => `
+                  <div>
+                    <dt>${item.label}</dt>
+                    <dd>${item.value}</dd>
+                  </div>
+                `
+              )
+              .join("")}
           </dl>
           ${
             project.image
