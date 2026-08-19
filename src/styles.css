@@ -166,8 +166,8 @@ main {
   position: relative;
   display: grid;
   min-height: 680px;
-  align-items: center;
-  padding: 72px 0 112px;
+  align-items: start;
+  padding: 72px 0 104px;
   overflow: hidden;
 }
 
@@ -197,6 +197,12 @@ h1 {
   line-height: 0.92;
 }
 
+.hero-copy h1 {
+  max-width: 980px;
+  font-size: clamp(44px, 6.8vw, 96px);
+  line-height: 1.08;
+}
+
 .primary-link {
   display: inline-flex;
   min-height: 46px;
@@ -217,25 +223,29 @@ h1 {
 }
 
 .hero-orbit {
-  position: absolute;
-  right: 20px;
-  bottom: 96px;
-  display: grid;
-  grid-template-columns: repeat(3, 92px);
+  position: relative;
+  z-index: 4;
+  display: flex;
+  width: max-content;
+  max-width: 100%;
+  flex-wrap: wrap;
   gap: 12px;
+  margin-top: 42px;
   opacity: 0.9;
+  pointer-events: auto;
 }
 
 .filter-pill {
   display: grid;
-  width: 92px;
-  height: 92px;
+  width: 84px;
+  height: 84px;
   place-items: center;
   border: 1px solid var(--line);
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.42);
   color: var(--muted);
   cursor: pointer;
+  pointer-events: auto;
   font: inherit;
   font-weight: 700;
   transition:
@@ -679,9 +689,7 @@ dd {
   }
 
   .hero-orbit {
-    position: static;
-    grid-template-columns: repeat(3, 72px);
-    margin-top: 42px;
+    margin-top: 36px;
   }
 
   .filter-pill {
@@ -714,7 +722,12 @@ dd {
   }
 
   h1 {
-    font-size: 48px;
+    font-size: 42px;
+    line-height: 1.1;
+  }
+
+  .hero-copy h1 {
+    font-size: 42px;
   }
 
   .section-shell {
