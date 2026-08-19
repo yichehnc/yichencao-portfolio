@@ -88,10 +88,14 @@
 
   function renderHome() {
     const projectItems = [...projects, ...comingSoon.map((item) => ({ ...item, muted: true }))];
+    const projectFilters = ["Vibe Coding", "UX", "UI", "Architecture", "Motion", "Graphic Design"];
     const filterTerms = {
+      "Vibe Coding": ["vibe coding", "code", "coding", "interactive", "web app"],
       UX: ["ux", "user", "research", "product design", "product designer"],
       UI: ["ui", "interface", "branding", "visual", "prototype"],
-      Code: ["code", "coding", "front-end", "developer", "engineer", "react", "vite", "web app"],
+      Architecture: ["architecture", "architectural", "spatial"],
+      Motion: ["motion", "animation", "interactive", "kinetic"],
+      "Graphic Design": ["graphic design", "publication", "editorial", "visualisation"],
     };
     let activeFilter = "";
 
@@ -209,16 +213,20 @@
             <a class="primary-link" href="https://cal.com/" target="_blank" rel="noreferrer">Let's Connect</a>
             ${renderToolCarousel()}
           </div>
-          <div class="hero-orbit" aria-label="Project filters">
-            <button class="filter-pill" type="button" data-filter="UX" aria-pressed="false">UX</button>
-            <button class="filter-pill" type="button" data-filter="UI" aria-pressed="false">UI</button>
-            <button class="filter-pill" type="button" data-filter="Code" aria-pressed="false">Code</button>
-          </div>
         </section>
         <section id="case-studies" class="work-section section-shell" aria-labelledby="work-title">
           <div class="section-heading">
             <span>01</span>
             <h2 id="work-title">Projects</h2>
+          </div>
+          <div class="project-filter-tabs" aria-label="Project filters">
+            ${projectFilters
+              .map(
+                (filter) => `
+                  <button class="filter-pill" type="button" data-filter="${filter}" aria-pressed="false">${filter}</button>
+                `
+              )
+              .join("")}
           </div>
           <div class="project-grid" aria-live="polite"></div>
         </section>

@@ -227,32 +227,56 @@ h1 {
   border-color: var(--accent);
 }
 
-.hero-orbit {
-  position: relative;
-  z-index: 4;
+.section-shell {
+  padding: 96px 0;
+}
+
+.section-heading {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 34px;
+  text-shadow: 0 1px 18px rgba(245, 241, 232, 0.75);
+}
+
+.section-heading span,
+.section-number {
+  color: var(--muted);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+h2 {
+  margin-bottom: 0;
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight: 560;
+  line-height: 0.95;
+}
+
+.project-filter-tabs {
   display: flex;
-  width: max-content;
-  max-width: 100%;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 28px;
-  opacity: 0.9;
-  pointer-events: auto;
+  margin-bottom: 48px;
 }
 
 .filter-pill {
-  display: grid;
-  width: 84px;
-  height: 84px;
-  place-items: center;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.42);
-  color: var(--muted);
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  border: 1px solid rgba(23, 23, 23, 0.72);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--ink);
   cursor: pointer;
-  pointer-events: auto;
   font: inherit;
-  font-weight: 700;
+  font-size: clamp(15px, 1.35vw, 20px);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
   transition:
     background 180ms ease,
     border-color 180ms ease,
@@ -269,44 +293,17 @@ h1 {
 }
 
 .filter-pill:focus-visible {
-  outline: 3px solid rgba(203, 90, 67, 0.35);
+  outline: 3px solid rgba(23, 23, 23, 0.16);
   outline-offset: 3px;
 }
 
 .filter-pill:active {
-  transform: scale(0.96);
-}
-
-.section-shell {
-  padding: 96px 0;
-}
-
-.section-heading {
-  display: grid;
-  grid-template-columns: 92px minmax(0, 1fr);
-  gap: 24px;
-  align-items: start;
-  margin-bottom: 40px;
-  text-shadow: 0 1px 18px rgba(245, 241, 232, 0.75);
-}
-
-.section-heading span,
-.section-number {
-  color: var(--muted);
-  font-size: 18px;
-  font-weight: 700;
-}
-
-h2 {
-  margin-bottom: 0;
-  font-size: clamp(38px, 6vw, 82px);
-  font-weight: 560;
-  line-height: 0.95;
+  transform: scale(0.97);
 }
 
 .project-grid {
   display: flex;
-  gap: 28px;
+  gap: 36px;
   align-items: flex-start;
   width: 100%;
 }
@@ -322,24 +319,21 @@ h2 {
   display: grid;
   flex: 1 1 0;
   min-width: 0;
-  gap: 28px;
+  gap: 42px;
 }
 
 .project-card {
-  overflow: hidden;
+  overflow: visible;
   min-height: 100%;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.5);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   transition:
-    border-color 180ms ease,
-    transform 180ms ease,
-    background 180ms ease;
+    opacity 180ms ease,
+    transform 180ms ease;
 }
 
 .project-card:hover {
-  border-color: var(--ink);
-  background: rgba(255, 255, 255, 0.8);
   transform: translateY(-3px);
 }
 
@@ -352,6 +346,7 @@ h2 {
 .project-card img {
   width: 100%;
   aspect-ratio: var(--project-aspect, 1 / 1);
+  border-radius: 30px;
   object-fit: cover;
   background: var(--panel);
 }
@@ -362,6 +357,7 @@ h2 {
   aspect-ratio: var(--project-aspect, 1 / 1);
   place-items: center;
   padding: 22px;
+  border-radius: 30px;
   background:
     radial-gradient(circle at 20% 20%, rgba(203, 90, 67, 0.25), transparent 34%),
     radial-gradient(circle at 78% 72%, rgba(38, 99, 118, 0.28), transparent 30%),
@@ -412,21 +408,22 @@ h2 {
 
 .project-card-body {
   display: grid;
-  gap: 12px;
-  padding: 18px;
+  gap: 6px;
+  padding: 20px 8px 0;
 }
 
 .project-card-body h3 {
   margin: 0;
-  font-size: clamp(20px, 2.1vw, 30px);
+  font-size: clamp(22px, 2.05vw, 34px);
   font-weight: 560;
-  line-height: 1.08;
+  line-height: 1.05;
 }
 
 .project-card-body p {
   margin: 0;
-  color: var(--muted);
-  font-size: 14px;
+  color: var(--soft-ink);
+  font-size: clamp(16px, 1.45vw, 23px);
+  line-height: 1.2;
 }
 
 .is-muted {
@@ -697,13 +694,9 @@ dd {
     min-height: calc(100svh - 248px);
   }
 
-  .hero-orbit {
-    margin-top: 36px;
-  }
-
   .filter-pill {
-    width: 72px;
-    height: 72px;
+    min-height: 44px;
+    padding: 0 20px;
   }
 
   .meta-list {
@@ -741,6 +734,22 @@ dd {
 
   .section-shell {
     padding: 72px 0;
+  }
+
+  .project-filter-tabs {
+    gap: 8px;
+    margin-bottom: 34px;
+  }
+
+  .filter-pill {
+    min-height: 44px;
+    padding: 0 16px;
+    font-size: 14px;
+  }
+
+  .project-card img,
+  .project-visual {
+    border-radius: 22px;
   }
 
   .skill-marquee {
