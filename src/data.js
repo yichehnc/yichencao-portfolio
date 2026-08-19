@@ -93,7 +93,7 @@ window.PORTFOLIO_PROJECTS = [
   },
   {
     slug: "mlai-founder-tools",
-    title: "MLAI Founder Tools",
+    title: "MLAI Founder Tools - Vibe Raising",
     cardTitle: "MLAI Founder Tools",
     date: "2026",
     roles: "Product Design Engineer",
