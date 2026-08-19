@@ -20,4 +20,4 @@ The included `netlify.toml` already sets the publish directory.
 2. In repository settings, enable Pages from the main branch.
 3. Use the repository root as the publishing source.
 
-The site uses real static files under `Case-study/<slug>/`, matching the current Framer case-study URLs without a single-page app rewrite.
+The site uses real static files under `projects/<slug>/`, matching the canonical project URLs without a single-page app rewrite. Legacy `Case-study` URLs redirect to `projects`.

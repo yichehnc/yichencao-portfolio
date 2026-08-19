@@ -10,9 +10,9 @@
   const slugMatch = currentPath.match(/\/(?:projects|case-study)\/([^/]+)$/i);
 
   function projectUrl(slug) {
-    if (!isFilePreview) return `/Case-study/${slug}/`;
+    if (!isFilePreview) return `/projects/${slug}/`;
     const fromProjectPage = currentPathLower.includes("/projects/") || currentPathLower.includes("/case-study/");
-    return fromProjectPage ? `../${slug}/` : `Case-study/${slug}/`;
+    return fromProjectPage ? `../${slug}/` : `projects/${slug}/`;
   }
 
   function projectHref(project) {
@@ -56,7 +56,7 @@
           <small>Product Designer<br />based in Melbourne</small>
         </a>
         <nav class="nav">
-          <a href="${homeUrl()}#case-studies">Case Studies</a>
+          <a href="${homeUrl()}#case-studies">Projects</a>
           <a href="${homeUrl()}#background">Background</a>
           <a href="https://docs.google.com/" target="_blank" rel="noreferrer">Resume</a>
         </nav>
@@ -299,7 +299,7 @@
 
     app.innerHTML = shell(`
       <main class="case-study${project.accent ? ` case-study-${project.accent}` : ""}">
-        <a class="back-link" href="${homeUrl()}#case-studies">Back</a>
+        <a class="back-link" href="${homeUrl()}#case-studies">Back to projects</a>
         <section class="case-hero">
           <div class="case-title">
             <span class="case-eyebrow">${project.category}</span>
