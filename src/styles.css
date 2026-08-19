@@ -165,16 +165,21 @@ main {
 .hero {
   position: relative;
   display: grid;
-  min-height: 680px;
+  min-height: calc(100svh - 112px);
   align-items: start;
-  padding: 72px 0 104px;
+  padding: 48px 0 104px;
   overflow: hidden;
 }
 
 .hero-copy {
   position: relative;
   z-index: 1;
-  max-width: 1050px;
+  display: flex;
+  width: 100%;
+  min-height: calc(100svh - 228px);
+  flex-direction: column;
+  justify-content: center;
+  max-width: none;
 }
 
 .hello {
@@ -230,7 +235,7 @@ h1 {
   max-width: 100%;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 42px;
+  margin-top: 28px;
   opacity: 0.9;
   pointer-events: auto;
 }
@@ -684,8 +689,12 @@ dd {
   }
 
   .hero {
-    min-height: auto;
-    padding: 64px 0 88px;
+    min-height: calc(100svh - 120px);
+    padding: 40px 0 88px;
+  }
+
+  .hero-copy {
+    min-height: calc(100svh - 248px);
   }
 
   .hero-orbit {
