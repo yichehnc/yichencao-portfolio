@@ -542,6 +542,13 @@ h2 {
   --case-pale: rgba(232, 242, 249, 0.72);
 }
 
+.case-study-mlai {
+  --case-navy: #050505;
+  --case-blue: #008c8c;
+  --case-orange: #ff3b10;
+  --case-pale: #f4efe6;
+}
+
 .back-link,
 .text-link {
   color: var(--muted);
@@ -651,11 +658,22 @@ dd {
   color: var(--white);
 }
 
+.case-study-mlai .case-proof-band {
+  border-top: 1px solid rgba(5, 5, 5, 0.16);
+  border-bottom: 1px solid rgba(5, 5, 5, 0.16);
+  background: var(--case-pale);
+  color: var(--case-navy);
+}
+
 .case-proof-band h2 {
   margin: 0;
   color: #9fc6e6;
   font-size: clamp(26px, 3vw, 40px);
   font-weight: 800;
+}
+
+.case-study-mlai .case-proof-band h2 {
+  color: var(--case-blue);
 }
 
 .case-proof-stats {
@@ -675,10 +693,22 @@ dd {
   line-height: 0.85;
 }
 
+.case-study-mlai .case-proof-stats div:first-child strong {
+  color: var(--case-blue);
+}
+
+.case-study-mlai .case-proof-stats div:nth-child(2) strong {
+  color: var(--case-orange);
+}
+
 .case-proof-stats span {
   color: #b7d5ef;
   font-size: 15px;
   font-weight: 700;
+}
+
+.case-study-mlai .case-proof-stats span {
+  color: var(--case-navy);
 }
 
 .case-sections {
@@ -714,14 +744,31 @@ dd {
   color: #f4f1ea;
 }
 
+.case-study-mlai .case-section-dark {
+  border-top: 1px solid rgba(5, 5, 5, 0.16);
+  border-bottom: 1px solid rgba(5, 5, 5, 0.16);
+  background: var(--case-pale);
+  color: var(--case-navy);
+}
+
 .case-section-dark .section-number,
 .case-section-dark .case-section-eyebrow {
   color: #9fc6e6;
 }
 
+.case-study-mlai .case-section-dark .section-number,
+.case-study-mlai .case-section-dark .case-section-eyebrow {
+  color: var(--case-orange);
+}
+
 .case-section-dark .case-section-copy h2,
 .case-section-dark .body-copy {
   color: #f4f1ea;
+}
+
+.case-study-mlai .case-section-dark .case-section-copy h2,
+.case-study-mlai .case-section-dark .body-copy {
+  color: var(--case-navy);
 }
 
 .body-copy ol {
@@ -740,11 +787,19 @@ dd {
   border-top: 1px solid rgba(244, 241, 234, 0.22);
 }
 
+.case-study-mlai .body-copy li {
+  border-top-color: rgba(5, 5, 5, 0.16);
+}
+
 .body-copy li::before {
   content: counter(list-item, decimal-leading-zero);
   color: #9fc6e6;
   font-size: 14px;
   font-weight: 800;
+}
+
+.case-study-mlai .body-copy li::before {
+  color: var(--case-orange);
 }
 
 .body-copy li strong {
@@ -753,6 +808,10 @@ dd {
   color: #fff;
   font-size: clamp(24px, 2.4vw, 32px);
   line-height: 1.05;
+}
+
+.case-study-mlai .body-copy li strong {
+  color: var(--case-navy);
 }
 
 .body-copy li span {

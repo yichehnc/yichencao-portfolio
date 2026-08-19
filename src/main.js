@@ -294,7 +294,7 @@
       ];
 
     app.innerHTML = shell(`
-      <main class="case-study">
+      <main class="case-study${project.accent ? ` case-study-${project.accent}` : ""}">
         <a class="back-link" href="${homeUrl()}#case-studies">Back</a>
         <section class="case-hero">
           <div class="case-title">
