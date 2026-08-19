@@ -178,6 +178,7 @@ main {
   width: 100%;
   min-height: calc(100svh - 228px);
   flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
   max-width: none;
 }
@@ -203,7 +204,7 @@ h1 {
 }
 
 .hero-copy h1 {
-  max-width: 980px;
+  max-width: none;
   font-size: clamp(44px, 6.8vw, 96px);
   line-height: 1.08;
 }
@@ -432,7 +433,8 @@ h2 {
 
 .skill-carousel {
   display: grid;
-  max-width: min(720px, 100%);
+  width: 100%;
+  max-width: none;
   margin-top: 36px;
 }
 
