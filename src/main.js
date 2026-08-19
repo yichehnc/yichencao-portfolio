@@ -62,7 +62,7 @@
         <a class="collab" href="mailto:yichenc2017@gmail.com">Let's<br />Collaborate</a>
         <div>
           <a href="${homeUrl()}">Yichen Cao</a>
-          <p>© Yichen Cao 2024</p>
+          <p>© Yichen Cao 2026</p>
         </div>
       </footer>
     `;
