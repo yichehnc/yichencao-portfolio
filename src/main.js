@@ -5,10 +5,13 @@
   const background = window.PORTFOLIO_BACKGROUND || [];
   const app = document.querySelector("#app");
   const currentPath = window.location.pathname.replace(/\/index\.html$/, "").replace(/\/+$/, "");
-  const slugMatch = currentPath.match(/\/(?:projects|Case-study)\/([^/]+)$/);
+  const currentPathLower = currentPath.toLowerCase();
+  const isFilePreview = window.location.protocol === "file:";
+  const slugMatch = currentPath.match(/\/(?:projects|case-study)\/([^/]+)$/i);
 
   function projectUrl(slug) {
-    const fromProjectPage = currentPath.includes("/projects/") || currentPath.includes("/Case-study/");
+    if (!isFilePreview) return `/Case-study/${slug}/`;
+    const fromProjectPage = currentPathLower.includes("/projects/") || currentPathLower.includes("/case-study/");
     return fromProjectPage ? `../${slug}/` : `Case-study/${slug}/`;
   }
 
@@ -17,7 +20,8 @@
   }
 
   function homeUrl() {
-    return currentPath.includes("/projects/") || currentPath.includes("/Case-study/") ? "../../" : "./";
+    if (!isFilePreview) return "/";
+    return currentPathLower.includes("/projects/") || currentPathLower.includes("/case-study/") ? "../../" : "./";
   }
 
   function renderToolCarousel() {
