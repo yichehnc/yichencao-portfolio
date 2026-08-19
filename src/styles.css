@@ -587,6 +587,15 @@ h2 {
   line-height: 0.84;
 }
 
+.case-study-mlai .case-title,
+.case-study-mlai .case-title h1 {
+  max-width: none;
+}
+
+.case-study-mlai .case-title h1 {
+  font-size: clamp(58px, 8vw, 132px);
+}
+
 .case-title p {
   max-width: 820px;
   margin-bottom: 24px;
