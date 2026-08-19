@@ -110,8 +110,8 @@ window.PORTFOLIO_PROJECTS = [
     meta: [
       { label: "Role", value: "Product Design Engineer" },
       { label: "Timeline", value: "2026 · Ongoing" },
-      { label: "Tools", value: "Figma, Framer, React, AI prototyping" },
-      { label: "Impact", value: "Clearer investor updates and a reusable founder workflow" },
+      { label: "Tools", value: "Claude Code, Codex, React, Github, Figma, Granola, Linear, Slack" },
+      { label: "Impact", value: "Clearer investor updates, 80+ founders, 200+ updates, and a reusable workflow" },
     ],
     proof: [
       { value: "200+", label: "Monthly updates created" },
