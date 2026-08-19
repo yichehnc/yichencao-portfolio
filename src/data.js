@@ -101,7 +101,6 @@ window.PORTFOLIO_PROJECTS = [
     category: "Vibe Coding UI UX · Ongoing",
     filters: ["Vibe Coding", "UX", "UI"],
     aspect: "4 / 3",
-    externalUrl: "https://mlai.au/vibe-raising",
     actionUrl: "https://mlai.au/vibe-raising",
     actionLabel: "View live project",
     summary:
@@ -114,19 +113,28 @@ window.PORTFOLIO_PROJECTS = [
       { label: "Tools", value: "Figma, Framer, React, AI prototyping" },
       { label: "Impact", value: "Clearer investor updates and a reusable founder workflow" },
     ],
+    proof: [
+      { value: "200+", label: "Monthly updates created" },
+      { value: "10,000+", label: "Global investors reached" },
+    ],
     accent: "mlai",
     sections: [
       {
+        eyebrow: "01 / At-a-glance",
         title: "Overview",
         body:
           "<p>MLAI Founder Tools explores how founders can turn monthly operating updates into a lightweight relationship-building system. The product gives teams a clearer way to collect progress, shape updates, and share momentum before a formal raise.</p><p>This placeholder overview keeps the structure in place while leaving the final content open for editing.</p>",
       },
       {
+        variant: "dark",
+        eyebrow: "02 / Design journey",
         title: "Design Journey",
         body:
-          "<p><strong>01 · Framing.</strong> Map the founder and investor relationship around trust, cadence, and proof of progress.</p><p><strong>02 · Workflow.</strong> Turn a messy monthly update into a guided draft, review, and publish flow.</p><p><strong>03 · Interface.</strong> Keep the experience direct and confidence-building, with product moments that make progress feel concrete.</p>",
+          "<ol><li><strong>User interviews</strong><span>I conducted founder interviews to understand preferences and pain points around monthly and investor updates.</span></li><li><strong>Affinity mapping</strong><span>I organised interview insights into categories that could guide reporting, prototype structure, and product decisions.</span></li><li><strong>Rapid prototyping</strong><span>I used fast sketches and high-fidelity iterations to align the idea with stakeholders before moving into build.</span></li><li><strong>Vibe code, refine, launch</strong><span>I explored AI-assisted build tools, refined the founder/investor experience, then shipped a live MLAI page introducing Vibe Raising.</span></li></ol>",
       },
       {
+        variant: "proof-note",
+        eyebrow: "03 / Proof",
         title: "The Proof",
         body:
           "<p>The project is live as a working MLAI page and presents the core promise: helping founders start investor conversations early through consistent monthly updates.</p><p>Proof points to expand later: user feedback, conversion signals, number of updates created, founder interviews, or investor response quality.</p>",

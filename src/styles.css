@@ -537,6 +537,9 @@ h2 {
 
 .case-study {
   padding: 44px 0 112px;
+  --case-navy: #1d2f47;
+  --case-blue: #2f6b96;
+  --case-pale: rgba(232, 242, 249, 0.72);
 }
 
 .back-link,
@@ -548,16 +551,33 @@ h2 {
 .case-hero {
   display: grid;
   gap: 48px;
-  padding-top: 44px;
+  margin-top: 32px;
+  padding: 76px 56px 88px;
+  border-radius: 30px;
+  background: var(--case-pale);
 }
 
 .case-title {
   max-width: 1040px;
 }
 
+.case-eyebrow,
+.case-section-eyebrow {
+  margin: 0 0 28px;
+  color: var(--case-blue);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .case-title h1 {
   margin-bottom: 24px;
-  font-size: clamp(48px, 7.2vw, 106px);
+  max-width: 860px;
+  color: var(--case-navy);
+  font-size: clamp(58px, 9vw, 148px);
+  font-weight: 800;
+  line-height: 0.84;
 }
 
 .case-title p {
@@ -570,31 +590,42 @@ h2 {
 
 .meta-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 12px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  justify-self: end;
+  width: min(360px, 100%);
   margin: 0;
   background: transparent;
   border: 0;
 }
 
 .meta-list div {
-  min-height: 112px;
-  padding: 18px 20px;
-  border: 1px solid rgba(23, 23, 23, 0.12);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.34);
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 18px;
+  min-height: 76px;
+  padding: 18px 0;
+  border-top: 1px solid rgba(29, 47, 71, 0.28);
+  background: transparent;
+}
+
+.meta-list div:last-child {
+  border-bottom: 1px solid rgba(29, 47, 71, 0.28);
 }
 
 dt {
-  color: var(--muted);
+  color: var(--case-blue);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 dd {
-  margin: 10px 0 0;
+  margin: 0;
+  color: #111;
   font-size: 16px;
+  font-weight: 700;
   line-height: 1.35;
 }
 
@@ -608,6 +639,46 @@ dd {
 
 .hero-image {
   aspect-ratio: 16 / 9;
+}
+
+.case-proof-band {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 48px;
+  margin: 0 calc(50% - 50vw);
+  padding: 56px max(56px, calc((100vw - var(--max)) / 2)) 64px;
+  background: var(--case-navy);
+  color: var(--white);
+}
+
+.case-proof-band h2 {
+  margin: 0;
+  color: #9fc6e6;
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 800;
+}
+
+.case-proof-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px;
+}
+
+.case-proof-stats div {
+  display: grid;
+  gap: 10px;
+}
+
+.case-proof-stats strong {
+  font-size: clamp(64px, 8vw, 120px);
+  font-weight: 800;
+  line-height: 0.85;
+}
+
+.case-proof-stats span {
+  color: #b7d5ef;
+  font-size: 15px;
+  font-weight: 700;
 }
 
 .case-sections {
@@ -633,6 +704,59 @@ dd {
   margin-bottom: 18px;
   font-size: clamp(28px, 3.4vw, 48px);
   line-height: 1.05;
+}
+
+.case-section-dark {
+  margin: 0 calc(50% - 50vw);
+  padding: 88px max(56px, calc((100vw - var(--max)) / 2));
+  grid-template-columns: minmax(0, 240px) minmax(0, 760px);
+  background: #202020;
+  color: #f4f1ea;
+}
+
+.case-section-dark .section-number,
+.case-section-dark .case-section-eyebrow {
+  color: #9fc6e6;
+}
+
+.case-section-dark .case-section-copy h2,
+.case-section-dark .body-copy {
+  color: #f4f1ea;
+}
+
+.body-copy ol {
+  display: grid;
+  gap: 0;
+  margin: 40px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.body-copy li {
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr);
+  gap: 52px;
+  padding: 36px 0;
+  border-top: 1px solid rgba(244, 241, 234, 0.22);
+}
+
+.body-copy li::before {
+  content: counter(list-item, decimal-leading-zero);
+  color: #9fc6e6;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.body-copy li strong {
+  display: block;
+  margin-bottom: 14px;
+  color: #fff;
+  font-size: clamp(24px, 2.4vw, 32px);
+  line-height: 1.05;
+}
+
+.body-copy li span {
+  display: block;
 }
 
 .body-copy {
@@ -709,6 +833,31 @@ dd {
     grid-template-columns: 1fr;
   }
 
+  .case-hero {
+    padding: 52px 28px 64px;
+  }
+
+  .case-title h1 {
+    font-size: clamp(54px, 14vw, 108px);
+  }
+
+  .case-proof-band,
+  .case-section-dark {
+    grid-template-columns: 1fr;
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+
+  .case-proof-stats {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .body-copy li {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
   .skill-chip {
     width: 52px;
     height: 52px;
@@ -740,6 +889,26 @@ dd {
 
   .section-shell {
     padding: 72px 0;
+  }
+
+  .case-study {
+    padding-top: 28px;
+  }
+
+  .case-hero {
+    padding: 40px 20px 52px;
+    border-radius: 22px;
+  }
+
+  .meta-list div {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .case-proof-band,
+  .case-section-dark {
+    padding-right: 20px;
+    padding-left: 20px;
   }
 
   .project-filter-tabs {

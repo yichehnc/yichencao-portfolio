@@ -298,6 +298,7 @@
         <a class="back-link" href="${homeUrl()}#case-studies">Back</a>
         <section class="case-hero">
           <div class="case-title">
+            <span class="case-eyebrow">${project.category}</span>
             <h1>${project.title}</h1>
             <p>${project.subtitle || project.summary}</p>
             ${
@@ -326,13 +327,33 @@
                 </div>`
           }
         </section>
+        ${
+          project.proof
+            ? `<section class="case-proof-band" aria-label="Project proof">
+                <h2>The proof.</h2>
+                <div class="case-proof-stats">
+                  ${project.proof
+                    .map(
+                      (item) => `
+                        <div>
+                          <strong>${item.value}</strong>
+                          <span>${item.label}</span>
+                        </div>
+                      `
+                    )
+                    .join("")}
+                </div>
+              </section>`
+            : ""
+        }
         <div class="case-sections">
           ${project.sections
             .map(
               (section, index) => `
-                <section class="case-section">
+                <section class="case-section${section.variant ? ` case-section-${section.variant}` : ""}">
                   <span class="section-number">${String(index + 1).padStart(2, "0")}</span>
                   <div class="case-section-copy">
+                    ${section.eyebrow ? `<p class="case-section-eyebrow">${section.eyebrow}</p>` : ""}
                     <h2>${section.title}</h2>
                     <div class="body-copy">${section.body}</div>
                   </div>
