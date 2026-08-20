@@ -24,6 +24,11 @@
     return currentPathLower.includes("/projects/") || currentPathLower.includes("/case-study/") ? "../../" : "./";
   }
 
+  function assetUrl(path) {
+    if (/^https?:\/\//.test(path)) return path;
+    return `${homeUrl()}${path.replace(/^\//, "")}`;
+  }
+
   function renderToolCarousel() {
     if (!tools.length) return "";
     const repeatedTools = [...tools, ...tools];
@@ -360,6 +365,22 @@
                     ${section.eyebrow ? `<p class="case-section-eyebrow">${section.eyebrow}</p>` : ""}
                     <h2>${section.title}</h2>
                     <div class="body-copy">${section.body}</div>
+                    ${
+                      section.gallery
+                        ? `<div class="case-gallery">
+                            ${section.gallery
+                              .map(
+                                (item) => `
+                                  <figure>
+                                    <img src="${assetUrl(item.src)}" alt="${item.alt}" loading="lazy" />
+                                    <figcaption>${item.caption}</figcaption>
+                                  </figure>
+                                `
+                              )
+                              .join("")}
+                          </div>`
+                        : ""
+                    }
                   </div>
                   ${section.image ? `<img class="case-image" src="${section.image}" alt="${section.title}" loading="lazy" />` : ""}
                 </section>
