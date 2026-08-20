@@ -364,7 +364,42 @@
                   <div class="case-section-copy">
                     ${section.eyebrow ? `<p class="case-section-eyebrow">${section.eyebrow}</p>` : ""}
                     <h2>${section.title}</h2>
-                    <div class="body-copy">${section.body}</div>
+                    <div class="body-copy">
+                      ${
+                        section.journey
+                          ? `<ol>
+                              ${section.journey
+                                .map(
+                                  (item) => `
+                                    <li>
+                                      <div>
+                                        <strong>${item.title}</strong>
+                                        <span>${item.body}</span>
+                                        ${
+                                          item.evidence
+                                            ? `<div class="case-gallery">
+                                                ${item.evidence
+                                                  .map(
+                                                    (evidence) => `
+                                                      <figure>
+                                                        <img src="${assetUrl(evidence.src)}" alt="${evidence.alt}" loading="lazy" />
+                                                        <figcaption>${evidence.caption}</figcaption>
+                                                      </figure>
+                                                    `
+                                                  )
+                                                  .join("")}
+                                              </div>`
+                                            : ""
+                                        }
+                                      </div>
+                                    </li>
+                                  `
+                                )
+                                .join("")}
+                            </ol>`
+                          : section.body
+                      }
+                    </div>
                     ${
                       section.gallery
                         ? `<div class="case-gallery">

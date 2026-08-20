@@ -129,38 +129,64 @@ window.PORTFOLIO_PROJECTS = [
         variant: "dark",
         eyebrow: "02 / Design journey",
         title: "Design Journey",
-        body:
-          "<ol><li><strong>User interviews</strong><span>I conducted founder interviews to understand preferences and pain points around monthly and investor updates.</span></li><li><strong>Affinity mapping</strong><span>I organised interview insights into categories that could guide reporting, prototype structure, and product decisions.</span></li><li><strong>Rapid prototyping</strong><span>I used fast sketches and high-fidelity iterations to align the idea with stakeholders before moving into build.</span></li><li><strong>Vibe code, refine, launch</strong><span>I explored AI-assisted build tools, refined the founder/investor experience, then shipped a live MLAI page introducing Vibe Raising.</span></li></ol>",
-        gallery: [
+        journey: [
           {
-            src: "assets/mlai/workflow-affinity-mapping.png",
-            alt: "Affinity mapping board with grouped user testing notes and V2 user flow feedback",
-            caption: "Affinity mapping",
+            title: "User interviews",
+            body:
+              "I conducted founder interviews to understand preferences and pain points around monthly and investor updates.",
+            evidence: [
+              {
+                src: "assets/mlai/workflow-user-interview.png",
+                alt: "User interview script with highlighted research prompt",
+                caption: "User interview",
+              },
+              {
+                src: "assets/mlai/workflow-granola-transcript.png",
+                alt: "Granola transcript summarising user friction points and product insights",
+                caption: "Granola transcript",
+              },
+            ],
           },
           {
-            src: "assets/mlai/workflow-user-interview.png",
-            alt: "User interview script with highlighted research prompt",
-            caption: "User interview",
+            title: "Affinity mapping",
+            body:
+              "I organised interview insights into categories that could guide reporting, prototype structure, and product decisions.",
+            evidence: [
+              {
+                src: "assets/mlai/workflow-affinity-mapping.png",
+                alt: "Affinity mapping board with grouped user testing notes and V2 user flow feedback",
+                caption: "Affinity mapping",
+              },
+              {
+                src: "assets/mlai/workflow-founder-affinity-map.png",
+                alt: "Founder interview affinity map grouped by challenges, motivations, desired features, and concerns",
+                caption: "Affinity map",
+              },
+            ],
           },
           {
-            src: "assets/mlai/workflow-linear-ticket.png",
-            alt: "Linear ticket documenting backend handling for update audience visibility",
-            caption: "Linear ticket",
+            title: "Rapid prototyping",
+            body:
+              "I used fast sketches and high-fidelity iterations to align the idea with stakeholders before moving into build.",
+            evidence: [
+              {
+                src: "assets/mlai/workflow-user-journey-map.png",
+                alt: "MLAI Vibe Raising user journey map from landing page to publish",
+                caption: "User journey map",
+              },
+            ],
           },
           {
-            src: "assets/mlai/workflow-granola-transcript.png",
-            alt: "Granola transcript summarising user friction points and product insights",
-            caption: "Granola transcript",
-          },
-          {
-            src: "assets/mlai/workflow-founder-affinity-map.png",
-            alt: "Founder interview affinity map grouped by challenges, motivations, desired features, and concerns",
-            caption: "Affinity map",
-          },
-          {
-            src: "assets/mlai/workflow-user-journey-map.png",
-            alt: "MLAI Vibe Raising user journey map from landing page to publish",
-            caption: "User journey map",
+            title: "Vibe code, refine, launch",
+            body:
+              "I explored AI-assisted build tools, refined the founder/investor experience, then shipped a live MLAI page introducing Vibe Raising.",
+            evidence: [
+              {
+                src: "assets/mlai/workflow-linear-ticket.png",
+                alt: "Linear ticket documenting backend handling for update audience visibility",
+                caption: "Linear ticket",
+              },
+            ],
           },
         ],
       },
