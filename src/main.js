@@ -16,6 +16,7 @@
   }
 
   function projectHref(project) {
+    if (project.internalPage) return projectUrl(project.slug);
     return project.externalUrl || projectUrl(project.slug);
   }
 
@@ -162,7 +163,7 @@
               `
               : `
                 <a href="${projectHref(project)}" aria-label="Open ${project.title}" ${
-                  project.externalUrl ? 'target="_blank" rel="noreferrer"' : ""
+                  project.externalUrl && !project.internalPage ? 'target="_blank" rel="noreferrer"' : ""
                 }>
                   ${
                     project.image

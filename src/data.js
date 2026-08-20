@@ -101,6 +101,7 @@ window.PORTFOLIO_PROJECTS = [
     category: "Vibe Coding UI UX · Ongoing",
     filters: ["Vibe Coding", "UX", "UI"],
     aspect: "4 / 3",
+    internalPage: true,
     actionUrl: "https://mlai.au/vibe-raising",
     actionLabel: "View live project",
     summary:
