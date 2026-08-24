@@ -12,7 +12,7 @@
   function projectUrl(slug) {
     if (!isFilePreview) return `/projects/${slug}/`;
     const fromProjectPage = currentPathLower.includes("/projects/") || currentPathLower.includes("/case-study/");
-    return fromProjectPage ? `../${slug}/` : `projects/${slug}/`;
+    return fromProjectPage ? `../${slug}/index.html` : `projects/${slug}/index.html`;
   }
 
   function projectHref(project) {
