@@ -30,6 +30,48 @@
     return `${homeUrl()}${path.replace(/^\//, "")}`;
   }
 
+  function splitMetricValue(value) {
+    const text = String(value);
+    const match = text.match(/^([^0-9]*)([\d,]+)(.*)$/);
+    if (!match) return null;
+    return {
+      prefix: match[1],
+      number: Number(match[2].replace(/,/g, "")),
+      suffix: match[3],
+    };
+  }
+
+  function animateProofNumbers() {
+    const metrics = Array.from(document.querySelectorAll("[data-count-target]"));
+    if (!metrics.length) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    metrics.forEach((metric) => {
+      const target = Number(metric.dataset.countTarget);
+      const prefix = metric.dataset.countPrefix || "";
+      const suffix = metric.dataset.countSuffix || "";
+      const formatter = new Intl.NumberFormat("en-US");
+
+      if (!Number.isFinite(target) || reduceMotion) {
+        metric.textContent = `${prefix}${formatter.format(target)}${suffix}`;
+        return;
+      }
+
+      const duration = 680;
+      const start = performance.now();
+
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        metric.textContent = `${prefix}${formatter.format(Math.round(target * eased))}${suffix}`;
+        if (progress < 1) window.requestAnimationFrame(tick);
+      }
+
+      metric.textContent = `${prefix}0${suffix}`;
+      window.requestAnimationFrame(tick);
+    });
+  }
+
   function renderToolCarousel() {
     if (!tools.length) return "";
     const repeatedTools = [...tools, ...tools];
@@ -344,12 +386,19 @@
                 <div class="case-proof-stats">
                   ${project.proof
                     .map(
-                      (item) => `
-                        <div>
-                          <strong>${item.value}</strong>
-                          <span>${item.label}</span>
-                        </div>
-                      `
+                      (item) => {
+                        const metric = splitMetricValue(item.value);
+                        return `
+                          <div>
+                            <strong${
+                              metric
+                                ? ` data-count-target="${metric.number}" data-count-prefix="${metric.prefix}" data-count-suffix="${metric.suffix}"`
+                                : ""
+                            }>${item.value}</strong>
+                            <span>${item.label}</span>
+                          </div>
+                        `;
+                      }
                     )
                     .join("")}
                 </div>
@@ -426,6 +475,8 @@
         </div>
       </main>
     `);
+
+    animateProofNumbers();
   }
 
   if (slugMatch) {
