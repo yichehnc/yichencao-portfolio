@@ -259,6 +259,8 @@ window.PORTFOLIO_PROJECTS = [
     aspect: "4 / 3",
     externalUrl: "https://www.unimelb.edu.au/newsroom/news/2025/july/support-sorted",
     image: "https://framerusercontent.com/images/UZkU1TkNygKwgalShvxggm7SMc.jpg?width=1431&height=938",
+    cardBio:
+      "An AI platform transforming how Australians with disabilities connect with care, scaled from $0 to $4M in revenue.",
     summary: "UX project featured by the University of Melbourne.",
     sections: [],
   },

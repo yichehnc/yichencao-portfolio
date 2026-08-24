@@ -200,6 +200,7 @@
                   <div class="project-card-body">
                     <h3>${project.title}</h3>
                     <p>${project.category}</p>
+                    ${project.cardBio ? `<p class="project-card-bio">${project.cardBio}</p>` : ""}
                   </div>
                 </div>
               `
@@ -221,6 +222,7 @@
                   <div class="project-card-body">
                     <h3>${project.cardTitle}</h3>
                     <p>${project.category}</p>
+                    ${project.cardBio ? `<p class="project-card-bio">${project.cardBio}</p>` : ""}
                   </div>
                 </a>
               `
