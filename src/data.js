@@ -101,10 +101,10 @@ window.PORTFOLIO_PROJECTS = [
       },
       {
         variant: "proof-note",
-        eyebrow: "03 / Proof",
-        title: "The Proof",
+        eyebrow: "03 / Result",
+        title: "Result",
         body:
-          "<p>The project is live as a working MLAI page and presents the core promise: helping founders start investor conversations early through consistent monthly updates.</p><p>Proof points to expand later: user feedback, conversion signals, number of updates created, founder interviews, or investor response quality.</p>",
+          "<p>The result helped MLAI build a startup registry that secured $40K in LaunchVic funding, supporting the goal of helping 1,000 startups in Australia by 2030.</p>",
       },
     ],
   },
