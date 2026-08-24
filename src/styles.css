@@ -549,6 +549,10 @@ h2 {
   --case-pale: #f4efe6;
 }
 
+.case-study-relish {
+  --case-pale: #fff;
+}
+
 .back-link,
 .text-link {
   color: var(--muted);

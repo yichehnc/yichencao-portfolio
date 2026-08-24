@@ -118,6 +118,7 @@ window.PORTFOLIO_PROJECTS = [
     category: "UX UI Coding · 2024",
     filters: ["UX", "UI"],
     aspect: "3 / 4",
+    accent: "relish",
     image: "https://framerusercontent.com/images/sC2zdVg4SpO1LWqGi8NhZETFyc.jpg?width=1043&height=1474",
     summary:
       "Relish is designed to cater to the needs of foodies and explorers who are always on the lookout for new dining experiences.",
