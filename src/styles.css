@@ -521,6 +521,39 @@ h2 {
   padding-top: 44px;
 }
 
+.resume-page {
+  padding-top: 44px;
+}
+
+.resume-panel {
+  display: grid;
+  gap: 28px;
+}
+
+.resume-copy {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 24px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.resume-copy p {
+  max-width: 720px;
+  margin: 0;
+  color: var(--soft-ink);
+  font-size: clamp(20px, 2vw, 30px);
+  line-height: 1.25;
+}
+
+.resume-frame {
+  width: 100%;
+  min-height: 78vh;
+  border: 1px solid rgba(23, 23, 23, 0.16);
+  border-radius: 24px;
+  background: #fff;
+}
+
 .footer {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -964,6 +997,11 @@ dd {
   .case-proof-stats {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+
+  .resume-frame {
+    min-height: 68vh;
+    border-radius: 18px;
   }
 
   .body-copy li {

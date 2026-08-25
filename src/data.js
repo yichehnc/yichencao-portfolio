@@ -328,21 +328,33 @@ window.PORTFOLIO_TOOLS = [
 
 window.PORTFOLIO_BACKGROUND = [
   {
-    period: "Jul 2024 - Nov 2024",
-    title: "UX UI Design, RMIT, Victoria Digital Jobs Program",
+    period: "Feb 2026 - Present",
+    title: "Product Design Engineer, MLAI - Vibe Raising",
     body:
-      "Led design initiatives using Figma and Adobe Creative Suite to create user-centric design systems, including wireframes and prototypes, based on user research and usability tests. Conducted both evaluative and generative research to inform design decisions, ensuring alignment with user needs and product requirements. Synthesised qualitative and quantitative user feedback to refine designs, ensuring actionable insights were delivered to product teams.",
+      "Designed and built Vibe Raising, an AI-native investor update platform using Claude Code, Codex, Figma, Linear, and Notion. Presented at a Melbourne Codex event, secured investor interest ahead of launch, and translated founder and investor research into a prioritised sprint roadmap.",
   },
   {
-    period: "Oct 2023 - Jul 2024",
-    title: "Software Engineering, Holberton School Australia",
+    period: "Jul 2025 - Feb 2026",
+    title: "Product Designer, Support Sorted",
     body:
-      "Developed scalable web applications using HTML, CSS, JavaScript, React, Node.js, Python, Flask, MongoDB, and Git. Collaborated with cross-functional teams to iterate on UX/UI solutions, ensuring agile delivery and feasible design outcomes with different stakeholders.",
+      "Conducted clinician interviews, usability sessions, and competitor analysis for a MAP-backed HealthTech startup. Collaborated on onboarding improvements and synthesised feedback into actionable recommendations that supported clinician workflows.",
   },
   {
-    period: "Feb 2020 - Dec 2022",
-    title: "Master of Architecture, University of Melbourne",
+    period: "Feb 2025 - Jul 2025",
+    title: "Project Manager & Head of Logistics, Chill Bunny Wellness",
     body:
-      "Graduated with First Class Honors (WAM 80). Specialized in Design Visualisation involving industry standard 3D modeling and Visualisation software Rhinoceros, 3ds Max, V-Ray, Unreal Engine, and Blender.",
+      "Coordinated project delivery and logistics across a growing wellness operation, keeping planning, communication, and execution aligned across stakeholders.",
+  },
+  {
+    period: "Feb 2024 - Jul 2024",
+    title: "Product Manager, Relish Progressive Web App",
+    body:
+      "Led user interviews and competitor research for a dining recommendation startup. Managed backlog, Scrum ceremonies, stakeholder priorities, and technical constraints while showcasing the MVP at Canva Demo Day.",
+  },
+  {
+    period: "Jan 2020 - Dec 2024",
+    title: "Academic Tutor, Melbourne School of Design, University of Melbourne",
+    body:
+      "Mentored over 3,000 students through design research, problem analysis, technical workshops, and iterative prototyping, helping connect critical feedback to practical product and design development.",
   },
 ];

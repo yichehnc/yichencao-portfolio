@@ -10,11 +10,13 @@
   const slugMatch = currentPath.match(/\/(?:projects|case-study)\/([^/]+)$/i);
   const isProjectPage = currentPathLower.includes("/projects/") || currentPathLower.includes("/case-study/");
   const isBackgroundPage = /\/background$/i.test(currentPath);
+  const isResumePage = /\/resume$/i.test(currentPath);
+  const resumePdfPath = "assets/resume/CV_Product_YichenCao_0626.pdf";
 
   function projectUrl(slug) {
     if (!isFilePreview) return `/projects/${slug}/`;
     if (isProjectPage) return `../${slug}/index.html`;
-    if (isBackgroundPage) return `../projects/${slug}/index.html`;
+    if (isBackgroundPage || isResumePage) return `../projects/${slug}/index.html`;
     return `projects/${slug}/index.html`;
   }
 
@@ -26,14 +28,14 @@
   function homeUrl() {
     if (!isFilePreview) return "/";
     if (isProjectPage) return "../../";
-    if (isBackgroundPage) return "../";
+    if (isBackgroundPage || isResumePage) return "../";
     return "./";
   }
 
   function homeHref(anchor = "") {
     if (!isFilePreview) return `/${anchor}`;
     if (isProjectPage) return `../../index.html${anchor}`;
-    if (isBackgroundPage) return `../index.html${anchor}`;
+    if (isBackgroundPage || isResumePage) return `../index.html${anchor}`;
     return `./index.html${anchor}`;
   }
 
@@ -41,7 +43,16 @@
     if (!isFilePreview) return "/background/";
     if (isProjectPage) return "../../background/index.html";
     if (isBackgroundPage) return "./index.html";
+    if (isResumePage) return "../background/index.html";
     return "background/index.html";
+  }
+
+  function resumeUrl() {
+    if (!isFilePreview) return "/resume/";
+    if (isProjectPage) return "../../resume/index.html";
+    if (isBackgroundPage) return "../resume/index.html";
+    if (isResumePage) return "./index.html";
+    return "resume/index.html";
   }
 
   function assetUrl(path) {
@@ -125,7 +136,7 @@
         <nav class="nav">
           <a href="${homeHref("#case-studies")}">Projects</a>
           <a href="${backgroundUrl()}">Background</a>
-          <a href="https://docs.google.com/" target="_blank" rel="noreferrer">Resume</a>
+          <a href="${resumeUrl()}">Resume</a>
         </nav>
       </header>
       ${content}
@@ -326,13 +337,13 @@
   }
 
   function renderBackground() {
-    document.title = "Background - Yichen Cao";
+    document.title = "Experience - Yichen Cao";
     app.innerHTML = shell(`
       <main class="background-page">
         <section id="background" class="background-section section-shell" aria-labelledby="background-title">
           <div class="section-heading">
             <span>01</span>
-            <h2 id="background-title">Background</h2>
+            <h2 id="background-title">Experience</h2>
           </div>
           <div class="timeline">
             ${background
@@ -348,6 +359,28 @@
                 `
               )
               .join("")}
+          </div>
+        </section>
+      </main>
+    `);
+  }
+
+  function renderResume() {
+    const pdfUrl = assetUrl(resumePdfPath);
+    document.title = "Resume - Yichen Cao";
+    app.innerHTML = shell(`
+      <main class="resume-page">
+        <section class="resume-section section-shell" aria-labelledby="resume-title">
+          <div class="section-heading">
+            <span>01</span>
+            <h2 id="resume-title">Resume</h2>
+          </div>
+          <div class="resume-panel">
+            <div class="resume-copy">
+              <p>Product Designer working across UX/UI, software development, research, and AI-assisted prototyping.</p>
+              <a class="primary-link" href="${pdfUrl}" target="_blank" rel="noreferrer">Open PDF</a>
+            </div>
+            <iframe class="resume-frame" src="${pdfUrl}" title="Yichen Cao resume"></iframe>
           </div>
         </section>
       </main>
@@ -512,6 +545,8 @@
     renderProject(slugMatch[1]);
   } else if (isBackgroundPage) {
     renderBackground();
+  } else if (isResumePage) {
+    renderResume();
   } else {
     renderHome();
   }
