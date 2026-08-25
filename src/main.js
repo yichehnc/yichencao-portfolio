@@ -8,11 +8,14 @@
   const currentPathLower = currentPath.toLowerCase();
   const isFilePreview = window.location.protocol === "file:";
   const slugMatch = currentPath.match(/\/(?:projects|case-study)\/([^/]+)$/i);
+  const isProjectPage = currentPathLower.includes("/projects/") || currentPathLower.includes("/case-study/");
+  const isBackgroundPage = /\/background$/i.test(currentPath);
 
   function projectUrl(slug) {
     if (!isFilePreview) return `/projects/${slug}/`;
-    const fromProjectPage = currentPathLower.includes("/projects/") || currentPathLower.includes("/case-study/");
-    return fromProjectPage ? `../${slug}/index.html` : `projects/${slug}/index.html`;
+    if (isProjectPage) return `../${slug}/index.html`;
+    if (isBackgroundPage) return `../projects/${slug}/index.html`;
+    return `projects/${slug}/index.html`;
   }
 
   function projectHref(project) {
@@ -22,7 +25,23 @@
 
   function homeUrl() {
     if (!isFilePreview) return "/";
-    return currentPathLower.includes("/projects/") || currentPathLower.includes("/case-study/") ? "../../" : "./";
+    if (isProjectPage) return "../../";
+    if (isBackgroundPage) return "../";
+    return "./";
+  }
+
+  function homeHref(anchor = "") {
+    if (!isFilePreview) return `/${anchor}`;
+    if (isProjectPage) return `../../index.html${anchor}`;
+    if (isBackgroundPage) return `../index.html${anchor}`;
+    return `./index.html${anchor}`;
+  }
+
+  function backgroundUrl() {
+    if (!isFilePreview) return "/background/";
+    if (isProjectPage) return "../../background/index.html";
+    if (isBackgroundPage) return "./index.html";
+    return "background/index.html";
   }
 
   function assetUrl(path) {
@@ -99,13 +118,13 @@
     return `
       <div class="interactive-grid-bg" aria-hidden="true"></div>
       <header class="site-header">
-        <a class="brand" href="${homeUrl()}" aria-label="Yichen Cao home">
+        <a class="brand" href="${homeHref()}" aria-label="Yichen Cao home">
           <span>Yichen Cao</span>
           <small>Product Designer<br />based in Melbourne</small>
         </a>
         <nav class="nav">
-          <a href="${homeUrl()}#case-studies">Projects</a>
-          <a href="${homeUrl()}#background">Background</a>
+          <a href="${homeHref("#case-studies")}">Projects</a>
+          <a href="${backgroundUrl()}">Background</a>
           <a href="https://docs.google.com/" target="_blank" rel="noreferrer">Resume</a>
         </nav>
       </header>
@@ -113,7 +132,7 @@
       <footer class="footer">
         <a class="collab" href="mailto:yichenc2017@gmail.com">Let's<br />Collaborate</a>
         <div>
-          <a href="${homeUrl()}">Yichen Cao</a>
+          <a href="${homeHref()}">Yichen Cao</a>
           <p>© Yichen Cao 2026</p>
         </div>
       </footer>
@@ -284,27 +303,6 @@
           </div>
           <div class="project-grid" aria-live="polite"></div>
         </section>
-        <section id="background" class="background-section section-shell" aria-labelledby="background-title">
-          <div class="section-heading">
-            <span>02</span>
-            <h2 id="background-title">Background</h2>
-          </div>
-          <div class="timeline">
-            ${background
-              .map(
-                (item) => `
-                  <article class="timeline-item">
-                    <p>${item.period}</p>
-                    <div>
-                      <h3>${item.title}</h3>
-                      <p>${item.body}</p>
-                    </div>
-                  </article>
-                `
-              )
-              .join("")}
-          </div>
-        </section>
       </main>
     `);
 
@@ -327,13 +325,42 @@
     });
   }
 
+  function renderBackground() {
+    document.title = "Background - Yichen Cao";
+    app.innerHTML = shell(`
+      <main class="background-page">
+        <section id="background" class="background-section section-shell" aria-labelledby="background-title">
+          <div class="section-heading">
+            <span>01</span>
+            <h2 id="background-title">Background</h2>
+          </div>
+          <div class="timeline">
+            ${background
+              .map(
+                (item) => `
+                  <article class="timeline-item">
+                    <p>${item.period}</p>
+                    <div>
+                      <h3>${item.title}</h3>
+                      <p>${item.body}</p>
+                    </div>
+                  </article>
+                `
+              )
+              .join("")}
+          </div>
+        </section>
+      </main>
+    `);
+  }
+
   function renderProject(slug) {
     const project = projects.find((item) => item.slug === slug);
     if (!project) {
       app.innerHTML = shell(`
         <main class="not-found">
           <h1>Project not found</h1>
-          <a class="text-link" href="${homeUrl()}">Back</a>
+          <a class="text-link" href="${homeHref()}">Back</a>
         </main>
       `);
       return;
@@ -349,7 +376,7 @@
 
     app.innerHTML = shell(`
       <main class="case-study${project.accent ? ` case-study-${project.accent}` : ""}">
-        <a class="back-link" href="${homeUrl()}#case-studies">Back to projects</a>
+        <a class="back-link" href="${homeHref("#case-studies")}">Back to projects</a>
         <section class="case-hero">
           <div class="case-title">
             <span class="case-eyebrow">${project.category}</span>
@@ -483,6 +510,8 @@
 
   if (slugMatch) {
     renderProject(slugMatch[1]);
+  } else if (isBackgroundPage) {
+    renderBackground();
   } else {
     renderHome();
   }
