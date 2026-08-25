@@ -109,6 +109,68 @@ window.PORTFOLIO_PROJECTS = [
     ],
   },
   {
+    slug: "kinetic",
+    title: "Kinetic",
+    cardTitle: "Kinetic",
+    date: "2026",
+    roles: "Vibe Coding",
+    client: "Independent project",
+    category: "Vibe Coding 2026",
+    filters: ["Vibe Coding", "UI"],
+    aspect: "2 / 3",
+    externalUrl: "https://kinetic-inky.vercel.app/",
+    image: "https://framerusercontent.com/images/dyNZQ0u1MOAbdLOF7JSxGP4fzo.png?width=1151&height=1080",
+    summary:
+      "Kinetic Network helps physiotherapy clinics securely share anonymised treatment records, earn credits, and access prior care history for better continuity of care.",
+    sections: [],
+  },
+  {
+    slug: "think-less",
+    title: "Think Less",
+    cardTitle: "Think Less",
+    date: "2026",
+    roles: "Vibe Coding",
+    client: "Independent project",
+    category: "Vibe Coding. 2026",
+    filters: ["Vibe Coding", "Motion", "Graphic Design"],
+    aspect: "3 / 4",
+    externalUrl: "https://think-less.vercel.app/",
+    image: "https://framerusercontent.com/images/AqKBWEaTEL8afQhaFyRadQiGfw.png?width=1125&height=2162",
+    summary: "Vibe-coded project exploring lightweight interaction and playful decision flow.",
+    sections: [],
+  },
+  {
+    slug: "walley-bank",
+    title: "Walley Bank: Fintech Savings Solution",
+    cardTitle: "Walley Bank",
+    date: "2024",
+    roles: "UI Designer",
+    client: "Individual Project, RMIT University",
+    category: "UI · 2024",
+    filters: ["UX", "UI"],
+    aspect: "1 / 1",
+    image: "https://framerusercontent.com/images/mXBFJP0HR2nH4mV4QBRFi7M1dE.png?width=2400&height=1800",
+    summary:
+      "A fintech app that empowers users with a seamless and intuitive way to manage their savings, built for tech-savvy young professionals who value convenience and simplicity.",
+    sections: [
+      {
+        title: "Problem & Approach",
+        body:
+          "<p>Walley Bank is a fintech platform designed for managing savings. The MVP focused on UI design that's secure, user-friendly, and aesthetically pleasing, building on comprehensive UX research.</p>",
+      },
+      {
+        title: "Key Features",
+        body:
+          "<p>Personalized savings goals with dynamic dashboards, automated budgeting that splits income into savings and spending buckets, subtle balance display for privacy, transaction tracking, and customizable notifications. Designed mobile-first for trust and clarity.</p>",
+      },
+      {
+        title: "Result",
+        body:
+          "<p>A high-fidelity prototype with responsive layouts for Dashboard, Payments, Profile, and Help, plus a modular component library for future scaling. User testing led to refinements like discreet balance visuals, clearer recurring-payment editing, and better savings transparency.</p>",
+      },
+    ],
+  },
+  {
     slug: "relish",
     title: "Relish: Your Local Food Guide",
     cardTitle: "Relish: Your Local Food Guide",
@@ -171,37 +233,6 @@ window.PORTFOLIO_PROJECTS = [
     sections: [],
   },
   {
-    slug: "kinetic",
-    title: "Kinetic",
-    cardTitle: "Kinetic",
-    date: "2026",
-    roles: "Vibe Coding",
-    client: "Independent project",
-    category: "Vibe Coding 2026",
-    filters: ["Vibe Coding", "UI"],
-    aspect: "2 / 3",
-    externalUrl: "https://kinetic-inky.vercel.app/",
-    image: "https://framerusercontent.com/images/dyNZQ0u1MOAbdLOF7JSxGP4fzo.png?width=1151&height=1080",
-    summary:
-      "Kinetic Network helps physiotherapy clinics securely share anonymised treatment records, earn credits, and access prior care history for better continuity of care.",
-    sections: [],
-  },
-  {
-    slug: "think-less",
-    title: "Think Less",
-    cardTitle: "Think Less",
-    date: "2026",
-    roles: "Vibe Coding",
-    client: "Independent project",
-    category: "Vibe Coding. 2026",
-    filters: ["Vibe Coding", "Motion", "Graphic Design"],
-    aspect: "3 / 4",
-    externalUrl: "https://think-less.vercel.app/",
-    image: "https://framerusercontent.com/images/AqKBWEaTEL8afQhaFyRadQiGfw.png?width=1125&height=2162",
-    summary: "Vibe-coded project exploring lightweight interaction and playful decision flow.",
-    sections: [],
-  },
-  {
     slug: "inflection-repair",
     title: "Inflection: Repair",
     cardTitle: "Inflection: Repair",
@@ -215,37 +246,6 @@ window.PORTFOLIO_PROJECTS = [
     image: "https://framerusercontent.com/images/uHs3hV3ufW4LG01LJTT6XvpR08.png?width=461&height=536",
     summary: "Editorial and publication work for Inflection: Repair.",
     sections: [],
-  },
-  {
-    slug: "walley-bank",
-    title: "Walley Bank: Fintech Savings Solution",
-    cardTitle: "Walley Bank",
-    date: "2024",
-    roles: "UI Designer",
-    client: "Individual Project, RMIT University",
-    category: "UI · 2024",
-    filters: ["UX", "UI"],
-    aspect: "1 / 1",
-    image: "https://framerusercontent.com/images/mXBFJP0HR2nH4mV4QBRFi7M1dE.png?width=2400&height=1800",
-    summary:
-      "A fintech app that empowers users with a seamless and intuitive way to manage their savings, built for tech-savvy young professionals who value convenience and simplicity.",
-    sections: [
-      {
-        title: "Problem & Approach",
-        body:
-          "<p>Walley Bank is a fintech platform designed for managing savings. The MVP focused on UI design that's secure, user-friendly, and aesthetically pleasing, building on comprehensive UX research.</p>",
-      },
-      {
-        title: "Key Features",
-        body:
-          "<p>Personalized savings goals with dynamic dashboards, automated budgeting that splits income into savings and spending buckets, subtle balance display for privacy, transaction tracking, and customizable notifications. Designed mobile-first for trust and clarity.</p>",
-      },
-      {
-        title: "Result",
-        body:
-          "<p>A high-fidelity prototype with responsive layouts for Dashboard, Payments, Profile, and Help, plus a modular component library for future scaling. User testing led to refinements like discreet balance visuals, clearer recurring-payment editing, and better savings transparency.</p>",
-      },
-    ],
   },
   {
     slug: "suso",
