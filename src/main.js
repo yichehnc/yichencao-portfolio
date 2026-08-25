@@ -170,14 +170,13 @@
 
   function renderHome() {
     const projectItems = [...projects, ...comingSoon.map((item) => ({ ...item, muted: true }))];
-    const projectFilters = ["Vibe Coding", "UX", "UI", "Architecture", "Motion", "Graphic Design"];
+    const projectFilters = ["Vibe Coding", "UX", "UI", "Architecture", "Motion", "All"];
     const filterTerms = {
       "Vibe Coding": ["vibe coding", "code", "coding", "interactive", "web app"],
       UX: ["ux", "user", "research", "product design", "product designer"],
       UI: ["ui", "interface", "branding", "visual", "prototype"],
       Architecture: ["architecture", "architectural", "spatial"],
       Motion: ["motion", "animation", "interactive", "kinetic"],
-      "Graphic Design": ["graphic design", "publication", "editorial", "visualisation"],
     };
     let activeFilter = "";
 
@@ -211,6 +210,7 @@
 
     function matchesFilter(project) {
       if (!activeFilter) return true;
+      if (activeFilter === "All") return true;
       if (Array.isArray(project.filters)) return project.filters.includes(activeFilter);
       const text = searchableText(project);
       return filterTerms[activeFilter].some((term) => {
@@ -322,7 +322,7 @@
 
     document.querySelectorAll(".filter-pill").forEach((button) => {
       button.addEventListener("click", () => {
-        activeFilter = activeFilter === button.dataset.filter ? "" : button.dataset.filter;
+        activeFilter = button.dataset.filter === "All" || activeFilter === button.dataset.filter ? "" : button.dataset.filter;
         updateFilterButtons();
         renderMasonry();
         document.querySelector("#case-studies")?.scrollIntoView({ behavior: "smooth", block: "start" });
