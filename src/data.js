@@ -314,6 +314,40 @@ window.PORTFOLIO_PROJECTS = [
 
 window.PORTFOLIO_COMING_SOON = [];
 
+window.PORTFOLIO_PROFILE = {
+  summary:
+    "Rigorous Product Designer with a multidisciplinary background in UX/UI design, software development, teaching, and research. I work across user interviews, usability testing, AI-assisted prototyping, and front-end implementation to turn ambiguous product problems into clear, shippable experiences.",
+  skills: [
+    {
+      label: "Research & Analysis",
+      items: ["User interviews", "Usability tests", "Desk research", "Competitor benchmarking", "Data synthesis"],
+    },
+    {
+      label: "Product",
+      items: ["Figma", "Framer", "Miro", "Notion", "Linear", "Granola", "Slack"],
+    },
+    {
+      label: "Tech Stack",
+      items: ["Vibe Coding", "AI", "Claude Code", "Codex", "Gemini", "Python", "JavaScript", "HTML", "CSS"],
+    },
+    {
+      label: "Collaboration",
+      items: ["Scrum", "Kanban", "Stakeholder facilitation", "Product strategy", "Workshop facilitation"],
+    },
+    {
+      label: "UX/UI Design",
+      items: ["Adobe Creative Suite", "A/B testing", "Prototyping", "Design systems", "Stitch"],
+    },
+  ],
+  links: [
+    { label: "Portfolio", url: "https://yichencao.com/" },
+    { label: "GitHub", url: "https://github.com/yichehnc" },
+    { label: "LinkedIn", url: "https://linkedin.com/in/ycaoc" },
+    { label: "MLAI Founder Update", url: "https://mlai.au/vibe-raising" },
+    { label: "Email", url: "mailto:yichenc2017@gmail.com" },
+  ],
+};
+
 window.PORTFOLIO_TOOLS = [
   { name: "Framer", icon: "https://cdn.simpleicons.org/framer/0099ff" },
   { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },

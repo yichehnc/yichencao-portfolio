@@ -3,6 +3,7 @@
   const comingSoon = window.PORTFOLIO_COMING_SOON || [];
   const tools = window.PORTFOLIO_TOOLS || [];
   const background = window.PORTFOLIO_BACKGROUND || [];
+  const profile = window.PORTFOLIO_PROFILE || {};
   const app = document.querySelector("#app");
   const currentPath = window.location.pathname.replace(/\/index\.html$/, "").replace(/\/+$/, "");
   const currentPathLower = currentPath.toLowerCase();
@@ -11,7 +12,6 @@
   const isProjectPage = currentPathLower.includes("/projects/") || currentPathLower.includes("/case-study/");
   const isBackgroundPage = /\/background$/i.test(currentPath);
   const isResumePage = /\/resume$/i.test(currentPath);
-  const resumePdfPath = "assets/resume/CV_Product_YichenCao_0626.pdf";
 
   function projectUrl(slug) {
     if (!isFilePreview) return `/projects/${slug}/`;
@@ -136,7 +136,7 @@
         <nav class="nav">
           <a href="${homeHref("#case-studies")}">Projects</a>
           <a href="${backgroundUrl()}">Background</a>
-          <a href="${resumeUrl()}">Resume</a>
+          <a href="${resumeUrl()}">About Me</a>
         </nav>
       </header>
       ${content}
@@ -366,21 +366,52 @@
   }
 
   function renderResume() {
-    const pdfUrl = assetUrl(resumePdfPath);
-    document.title = "Resume - Yichen Cao";
+    const skillGroups = profile.skills || [];
+    const links = profile.links || [];
+
+    document.title = "About Me - Yichen Cao";
     app.innerHTML = shell(`
-      <main class="resume-page">
-        <section class="resume-section section-shell" aria-labelledby="resume-title">
+      <main class="about-page">
+        <section class="about-section section-shell" aria-labelledby="about-title">
           <div class="section-heading">
             <span>01</span>
-            <h2 id="resume-title">Resume</h2>
+            <h2 id="about-title">About Me</h2>
           </div>
-          <div class="resume-panel">
-            <div class="resume-copy">
-              <p>Product Designer working across UX/UI, software development, research, and AI-assisted prototyping.</p>
-              <a class="primary-link" href="${pdfUrl}" target="_blank" rel="noreferrer">Open PDF</a>
-            </div>
-            <iframe class="resume-frame" src="${pdfUrl}" title="Yichen Cao resume"></iframe>
+          <div class="about-panel">
+            <section class="about-summary" aria-labelledby="about-summary-title">
+              <p class="case-section-eyebrow" id="about-summary-title">Summary</p>
+              <p>${profile.summary || ""}</p>
+            </section>
+            <section class="about-skills" aria-labelledby="about-skills-title">
+              <p class="case-section-eyebrow" id="about-skills-title">Skills</p>
+              <div class="skill-groups">
+                ${skillGroups
+                  .map(
+                    (group) => `
+                      <article>
+                        <h3>${group.label}</h3>
+                        <p>${group.items.join(", ")}</p>
+                      </article>
+                    `
+                  )
+                  .join("")}
+              </div>
+            </section>
+            <section class="about-links" aria-labelledby="about-links-title">
+              <p class="case-section-eyebrow" id="about-links-title">Links</p>
+              <div class="link-list">
+                ${links
+                  .map(
+                    (link) => `
+                      <a href="${link.url}" target="_blank" rel="noreferrer">
+                        <span>${link.label}</span>
+                        <small>${link.url.replace(/^mailto:/, "").replace(/^https?:\/\//, "")}</small>
+                      </a>
+                    `
+                  )
+                  .join("")}
+              </div>
+            </section>
           </div>
         </section>
       </main>
