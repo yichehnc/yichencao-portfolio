@@ -170,11 +170,10 @@
 
   function renderHome() {
     const projectItems = [...projects, ...comingSoon.map((item) => ({ ...item, muted: true }))];
-    const projectFilters = ["Vibe Coding", "UX", "UI", "Architecture", "Motion", "All"];
+    const projectFilters = ["Vibe Coding", "UX/UI", "Architecture", "Motion", "All"];
     const filterTerms = {
       "Vibe Coding": ["vibe coding", "code", "coding", "interactive", "web app"],
-      UX: ["ux", "user", "research", "product design", "product designer"],
-      UI: ["ui", "interface", "branding", "visual", "prototype"],
+      "UX/UI": ["ux", "ui", "user", "interface", "branding", "visual", "prototype", "research", "product design", "product designer"],
       Architecture: ["architecture", "architectural", "spatial"],
       Motion: ["motion", "animation", "interactive", "kinetic"],
     };
@@ -211,7 +210,10 @@
     function matchesFilter(project) {
       if (!activeFilter) return true;
       if (activeFilter === "All") return true;
-      if (Array.isArray(project.filters)) return project.filters.includes(activeFilter);
+      if (Array.isArray(project.filters)) {
+        if (activeFilter === "UX/UI") return project.filters.includes("UX") || project.filters.includes("UI");
+        return project.filters.includes(activeFilter);
+      }
       const text = searchableText(project);
       return filterTerms[activeFilter].some((term) => {
         const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

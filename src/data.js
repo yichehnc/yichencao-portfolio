@@ -178,7 +178,7 @@ window.PORTFOLIO_PROJECTS = [
     roles: "Product Designer, Manager, Front-end Dev",
     client: "Holberton AU (Demo Day at Canva)",
     category: "UX UI Coding · 2024",
-    filters: ["UX", "UI"],
+    filters: ["Vibe Coding", "UX", "UI"],
     aspect: "3 / 4",
     accent: "relish",
     image: "https://framerusercontent.com/images/sC2zdVg4SpO1LWqGi8NhZETFyc.jpg?width=1043&height=1474",
