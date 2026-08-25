@@ -461,7 +461,7 @@ h2 {
 }
 
 .skill-marquee:hover .skill-track {
-  animation-play-state: paused;
+  animation-duration: 64s;
 }
 
 .skill-chip {
