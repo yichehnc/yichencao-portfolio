@@ -42,56 +42,48 @@ body {
 .interactive-grid-bg {
   z-index: 0;
   overflow: hidden;
-  background:
-    linear-gradient(135deg, rgba(203, 90, 67, 0.1), transparent 30%),
-    linear-gradient(315deg, rgba(47, 111, 115, 0.1), transparent 34%),
-    var(--paper);
+  background: var(--paper);
 }
 
 .interactive-grid-bg::before,
 .interactive-grid-bg::after {
   content: "";
-  background-image:
-    linear-gradient(rgba(23, 23, 23, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(23, 23, 23, 0.12) 1px, transparent 1px);
-  background-size: 40px 40px;
 }
 
 .interactive-grid-bg::before {
-  opacity: 0.16;
-  animation: grid-drift 28s linear infinite;
+  opacity: 0;
+  background:
+    radial-gradient(circle 220px at var(--grid-x) var(--grid-y), rgba(255, 196, 134, 0.34), transparent 68%),
+    radial-gradient(circle 420px at var(--grid-x) var(--grid-y), rgba(255, 228, 197, 0.42), transparent 72%);
+  transition: opacity 180ms ease;
 }
 
 .interactive-grid-bg::after {
   opacity: 0;
   background-image:
-    linear-gradient(rgba(23, 23, 23, 0.34) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(23, 23, 23, 0.34) 1px, transparent 1px);
-  mask-image: radial-gradient(circle 240px at var(--grid-x) var(--grid-y), #000 0%, transparent 72%);
-  -webkit-mask-image: radial-gradient(circle 240px at var(--grid-x) var(--grid-y), #000 0%, transparent 72%);
-  transition: opacity 180ms ease;
-  animation: grid-drift-reveal 18s linear infinite;
+    linear-gradient(rgba(23, 23, 23, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 23, 23, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0, rgba(0, 0, 0, 1) 44rem, transparent 62rem);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0, rgba(0, 0, 0, 1) 44rem, transparent 62rem);
+  transition: opacity 220ms ease;
 }
 
 .is-grid-hot .interactive-grid-bg::after {
-  opacity: 0.92;
+  opacity: 0;
+}
+
+.is-grid-hot .interactive-grid-bg::before {
+  opacity: 1;
+}
+
+.home-page .interactive-grid-bg::after {
+  opacity: 1;
 }
 
 .reduce-grid-motion .interactive-grid-bg::before,
 .reduce-grid-motion .interactive-grid-bg::after {
   animation: none;
-}
-
-@keyframes grid-drift {
-  to {
-    background-position: 40px 40px;
-  }
-}
-
-@keyframes grid-drift-reveal {
-  to {
-    background-position: -40px 40px;
-  }
 }
 
 a {

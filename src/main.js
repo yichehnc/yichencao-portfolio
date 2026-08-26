@@ -60,6 +60,11 @@
     return `${homeUrl()}${path.replace(/^\//, "")}`;
   }
 
+  function setPageContext(page) {
+    document.body.classList.remove("home-page", "project-page", "background-page", "resume-page");
+    document.body.classList.add(`${page}-page`);
+  }
+
   function splitMetricValue(value) {
     const text = String(value);
     const match = text.match(/^([^0-9]*)([\d,]+)(.*)$/);
@@ -169,6 +174,7 @@
   }
 
   function renderHome() {
+    setPageContext("home");
     const projectItems = [...projects, ...comingSoon.map((item) => ({ ...item, muted: true }))];
     const projectFilters = ["Vibe Coding", "UX/UI", "Architecture", "Motion", "All"];
     const filterTerms = {
@@ -339,6 +345,7 @@
   }
 
   function renderBackground() {
+    setPageContext("background");
     document.title = "Experience - Yichen Cao";
     app.innerHTML = shell(`
       <main class="background-page">
@@ -368,6 +375,7 @@
   }
 
   function renderResume() {
+    setPageContext("resume");
     const skillGroups = profile.skills || [];
     const links = profile.links || [];
 
@@ -421,6 +429,7 @@
   }
 
   function renderProject(slug) {
+    setPageContext("project");
     const project = projects.find((item) => item.slug === slug);
     if (!project) {
       app.innerHTML = shell(`
