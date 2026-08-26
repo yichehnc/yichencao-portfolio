@@ -660,6 +660,10 @@ h2 {
   background: var(--case-pale);
 }
 
+.case-study-mlai .case-hero {
+  background: var(--white);
+}
+
 .case-title {
   max-width: 1040px;
 }
