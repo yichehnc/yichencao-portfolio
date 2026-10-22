@@ -622,10 +622,6 @@ h2 {
   display: none;
 }
 
-#more-projects:not([hidden]) {
-  margin-top: 42px;
-}
-
 .project-more-toggle {
   display: flex;
   margin: 42px auto 0;

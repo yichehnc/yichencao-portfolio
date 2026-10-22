@@ -335,23 +335,19 @@
 
     function renderMasonry() {
       const grid = document.querySelector("#primary-projects");
-      const moreGrid = document.querySelector("#more-projects");
       const toggle = document.querySelector(".project-more-toggle");
-      if (!grid || !moreGrid || !toggle) return;
+      if (!grid || !toggle) return;
       const matches = projectItems.filter(matchesFilter);
-      // Category views use one continuous waterfall; only All has a separate older-work group.
+      // Keep older work last, but distribute every visible card through the same waterfall.
       const primary = matches.filter((project) => activeFilter !== "All" || !project.secondary);
       const secondary = activeFilter === "All" ? matches.filter((project) => project.secondary) : [];
       const canCollapse = columnCount() < 3 && primary.length > 0 && secondary.length > 0;
       const expanded = !canCollapse || moreProjectsExpanded;
+      const visible = expanded ? [...primary, ...secondary] : primary;
 
-      grid.innerHTML = primary.length ? masonryMarkup(primary)
-        : matches.length ? "" : `<p class="empty-filter">No projects match ${activeFilter} yet.</p>`;
-      grid.hidden = !primary.length && matches.length > 0;
+      grid.innerHTML = visible.length ? masonryMarkup(visible)
+        : `<p class="empty-filter">No projects match ${activeFilter} yet.</p>`;
       grid.dataset.columns = String(columnCount());
-      moreGrid.hidden = !secondary.length || !expanded;
-      moreGrid.innerHTML = moreGrid.hidden ? "" : masonryMarkup(secondary);
-      moreGrid.dataset.columns = String(columnCount());
       toggle.hidden = !canCollapse;
       toggle.setAttribute("aria-expanded", String(expanded));
       toggle.textContent = expanded ? "Show fewer projects" : `Show more projects (${secondary.length})`;
@@ -398,8 +394,7 @@
               .join("")}
           </div>
           <div id="primary-projects" class="project-grid" aria-live="polite"></div>
-          <button class="project-more-toggle filter-pill" type="button" aria-expanded="false" aria-controls="more-projects" hidden>Show more projects</button>
-          <div id="more-projects" class="project-grid" aria-live="polite" hidden></div>
+          <button class="project-more-toggle filter-pill" type="button" aria-expanded="false" aria-controls="primary-projects" hidden>Show more projects</button>
         </section>
       </main>
     `);
