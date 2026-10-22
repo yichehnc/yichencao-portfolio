@@ -146,10 +146,37 @@
       </header>
       ${content}
       <footer class="footer">
-        <a class="collab" href="mailto:yichenc2017@gmail.com">Let's<br />Collaborate</a>
-        <div>
+        <p class="footer-invitation">Good things start with a conversation.</p>
+        <a class="footer-art-link" href="mailto:yichenc2017@gmail.com" aria-label="Let's collaborate — email Yichen Cao">
+          <svg class="footer-wordmark" viewBox="0 0 1200 360" aria-hidden="true" focusable="false">
+            <defs>
+              <filter id="footer-pencil" x="-5%" y="-10%" width="110%" height="120%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="2" seed="8" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.8" xChannelSelector="R" yChannelSelector="G" />
+              </filter>
+            </defs>
+            <g class="footer-letters" filter="url(#footer-pencil)">
+              ${[..."YICHENCAO"].map((letter, index) => {
+                const x = [78, 205, 332, 459, 586, 713, 863, 990, 1117][index];
+                const angle = [-7, 4, -5, 3, -4, 5, -6, 4, -3][index];
+                return `<text x="${x}" y="246" text-anchor="middle" textLength="${letter === "I" ? 78 : 112}" lengthAdjust="spacingAndGlyphs" ${letter === "I" ? 'style="font-family: Georgia, serif"' : ""} transform="rotate(${angle} ${x} 220)">${letter}</text>`;
+              }).join("")}
+            </g>
+            <g class="footer-doodles" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M24 263 Q4 268 30 275 M41 278 Q81 284 119 274 M145 269 Q165 261 184 267 M207 280 Q254 287 284 273 M302 268 Q330 278 366 270 M397 279 Q437 289 477 276 M506 271 Q544 281 578 270 M602 280 Q647 286 681 274 M703 274 Q736 282 765 270 M812 275 Q855 285 901 273 M929 277 Q978 286 1021 275 M1053 274 Q1093 285 1131 272 M1150 263 Q1195 267 1170 277" />
+              <path d="M43 287 Q85 293 107 285 M313 285 Q348 290 371 281 M520 287 Q553 292 577 283 M825 290 Q866 296 888 286 M1063 290 Q1101 294 1129 285" />
+              <g class="footer-spark">
+                <path d="M1035 28 Q1037 52 1057 57 Q1037 60 1035 83 Q1031 61 1012 57 Q1033 52 1035 28Z M1075 40 L1082 30 M1084 61 L1095 64 M1010 28 L1004 20 M1001 75 L992 81" />
+              </g>
+              <path d="M168 53 Q191 23 212 53 Q191 78 168 53Z M190 43 Q181 54 190 64 Q199 54 190 43Z M175 34 L169 26 M192 28 L192 18 M208 34 L215 27" />
+              <path d="M557 326 Q582 299 609 324 Q633 301 654 327 Q609 346 557 326Z M585 325 L591 325 M619 325 L625 325 M548 337 Q602 354 666 339" />
+            </g>
+          </svg>
+          <span class="footer-cursor-tab">Let's collaborate <span aria-hidden="true">↗</span></span>
+        </a>
+        <div class="footer-meta">
           <a href="${homeHref()}">Yichen Cao</a>
-          <p>© Yichen Cao 2026</p>
+          <p>© 2026 · Made with curiosity.</p>
         </div>
       </footer>
     `;
@@ -610,4 +637,24 @@
   }
 
   attachInteractiveGrid();
+  const footerArt = document.querySelector(".footer-art-link");
+  if (footerArt) {
+    const pointerMode = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    footerArt.addEventListener("pointermove", (event) => {
+      if (!pointerMode.matches || reducedMotion.matches || event.pointerType === "touch") return;
+      const bounds = footerArt.getBoundingClientRect();
+      const tab = footerArt.querySelector(".footer-cursor-tab");
+      const x = Math.max(8, Math.min(event.clientX - bounds.left + 18, bounds.width - tab.offsetWidth - 8));
+      const y = Math.max(8, Math.min(event.clientY - bounds.top + 18, bounds.height - tab.offsetHeight - 8));
+      footerArt.style.setProperty("--cursor-x", `${x}px`);
+      footerArt.style.setProperty("--cursor-y", `${y}px`);
+      footerArt.classList.add("is-pointer-active");
+    });
+    const clearPointer = () => footerArt.classList.remove("is-pointer-active");
+    footerArt.addEventListener("pointerleave", clearPointer);
+    footerArt.addEventListener("blur", clearPointer);
+    reducedMotion.addEventListener("change", clearPointer);
+    pointerMode.addEventListener("change", clearPointer);
+  }
 })();

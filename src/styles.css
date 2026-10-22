@@ -674,25 +674,105 @@ h2 {
 }
 
 .footer {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 32px;
-  align-items: end;
+  display: block;
   padding: 88px 0 40px;
+  color: var(--ink);
 }
 
-.collab {
-  font-size: clamp(54px, 10vw, 136px);
-  font-weight: 560;
-  line-height: 0.88;
+.footer::before {
+  display: none;
 }
 
-.footer div {
-  display: grid;
-  gap: 10px;
-  color: var(--soft-ink);
+.footer-invitation {
+  font-size: 13px;
+  letter-spacing: 0.03em;
+}
+
+.footer-art-link {
+  position: relative;
+  display: block;
+  padding: 16px 0 72px;
+  color: var(--ink);
+}
+
+.footer a.footer-art-link:hover {
+  color: var(--ink);
+}
+
+.footer-wordmark {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.footer-letters {
+  font-family: "Arial Black", "Arial", sans-serif;
+  font-size: 200px;
+  font-weight: 900;
+  fill: var(--white);
+  stroke: var(--ink);
+  stroke-width: 2.4px;
+  paint-order: stroke fill;
+}
+
+.footer-spark {
+  transform-origin: 1035px 57px;
+  transition: transform 280ms ease-out;
+}
+
+.footer-art-link:is(:hover, :focus-visible) .footer-spark {
+  transform: rotate(18deg);
+}
+
+.footer-cursor-tab {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 48px;
+  padding: 12px 20px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--white);
   font-size: 14px;
-  text-align: right;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .footer-art-link.is-pointer-active:not(:focus-visible) .footer-cursor-tab {
+    top: 0;
+    bottom: auto;
+    left: 0;
+    transform: translate(var(--cursor-x), var(--cursor-y));
+  }
+}
+
+.footer .footer-meta {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--ink);
+  color: var(--soft-ink);
+  font-size: 12px;
+  text-align: left;
+}
+
+@media (max-width: 540px) {
+  .footer-art-link {
+    padding-top: 32px;
+  }
+
+  .footer-letters {
+    stroke-width: 2.5px;
+  }
 }
 
 .footer p {
@@ -1223,6 +1303,10 @@ dd {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .footer-spark {
+    transition: none;
+    transform: none !important;
+  }
   .site-header::before,
   .footer::before,
   .site-header a,
