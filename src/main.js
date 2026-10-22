@@ -218,14 +218,14 @@
   function renderHome() {
     setPageContext("home");
     const projectItems = [...projects, ...comingSoon.map((item) => ({ ...item, muted: true }))];
-    const projectFilters = ["Vibe Coding", "UX/UI", "Architecture", "Motion", "All"];
+    const projectFilters = ["All", "Vibe Coding", "UX/UI", "Architecture", "Motion"];
     const filterTerms = {
       "Vibe Coding": ["vibe coding", "code", "coding", "interactive", "web app"],
       "UX/UI": ["ux", "ui", "user", "interface", "branding", "visual", "prototype", "research", "product design", "product designer"],
       Architecture: ["architecture", "architectural", "spatial"],
       Motion: ["motion", "animation", "interactive", "kinetic"],
     };
-    let activeFilter = "";
+    let activeFilter = "All";
 
     function aspectHeightWeight(aspect) {
       const [wide, tall] = String(aspect || "1 / 1")
@@ -256,7 +256,6 @@
     }
 
     function matchesFilter(project) {
-      if (!activeFilter) return true;
       if (activeFilter === "All") return true;
       if (Array.isArray(project.filters)) {
         if (activeFilter === "UX/UI") return project.filters.includes("UX") || project.filters.includes("UI");
@@ -373,7 +372,7 @@
 
     document.querySelectorAll(".filter-pill").forEach((button) => {
       button.addEventListener("click", () => {
-        activeFilter = button.dataset.filter === "All" || activeFilter === button.dataset.filter ? "" : button.dataset.filter;
+        activeFilter = activeFilter === button.dataset.filter ? "All" : button.dataset.filter;
         updateFilterButtons();
         renderMasonry();
         document.querySelector("#case-studies")?.scrollIntoView({ behavior: "smooth", block: "start" });
