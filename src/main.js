@@ -150,7 +150,7 @@
           <p class="footer-invitation">Good things start with a conversation.</p>
           ${!isProjectPage && !isBackgroundPage && !isResumePage ? `<img class="landing-doodle footer-doodle" src="${assetUrl("assets/illustrations/yichen-ux-flow.webp")}" width="448" height="448" alt="" aria-hidden="true" loading="lazy" decoding="async" draggable="false" />` : ""}
         </div>
-        <a class="footer-art-link" href="mailto:yichenc2017@gmail.com" aria-label="Let's collaborate — email Yichen Cao">
+        <a class="footer-art-link" href="mailto:yichenc2017@gmail.com" aria-label="Let's chat — email Yichen Cao">
           <svg class="footer-wordmark" viewBox="0 0 1200 360" aria-hidden="true" focusable="false">
             <defs>
               <filter id="footer-pencil" x="-5%" y="-10%" width="110%" height="120%">
@@ -175,7 +175,7 @@
               <path d="M557 326 Q582 299 609 324 Q633 301 654 327 Q609 346 557 326Z M585 325 L591 325 M619 325 L625 325 M548 337 Q602 354 666 339" />
             </g>
           </svg>
-          <span class="footer-cursor-tab">Let's collaborate <span aria-hidden="true">↗</span></span>
+          <span class="footer-cursor-tab">Let's chat <span aria-hidden="true">↗</span></span>
         </a>
         <div class="footer-meta">
           <a href="${homeHref()}">Yichen Cao</a>
