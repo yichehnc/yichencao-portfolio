@@ -475,7 +475,7 @@
         const target = besideCursor ? pop : restingDoodle;
         target.src = source;
         if (besideCursor) {
-          const size = 160;
+          const size = 200;
           pop.style.left = `${Math.max(12, Math.min(event.clientX + 20, window.innerWidth - size - 12))}px`;
           pop.style.top = `${Math.max(12, Math.min(event.clientY + 20, window.innerHeight - size - 12))}px`;
           pop.hidden = false;

@@ -339,7 +339,7 @@ main {
 
 .hero-portrait {
   display: block;
-  width: 96px;
+  width: 120px;
   height: auto;
   flex: none;
   pointer-events: none;
@@ -357,8 +357,9 @@ main {
 
 .hero-connect-row {
   display: flex;
+  mix-blend-mode: multiply;
   width: 100%;
-  min-height: 152px;
+  min-height: 220px;
   align-items: center;
   justify-content: center;
   gap: 24px;
@@ -367,7 +368,7 @@ main {
 .coding-doodle,
 .hero-sketching-doodle {
   position: absolute;
-  width: clamp(100px, 12vw, 152px);
+  width: clamp(156px, 17vw, 220px);
 }
 
 .coding-doodle { right: 6%; }
@@ -409,13 +410,10 @@ main {
 .hero-character-pop {
   position: fixed;
   z-index: 50;
-  width: 160px;
-  height: 160px;
+  width: 200px;
+  height: 200px;
   object-fit: contain;
-  border: 1px solid rgba(23, 23, 23, 0.08);
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 6px 24px rgba(23, 23, 23, 0.08);
+  mix-blend-mode: multiply;
   pointer-events: none;
   user-select: none;
 }
@@ -428,8 +426,8 @@ main {
 
 .projects-heading {
   position: relative;
-  min-height: 104px;
-  padding-right: 140px;
+  min-height: 160px;
+  padding-right: 200px;
   align-items: center;
 }
 
@@ -437,7 +435,7 @@ main {
   position: absolute;
   right: 18px;
   top: 0;
-  width: 112px;
+  width: 168px;
   transform: rotate(-4deg);
 }
 
@@ -453,13 +451,23 @@ main {
 }
 
 .footer-doodle {
-  width: 116px;
+  width: 168px;
   margin-right: 5%;
 }
 
 @media (max-width: 540px) {
   .hero-connect-row { min-height: 112px; }
-  .coding-doodle, .hero-sketching-doodle { width: 80px; }
+  .hero-connect-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 4px;
+  }
+  .coding-doodle, .hero-sketching-doodle {
+    position: static;
+    width: 104px;
+    max-width: 100%;
+    justify-self: center;
+  }
   .coding-doodle { right: 0; }
   .hero-sketching-doodle { left: 0; }
 
@@ -471,7 +479,7 @@ main {
   .sketching-doodle { display: none; }
 
   .footer-doodle {
-    width: 80px;
+    width: 108px;
     margin-right: 0;
   }
 }
@@ -1923,13 +1931,15 @@ dd {
   .hero { min-height: 0; padding: 16px 0 32px; }
   .hero-copy { min-height: 0; justify-content: flex-start; }
   .hero-greeting { gap: 8px; margin-bottom: 12px; }
-  .hero-portrait { width: 64px; }
+  .hero-portrait { width: 76px; }
   .hero-copy h1 { margin-bottom: 16px; }
-  .hero-connect-row { min-height: 88px; }
+  .hero-connect-row { min-height: 156px; }
   .hero-copy .skill-carousel { margin-top: 12px; }
 }
 
 @media (max-width: 540px) {
+  .hero-connect-row { min-height: 112px; }
+
   .brand {
     display: grid;
   }
