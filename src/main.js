@@ -221,11 +221,13 @@
   function renderHome() {
     setPageContext("home");
     const projectItems = [...projects, ...comingSoon.map((item) => ({ ...item, muted: true }))];
-    const projectFilters = ["All", "Vibe Coding", "UX/UI", "Architecture", "Motion"];
+    const projectFilters = ["All", "Product", "Startup", "Case Study", "UX/UI", "Vibe Coding", "Motion"];
     const filterTerms = {
-      "Vibe Coding": ["vibe coding", "code", "coding", "interactive", "web app"],
+      Product: ["product"],
+      Startup: ["startup"],
+      "Case Study": ["case study"],
+      "Vibe Coding": ["hobby", "leisure", "personal experiment"],
       "UX/UI": ["ux", "ui", "user", "interface", "branding", "visual", "prototype", "research", "product design", "product designer"],
-      Architecture: ["architecture", "architectural", "spatial"],
       Motion: ["motion", "animation", "interactive", "kinetic"],
     };
     let activeFilter = "All";
@@ -266,7 +268,7 @@
         return project.filters.includes(activeFilter);
       }
       const text = searchableText(project);
-      return filterTerms[activeFilter].some((term) => {
+      return (filterTerms[activeFilter] || []).some((term) => {
         const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
         return new RegExp(`(^|[^a-z0-9])${escaped}([^a-z0-9]|$)`, "i").test(text);
       });
