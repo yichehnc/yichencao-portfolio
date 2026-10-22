@@ -226,6 +226,7 @@
       Motion: ["motion", "animation", "interactive", "kinetic"],
     };
     let activeFilter = "All";
+    let moreProjectsExpanded = false;
 
     function aspectHeightWeight(aspect) {
       const [wide, tall] = String(aspect || "1 / 1")
@@ -289,7 +290,7 @@
                 }>
                   ${
                     project.image
-                      ? `<img src="${project.image}" alt="${project.title}" loading="lazy" style="--project-aspect: ${
+                      ? `<img src="${assetUrl(project.image)}" alt="${project.title}" loading="lazy" style="--project-aspect: ${
                           project.aspect || "1 / 1"
                         }" />`
                       : `<div class="project-visual project-visual-${project.accent || "default"}" style="--project-aspect: ${
@@ -310,28 +311,45 @@
       `;
     }
 
-    function renderMasonry() {
+    function masonryMarkup(items) {
       const count = columnCount();
       const columns = Array.from({ length: count }, () => ({ height: 0, cards: [] }));
-      const visibleItems = projectItems.filter(matchesFilter);
 
-      visibleItems.forEach((project) => {
+      items.forEach((project) => {
         const shortest = columns.find((column) => column.cards.some((card) => card.slug === project.afterSlug))
           || columns.reduce((best, column) => (column.height < best.height ? column : best), columns[0]);
         shortest.cards.push(project);
         shortest.height += aspectHeightWeight(project.aspect) + 0.28;
       });
 
-      const grid = document.querySelector(".project-grid");
-      if (!grid) return;
-      grid.innerHTML = visibleItems.length
-        ? columns.map((column) => `<div class="project-column">${column.cards.map(projectCard).join("")}</div>`).join("")
-        : `<p class="empty-filter">No projects match ${activeFilter} yet.</p>`;
-      grid.dataset.columns = String(count);
+      return columns.map((column) => `<div class="project-column">${column.cards.map(projectCard).join("")}</div>`).join("");
+    }
+
+    function renderMasonry() {
+      const grid = document.querySelector("#primary-projects");
+      const moreGrid = document.querySelector("#more-projects");
+      const toggle = document.querySelector(".project-more-toggle");
+      if (!grid || !moreGrid || !toggle) return;
+      const matches = projectItems.filter(matchesFilter);
+      const primary = matches.filter((project) => !project.secondary);
+      const secondary = matches.filter((project) => project.secondary);
+      const canCollapse = columnCount() < 3 && primary.length > 0 && secondary.length > 0;
+      const expanded = !canCollapse || moreProjectsExpanded;
+
+      grid.innerHTML = primary.length ? masonryMarkup(primary)
+        : matches.length ? "" : `<p class="empty-filter">No projects match ${activeFilter} yet.</p>`;
+      grid.hidden = !primary.length && matches.length > 0;
+      grid.dataset.columns = String(columnCount());
+      moreGrid.hidden = !secondary.length || !expanded;
+      moreGrid.innerHTML = moreGrid.hidden ? "" : masonryMarkup(secondary);
+      moreGrid.dataset.columns = String(columnCount());
+      toggle.hidden = !canCollapse;
+      toggle.setAttribute("aria-expanded", String(expanded));
+      toggle.textContent = expanded ? "Show fewer projects" : `Show more projects (${secondary.length})`;
     }
 
     function updateFilterButtons() {
-      document.querySelectorAll(".filter-pill").forEach((button) => {
+      document.querySelectorAll(".project-filter-tabs .filter-pill").forEach((button) => {
         const isActive = button.dataset.filter === activeFilter;
         button.classList.toggle("is-active", isActive);
         button.setAttribute("aria-pressed", String(isActive));
@@ -362,7 +380,9 @@
               )
               .join("")}
           </div>
-          <div class="project-grid" aria-live="polite"></div>
+          <div id="primary-projects" class="project-grid" aria-live="polite"></div>
+          <button class="project-more-toggle filter-pill" type="button" aria-expanded="false" aria-controls="more-projects" hidden>Show more projects</button>
+          <div id="more-projects" class="project-grid" aria-live="polite" hidden></div>
         </section>
       </main>
     `);
@@ -370,9 +390,15 @@
     renderMasonry();
     updateFilterButtons();
 
-    document.querySelectorAll(".filter-pill").forEach((button) => {
+    document.querySelector(".project-more-toggle").addEventListener("click", () => {
+      moreProjectsExpanded = !moreProjectsExpanded;
+      renderMasonry();
+    });
+
+    document.querySelectorAll(".project-filter-tabs .filter-pill").forEach((button) => {
       button.addEventListener("click", () => {
         activeFilter = activeFilter === button.dataset.filter ? "All" : button.dataset.filter;
+        moreProjectsExpanded = false;
         updateFilterButtons();
         renderMasonry();
         document.querySelector("#case-studies")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -380,9 +406,14 @@
     });
 
     let resizeFrame = 0;
+    let renderedColumns = columnCount();
     window.addEventListener("resize", () => {
       window.cancelAnimationFrame(resizeFrame);
-      resizeFrame = window.requestAnimationFrame(renderMasonry);
+      resizeFrame = window.requestAnimationFrame(() => {
+        if (renderedColumns === columnCount()) return;
+        renderedColumns = columnCount();
+        renderMasonry();
+      });
     });
   }
 
@@ -554,6 +585,7 @@
                 ? `<a class="primary-link" href="${project.actionUrl}" target="_blank" rel="noreferrer">${project.actionLabel}</a>`
                 : ""
             }
+            ${project.repoUrl ? `<a class="case-repo-link ${project.actionUrl ? "text-link" : "primary-link"}" href="${project.repoUrl}" target="_blank" rel="noreferrer">View GitHub repository ↗</a>` : ""}
           </div>
           ${project.brandImage ? `
             <figure class="case-brand-snapshot">
@@ -579,7 +611,7 @@
             project.heroImage
               ? `<img class="case-image hero-image" src="${assetUrl(project.heroImage)}" alt="${project.heroImageAlt || project.title}" />`
               : project.image
-              ? `<img class="case-image hero-image" src="${project.image}" alt="${project.title}" />`
+              ? `<img class="case-image hero-image" src="${assetUrl(project.image)}" alt="${project.title}" />`
               : `<div class="case-image hero-image project-visual project-visual-${project.accent || "default"}" aria-hidden="true">
                   <span>${project.cardTitle}</span>
                 </div>`
