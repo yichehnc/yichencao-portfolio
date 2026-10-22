@@ -337,8 +337,9 @@
       const toggle = document.querySelector(".project-more-toggle");
       if (!grid || !moreGrid || !toggle) return;
       const matches = projectItems.filter(matchesFilter);
-      const primary = matches.filter((project) => !project.secondary);
-      const secondary = matches.filter((project) => project.secondary);
+      // Category views use one continuous waterfall; only All has a separate older-work group.
+      const primary = matches.filter((project) => activeFilter !== "All" || !project.secondary);
+      const secondary = activeFilter === "All" ? matches.filter((project) => project.secondary) : [];
       const canCollapse = columnCount() < 3 && primary.length > 0 && secondary.length > 0;
       const expanded = !canCollapse || moreProjectsExpanded;
 
