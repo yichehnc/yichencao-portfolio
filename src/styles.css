@@ -1174,11 +1174,23 @@ h2 {
   --case-pale: rgba(232, 242, 249, 0.72);
 }
 
-.case-study-mlai {
+:is(.case-study-mlai, .case-study-carevo) {
   --case-navy: #050505;
   --case-blue: #008c8c;
   --case-orange: #ff3b10;
   --case-pale: #f4efe6;
+}
+
+.case-study-carevo {
+  --case-navy: #171717;
+  --case-blue: #171717;
+  --case-orange: #171717;
+  --case-pale: #f5f5f3;
+}
+
+.project-visual-carevo {
+  background: #f5f5f3;
+  color: var(--ink);
 }
 
 .case-study-relish {
@@ -1200,7 +1212,7 @@ h2 {
   background: var(--case-pale);
 }
 
-.case-study-mlai .case-hero {
+:is(.case-study-mlai, .case-study-carevo) .case-hero {
   background: var(--white);
 }
 
@@ -1227,12 +1239,12 @@ h2 {
   line-height: 0.84;
 }
 
-.case-study-mlai .case-title,
-.case-study-mlai .case-title h1 {
+:is(.case-study-mlai, .case-study-carevo) .case-title,
+:is(.case-study-mlai, .case-study-carevo) .case-title h1 {
   max-width: none;
 }
 
-.case-study-mlai .case-title h1 {
+:is(.case-study-mlai, .case-study-carevo) .case-title h1 {
   font-size: clamp(58px, 8vw, 132px);
 }
 
@@ -1307,7 +1319,7 @@ dd {
   color: var(--white);
 }
 
-.case-study-mlai .case-proof-band {
+:is(.case-study-mlai, .case-study-carevo) .case-proof-band {
   border-top: 1px solid rgba(5, 5, 5, 0.16);
   border-bottom: 1px solid rgba(5, 5, 5, 0.16);
   background: var(--case-pale);
@@ -1321,7 +1333,7 @@ dd {
   font-weight: 800;
 }
 
-.case-study-mlai .case-proof-band h2 {
+:is(.case-study-mlai, .case-study-carevo) .case-proof-band h2 {
   color: var(--case-blue);
 }
 
@@ -1342,11 +1354,11 @@ dd {
   line-height: 0.85;
 }
 
-.case-study-mlai .case-proof-stats div:first-child strong {
+:is(.case-study-mlai, .case-study-carevo) .case-proof-stats div:first-child strong {
   color: var(--case-blue);
 }
 
-.case-study-mlai .case-proof-stats div:nth-child(2) strong {
+:is(.case-study-mlai, .case-study-carevo) .case-proof-stats div:nth-child(2) strong {
   color: var(--case-orange);
 }
 
@@ -1356,7 +1368,7 @@ dd {
   font-weight: 700;
 }
 
-.case-study-mlai .case-proof-stats span {
+:is(.case-study-mlai, .case-study-carevo) .case-proof-stats span {
   color: var(--case-navy);
 }
 
@@ -1393,7 +1405,7 @@ dd {
   color: #f4f1ea;
 }
 
-.case-study-mlai .case-section-dark {
+:is(.case-study-mlai, .case-study-carevo) .case-section-dark {
   border-top: 1px solid rgba(5, 5, 5, 0.16);
   border-bottom: 1px solid rgba(5, 5, 5, 0.16);
   background: var(--case-pale);
@@ -1405,8 +1417,8 @@ dd {
   color: #9fc6e6;
 }
 
-.case-study-mlai .case-section-dark .section-number,
-.case-study-mlai .case-section-dark .case-section-eyebrow {
+:is(.case-study-mlai, .case-study-carevo) .case-section-dark .section-number,
+:is(.case-study-mlai, .case-study-carevo) .case-section-dark .case-section-eyebrow {
   color: var(--case-orange);
 }
 
@@ -1415,8 +1427,8 @@ dd {
   color: #f4f1ea;
 }
 
-.case-study-mlai .case-section-dark .case-section-copy h2,
-.case-study-mlai .case-section-dark .body-copy {
+:is(.case-study-mlai, .case-study-carevo) .case-section-dark .case-section-copy h2,
+:is(.case-study-mlai, .case-study-carevo) .case-section-dark .body-copy {
   color: var(--case-navy);
 }
 
@@ -1438,7 +1450,7 @@ dd {
   counter-increment: journey-step;
 }
 
-.case-study-mlai .body-copy li {
+:is(.case-study-mlai, .case-study-carevo) .body-copy li {
   border-top-color: rgba(5, 5, 5, 0.16);
 }
 
@@ -1449,7 +1461,7 @@ dd {
   font-weight: 800;
 }
 
-.case-study-mlai .body-copy li::before {
+:is(.case-study-mlai, .case-study-carevo) .body-copy li::before {
   color: var(--case-orange);
 }
 
@@ -1461,7 +1473,7 @@ dd {
   line-height: 1.05;
 }
 
-.case-study-mlai .body-copy li strong {
+:is(.case-study-mlai, .case-study-carevo) .body-copy li strong {
   color: var(--case-navy);
 }
 
@@ -1494,6 +1506,20 @@ dd {
   color: inherit;
   font-size: 14px;
   font-weight: 700;
+}
+
+.case-study-carevo .case-section-evidence .case-section-copy {
+  grid-column: 2 / -1;
+}
+
+.case-study-carevo .case-section-evidence .case-gallery {
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.case-study-carevo .case-section-evidence .case-gallery img {
+  max-height: none;
+  height: auto;
 }
 
 .body-copy {
@@ -1533,6 +1559,10 @@ dd {
 }
 
 @media (max-width: 920px) {
+  .case-study-carevo .case-section-evidence .case-section-copy {
+    grid-column: auto;
+  }
+
   .site-header,
   .footer,
   main {

@@ -568,7 +568,9 @@
               .join("")}
           </dl>
           ${
-            project.image
+            project.heroImage
+              ? `<img class="case-image hero-image" src="${assetUrl(project.heroImage)}" alt="${project.heroImageAlt || project.title}" />`
+              : project.image
               ? `<img class="case-image hero-image" src="${project.image}" alt="${project.title}" />`
               : `<div class="case-image hero-image project-visual project-visual-${project.accent || "default"}" aria-hidden="true">
                   <span>${project.cardTitle}</span>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="810" viewBox="0 0 1440 810" fill="none">
+  <rect width="1440" height="810" fill="#f5f5f3"/>
+  <g fill="#171717" font-family="Arial, sans-serif">
+    <text x="80" y="105" font-size="28" font-weight="700">CareVo</text>
+    <text x="80" y="225" font-size="72" font-weight="700" letter-spacing="-3">Your needs. Your choice.</text>
+    <text x="84" y="280" font-size="27">Connecting people with NDIS and aged-care providers.</text>
+  </g>
+  <g stroke="#171717" stroke-width="2">
+    <rect x="80" y="370" width="360" height="285" rx="20" fill="white"/>
+    <rect x="540" y="370" width="360" height="285" rx="20" fill="white"/>
+    <rect x="1000" y="370" width="360" height="285" rx="20" fill="#171717"/>
+    <path d="M460 512H518M506 500L518 512L506 524M920 512H978M966 500L978 512L966 524" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="138" cy="432" r="20"/>
+    <circle cx="598" cy="432" r="20"/>
+    <circle cx="1058" cy="432" r="20" stroke="white"/>
+  </g>
+  <g font-family="Arial, sans-serif" fill="#171717">
+    <g font-size="20" text-anchor="middle"><text x="138" y="439">1</text><text x="598" y="439">2</text><text x="1058" y="439" fill="white">3</text></g>
+    <g font-size="34" font-weight="700"><text x="116" y="525">Share your needs</text><text x="576" y="525">Explore matches</text><text x="1036" y="525" fill="white">Choose your care</text></g>
+    <g font-size="23"><text x="116" y="573">What support, and where?</text><text x="576" y="573">Find suitable providers.</text><text x="1036" y="573" fill="white">Connect when ready.</text></g>
+    <text x="80" y="740" font-size="19" letter-spacing="2">PRODUCT OVERVIEW / CONNECTION PLATFORM</text>
+  </g>
+</svg>
