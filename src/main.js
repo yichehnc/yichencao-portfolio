@@ -275,6 +275,7 @@
     }
 
     function projectCard(project) {
+      const cardImage = project.cardImage || project.image;
       return `
         <article class="project-card${project.muted ? " is-muted" : ""}" data-category="${project.category}">
           ${
@@ -294,8 +295,8 @@
                   project.externalUrl && !project.internalPage ? 'target="_blank" rel="noreferrer"' : ""
                 }>
                   ${
-                    project.image
-                      ? `<img src="${assetUrl(project.image)}" alt="${project.title}" loading="lazy" style="--project-aspect: ${
+                    cardImage
+                      ? `<img src="${assetUrl(cardImage)}" alt="${project.title}" loading="lazy" style="--project-aspect: ${
                           project.aspect || "1 / 1"
                         }" />`
                       : `<div class="project-visual project-visual-${project.accent || "default"}" style="--project-aspect: ${
