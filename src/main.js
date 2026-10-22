@@ -366,8 +366,9 @@
         <section class="hero">
           <div class="hero-copy">
             <p class="hello">Hello! I'm Yichen.</p>
-            <h1>AI-native product designer, crafting UX design with good taste, function, and human in the loop</h1>
+            <h1><button class="hero-word" type="button" data-character="coding" title="Meet my AI coding side">AI-native</button> <button class="hero-word" type="button" data-character="sketching" title="Meet my product design side">product</button> designer, crafting UX design with good taste, function, and <button class="hero-word" type="button" data-character="flow" title="Meet my human-centered design side">human</button> <span class="hero-phrase">in the loop</span></h1>
             <div class="hero-connect-row">
+              <img class="landing-doodle hero-sketching-doodle" src="${assetUrl("assets/illustrations/yichen-sketching.webp")}" width="448" height="448" alt="" aria-hidden="true" decoding="async" draggable="false" />
               <a class="primary-link" href="https://cal.com/" target="_blank" rel="noreferrer">Let's Connect</a>
               <img class="landing-doodle coding-doodle" src="${assetUrl("assets/illustrations/yichen-ai-coding.webp")}" width="448" height="448" alt="" aria-hidden="true" decoding="async" draggable="false" />
             </div>
@@ -398,6 +399,7 @@
 
     renderMasonry();
     updateFilterButtons();
+    attachHeroWordplay();
 
     document.querySelector(".project-more-toggle").addEventListener("click", () => {
       moreProjectsExpanded = !moreProjectsExpanded;
@@ -423,6 +425,75 @@
         renderedColumns = columnCount();
         renderMasonry();
       });
+    });
+  }
+
+  function attachHeroWordplay() {
+    const hero = document.querySelector(".hero-copy");
+    if (!hero) return;
+    const restingDoodle = hero.querySelector(".coding-doodle");
+    const defaultSource = restingDoodle.src;
+    const characters = {
+      coding: "yichen-ai-coding.webp",
+      sketching: "yichen-sketching.webp",
+      flow: "yichen-ux-flow.webp",
+    };
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const pop = document.createElement("img");
+    pop.className = "hero-character-pop";
+    pop.alt = "";
+    pop.setAttribute("aria-hidden", "true");
+    pop.draggable = false;
+    pop.hidden = true;
+    document.body.append(pop);
+    // Warm the three small local assets so the first click is as smooth as later clicks.
+    Object.values(characters).forEach((file) => {
+      const image = new Image();
+      image.src = assetUrl(`assets/illustrations/${file}`);
+    });
+    let dismissTimer;
+    let animation;
+    function dismiss() {
+      window.clearTimeout(dismissTimer);
+      animation?.cancel();
+      pop.hidden = true;
+      restingDoodle.src = defaultSource;
+      hero.querySelectorAll(".hero-word").forEach((word) => word.classList.remove("is-playing"));
+    }
+    hero.querySelectorAll(".hero-word").forEach((word) => {
+      word.addEventListener("click", (event) => {
+        dismiss();
+        word.classList.add("is-playing");
+        const source = assetUrl(`assets/illustrations/${characters[word.dataset.character]}`);
+        // Touch and keyboard activation use the reserved illustration space below the text.
+        // Only mouse clicks reveal a doodle beside the cursor; it never captures input.
+        const besideCursor = finePointer.matches && window.innerWidth >= 768 && event.detail > 0 && event.pointerType !== "touch";
+        const target = besideCursor ? pop : restingDoodle;
+        target.src = source;
+        if (besideCursor) {
+          const size = 160;
+          pop.style.left = `${Math.max(12, Math.min(event.clientX + 20, window.innerWidth - size - 12))}px`;
+          pop.style.top = `${Math.max(12, Math.min(event.clientY + 20, window.innerHeight - size - 12))}px`;
+          pop.hidden = false;
+        }
+        if (!reducedMotion.matches) {
+          animation = target.animate([
+            { opacity: 0, transform: "translateY(10px) rotate(-6deg) scale(.92)", offset: 0 },
+            { opacity: 1, transform: "translateY(-4px) rotate(3deg) scale(1)", offset: .16 },
+            { opacity: 1, transform: "translateY(0) rotate(0) scale(1)", offset: .3 },
+            { opacity: 1, transform: "translateY(0) rotate(0) scale(1)", offset: .85 },
+            { opacity: 0, transform: "translateY(-8px) rotate(0) scale(.98)", offset: 1 },
+          ], { duration: 2200, easing: "ease-out" });
+        }
+        dismissTimer = window.setTimeout(dismiss, 2200);
+      });
+    });
+    window.addEventListener("scroll", dismiss, { passive: true });
+    window.addEventListener("resize", dismiss);
+    reducedMotion.addEventListener("change", dismiss);
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") dismiss();
     });
   }
 
