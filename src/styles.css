@@ -77,10 +77,6 @@ body {
   opacity: 1;
 }
 
-.home-page .interactive-grid-bg::after {
-  opacity: 1;
-}
-
 .reduce-grid-motion .interactive-grid-bg::before,
 .reduce-grid-motion .interactive-grid-bg::after {
   animation: none;
@@ -173,6 +169,46 @@ main {
   align-items: flex-start;
   justify-content: center;
   max-width: none;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-copy::before,
+.hero-copy::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.hero-copy::before {
+  opacity: 1;
+  background-image:
+    linear-gradient(rgba(23, 23, 23, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 23, 23, 0.045) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.92) 0, rgba(0, 0, 0, 0.82) 64%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.92) 0, rgba(0, 0, 0, 0.82) 64%, transparent 100%);
+}
+
+.hero-copy::after {
+  opacity: 0;
+  background:
+    radial-gradient(circle 200px at var(--hero-glow-x, 50%) var(--hero-glow-y, 50%), rgba(255, 197, 126, 0.32), transparent 58%),
+    radial-gradient(circle 360px at var(--hero-glow-x, 50%) var(--hero-glow-y, 50%), rgba(255, 232, 204, 0.44), transparent 70%);
+  filter: blur(18px);
+  mask-image: radial-gradient(circle 280px at var(--hero-glow-x, 50%) var(--hero-glow-y, 50%), rgba(0, 0, 0, 1) 0, rgba(0, 0, 0, 0.7) 54%, transparent 84%);
+  -webkit-mask-image: radial-gradient(circle 280px at var(--hero-glow-x, 50%) var(--hero-glow-y, 50%), rgba(0, 0, 0, 1) 0, rgba(0, 0, 0, 0.7) 54%, transparent 84%);
+}
+
+.hero-copy.is-glow-active::after {
+  opacity: 1;
+}
+
+.hero-copy > * {
+  position: relative;
+  z-index: 1;
 }
 
 .hello {
@@ -199,6 +235,8 @@ h1 {
   max-width: none;
   font-size: clamp(44px, 6.8vw, 96px);
   line-height: 1.08;
+  width: 100%;
+  text-align: justify;
 }
 
 .primary-link {

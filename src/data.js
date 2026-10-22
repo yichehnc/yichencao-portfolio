@@ -109,6 +109,16 @@ window.PORTFOLIO_PROJECTS = [
     ],
   },
   {
+    slug: "carevo",
+    title: "CareVo",
+    cardTitle: "CareVo",
+    category: "",
+    aspect: "4 / 3",
+    afterSlug: "mlai-founder-tools",
+    externalUrl: "https://www.linkedin.com/company/carevoau/",
+    sections: [],
+  },
+  {
     slug: "kinetic",
     title: "Kinetic",
     cardTitle: "Kinetic",
@@ -227,7 +237,7 @@ window.PORTFOLIO_PROJECTS = [
     category: "UX 2025",
     filters: ["UX"],
     aspect: "4 / 3",
-    externalUrl: "https://www.unimelb.edu.au/newsroom/news/2025/july/support-sorted",
+    externalUrl: "https://www.linkedin.com/company/support-sorted/",
     image: "https://framerusercontent.com/images/UZkU1TkNygKwgalShvxggm7SMc.jpg?width=1431&height=938",
     cardBio:
       "An AI platform transforming how Australians with disabilities connect with care, scaled from $0 to $4M in revenue.",

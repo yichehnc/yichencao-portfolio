@@ -157,19 +157,34 @@
 
   function attachInteractiveGrid() {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const heroCopy = document.querySelector(".hero-copy");
     let frame = 0;
 
-    function setPosition(event) {
-      window.cancelAnimationFrame(frame);
-      frame = window.requestAnimationFrame(() => {
-        document.documentElement.style.setProperty("--grid-x", `${event.clientX}px`);
-        document.documentElement.style.setProperty("--grid-y", `${event.clientY}px`);
-        document.body.classList.add("is-grid-hot");
-      });
+    function clearGlow() {
+      heroCopy?.classList.remove("is-glow-active");
+      document.body.classList.remove("is-grid-hot");
     }
 
-    document.addEventListener("pointermove", setPosition, { passive: true });
-    document.addEventListener("pointerleave", () => document.body.classList.remove("is-grid-hot"));
+    if (heroCopy) {
+      function setPosition(event) {
+        const bounds = heroCopy.getBoundingClientRect();
+        const offsetX = event.clientX - bounds.left;
+        const offsetY = event.clientY - bounds.top;
+
+        window.cancelAnimationFrame(frame);
+        frame = window.requestAnimationFrame(() => {
+          heroCopy.style.setProperty("--hero-glow-x", `${offsetX}px`);
+          heroCopy.style.setProperty("--hero-glow-y", `${offsetY}px`);
+          heroCopy.classList.add("is-glow-active");
+        });
+      }
+
+      heroCopy.addEventListener("pointermove", setPosition, { passive: true });
+      heroCopy.addEventListener("pointerenter", setPosition, { passive: true });
+      heroCopy.addEventListener("pointerleave", clearGlow);
+    }
+
+    document.addEventListener("pointerleave", clearGlow);
     if (reduceMotion) document.body.classList.add("reduce-grid-motion");
   }
 
@@ -275,7 +290,8 @@
       const visibleItems = projectItems.filter(matchesFilter);
 
       visibleItems.forEach((project) => {
-        const shortest = columns.reduce((best, column) => (column.height < best.height ? column : best), columns[0]);
+        const shortest = columns.find((column) => column.cards.some((card) => card.slug === project.afterSlug))
+          || columns.reduce((best, column) => (column.height < best.height ? column : best), columns[0]);
         shortest.cards.push(project);
         shortest.height += aspectHeightWeight(project.aspect) + 0.28;
       });
@@ -301,7 +317,7 @@
         <section class="hero">
           <div class="hero-copy">
             <p class="hello">Hello! I'm Yichen.</p>
-            <h1>Tech-savvy Product Designer, crafting digital experiences that bridge creativity and function.</h1>
+            <h1>AI-native product designer, crafting UX design with good taste, function, and human in the loop</h1>
             <a class="primary-link" href="https://cal.com/" target="_blank" rel="noreferrer">Let's Connect</a>
             ${renderToolCarousel()}
           </div>
