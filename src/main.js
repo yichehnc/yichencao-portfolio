@@ -448,23 +448,29 @@
               <p>Drawn to<br />good questions.<br /><em>And the long way round.</em></p>
               <svg viewBox="0 0 80 80" aria-hidden="true"><path d="M40 6V74M6 40H74M17 17L63 63M17 63L63 17" fill="none" stroke="currentColor" stroke-width="1.5" /><circle cx="40" cy="40" r="22" fill="white" stroke="currentColor" /><path d="M48 23L43 43L23 49L37 37Z" fill="currentColor" /></svg>
             </article>
-            <figure class="mood-photo mood-studio">
-              <img src="${assetUrl("assets/about/architecture-studio.webp")}" width="1024" height="768" alt="Yichen presenting architectural drawings and models during a studio critique" loading="lazy" />
-              <figcaption><span>02 / Where it began</span>Thinking through spaces, systems and people.</figcaption>
-            </figure>
             <article class="mood-note mood-transition">
               <span class="note-index">Same curiosity, new medium</span>
               <p>Spaces <span aria-hidden="true">↗</span><br />Interfaces</p>
               <small>Architecture → code → product design.<br />The thread: how people experience things.</small>
+              <small class="pile-context">Bauhaus lives in the soul of my design.<br />A few memories, and the references behind them.</small>
             </article>
-            <figure class="mood-photo mood-still-life">
-              <img src="${assetUrl("assets/about/creative-still-life.webp")}" width="1100" height="1100" alt="Pixel-art still life showing a Figma window, headphones, a mug and an ice bath towel" loading="lazy" />
-              <figcaption><span>03 / A playful self-portrait</span>Still Life with Figma Window and Ice Bath Towel — ChatGPT, 2025.</figcaption>
-            </figure>
-            <figure class="mood-photo mood-landscape">
-              <img src="${assetUrl("assets/about/mountain-trail.webp")}" width="1600" height="1069" alt="A winding hiking trail crossing an open mountain landscape beneath a wide sky" loading="lazy" />
-              <figcaption><span>04 / Room to think</span>Less screen time. More sky.</figcaption>
-            </figure>
+            <div class="polaroid-pile" role="group" aria-label="Five photos and design influences. Drag a photo aside, or tap or press Enter to see the next.">
+              ${[
+                ["architecture-studio", "Architecture studio", "Where it began: spaces, systems and people."],
+                ["creative-still-life", "A playful self-portrait", "Figma, curiosity and a little play. Illustration by ChatGPT, 2025."],
+                ["mountain-trail", "Room to think", "Less screen time. More sky."],
+                ["el-lissitzky-1922", "El Lissitzky · 1922", "A circle, a diagonal, a new rhythm. Geometry that inspires my work."],
+                ["elizabeth-diller", "Elizabeth Diller", "My architectural north star, for a very long time."],
+              ].map(([file, title, caption], index) => `
+                <button class="polaroid-card" type="button" data-photo-title="${title}" aria-label="${title}. ${caption} Show next photo." tabindex="${index === 0 ? 0 : -1}" aria-hidden="${index !== 0}" style="--card-angle: ${[-3, 5, -7, 9, -11][index]}deg; --card-offset: ${index * 4}px; z-index: ${5 - index}">
+                  <img src="${assetUrl(`assets/about/${file}.webp`)}" alt="" loading="lazy" draggable="false" />
+                  <span class="polaroid-title">${title}</span>
+                  <span class="polaroid-caption">${caption}</span>
+                </button>
+              `).join("")}
+              <span class="pile-drag-tab" aria-hidden="true">Drag to discover ↗</span>
+              <span class="pile-announcement" role="status" aria-live="polite"></span>
+            </div>
             <div class="mood-signoff" aria-hidden="true"><span>A few pieces of me.</span><img src="${assetUrl("assets/about/personal-mark.webp")}" width="368" height="122" alt="" loading="lazy" /></div>
           </div>
         </section>
@@ -474,24 +480,6 @@
             <article><span class="note-index">01 / Spaces & people</span><h3>I learned to look closely.</h3><p>Architecture taught me to consider both the whole system and the smallest detail. I studied Design and Architecture at the University of Melbourne, completing my Master of Architecture with First Class Honours. In the studio, an idea had to be explored, tested and explained — not just look good on a page.</p><p>Teaching design from 2020 to 2024 strengthened that habit. Helping students work through complex ideas taught me to listen, ask clearer questions and make room for different ways of thinking.</p></article>
             <article><span class="note-index">02 / From plans to prototypes</span><h3>I wanted to build the experience, too.</h3><p>That curiosity led me to software engineering at Holberton School Australia, then UX/UI design through RMIT Online. Code gave me a way to make ideas tangible; UX gave me a way to test them with the people they were for.</p><p>Since then, I’ve worked on dining recommendations with Relish, clinician workflows at Support Sorted, and research and accessibility design for CareVo. At MLAI, I bring research, product design and AI-assisted building together on Startup Pulse.</p></article>
             <article><span class="note-index">03 / Beyond the screen</span><h3>I make room for the outdoors.</h3><p>I love hiking: a winding trail, a wide sky, and a reason to slow down and notice what’s around me. It’s a different kind of exploration from design, but one I make time for.</p><p>Whether I’m working through a prototype or heading out for a walk, I like staying curious. There’s usually something worth noticing along the way.</p></article>
-          </div>
-        </section>
-        <section class="about-influences" aria-labelledby="influences-title">
-          <div class="influences-heading">
-            <p class="about-eyebrow">The references I return to</p>
-            <h2 id="influences-title">A little geometry.<br />A lasting north star.</h2>
-            <p>Bauhaus lives in the soul of my design: a love of form, function and making. These are two of the influences I carry with me.</p>
-          </div>
-          <div class="influences-grid">
-            <figure class="influence-card influence-lissitzky">
-              <img src="${assetUrl("assets/about/el-lissitzky-1922.webp")}" width="1000" height="825" alt="El Lissitzky design from 1922, with diagonal typography, circles, fine arcs and geometric marks" loading="lazy" />
-              <figcaption><span class="note-index">01 / A visual language</span><h3>El Lissitzky</h3><p>I’m drawn to the tension between simple shapes: a circle, a diagonal, a line that changes the rhythm of a page. This 1922 work is a reference I return to for composition and movement.</p><p class="influence-aside">Its geometry inspired the small black-and-white bursts that accompany navigation on this site.</p></figcaption>
-              <button class="geometry-replay" type="button">Play the geometry <span aria-hidden="true">↗</span></button>
-            </figure>
-            <figure class="influence-card influence-diller">
-              <img src="${assetUrl("assets/about/elizabeth-diller.webp")}" width="714" height="1000" alt="Elizabeth Diller on a rooftop, pointing toward the skyline" loading="lazy" />
-              <figcaption><span class="note-index">02 / My architectural north star</span><h3>Elizabeth Diller</h3><p>Elizabeth Diller has been a north star for me for a long time. As my practice has moved from architecture into product design, she remains part of the way I think about what design can be.</p></figcaption>
-            </figure>
           </div>
         </section>
         <section class="about-section about-practice section-shell" aria-labelledby="practice-title">
@@ -765,14 +753,82 @@
       }
     } catch { /* Optional enhancement only. */ }
 
-    document.querySelector(".geometry-replay")?.addEventListener("click", (event) => {
-      const bounds = event.currentTarget.getBoundingClientRect();
-      burst(bounds.left + bounds.width / 2, bounds.top - 60);
-    });
     reduceMotion.addEventListener("change", clearBurst);
     window.addEventListener("pagehide", clearBurst);
   }
 
+  function attachPolaroidPile() {
+    const pile = document.querySelector(".polaroid-pile");
+    if (!pile) return;
+    let cards = [...pile.querySelectorAll(".polaroid-card")];
+    let drag = null;
+    let suppressClick = false;
+    const angles = [-3, 5, -7, 9, -11];
+
+    function arrange(announce = false, keepFocus = false) {
+      cards.forEach((card, index) => {
+        card.style.zIndex = String(cards.length - index);
+        card.style.setProperty("--card-angle", `${angles[index]}deg`);
+        card.style.setProperty("--card-offset", `${index * 4}px`);
+        card.style.setProperty("--drag-x", "0px");
+        card.style.setProperty("--drag-y", "0px");
+        card.tabIndex = index === 0 ? 0 : -1;
+        card.setAttribute("aria-hidden", String(index !== 0));
+      });
+      if (keepFocus) cards[0].focus({preventScroll: true});
+      if (announce) pile.querySelector(".pile-announcement").textContent = `${cards[0].dataset.photoTitle}. ${cards[0].querySelector(".polaroid-caption").textContent}`;
+    }
+
+    function next() {
+      const keepFocus = pile.contains(document.activeElement);
+      cards.push(cards.shift());
+      arrange(true, keepFocus);
+    }
+
+    pile.addEventListener("pointerdown", (event) => {
+      if (event.button !== 0 || drag || !event.target.closest(".polaroid-card")) return;
+      suppressClick = false;
+      const card = cards[0];
+      drag = {id: event.pointerId, card, x: event.clientX, y: event.clientY, dx: 0, dy: 0, width: pile.clientWidth};
+      card.setPointerCapture(event.pointerId);
+      card.classList.add("is-dragging");
+      pile.classList.add("is-dragging");
+    });
+    pile.addEventListener("pointermove", (event) => {
+      if (!drag || drag.id !== event.pointerId) return;
+      drag.dx = event.clientX - drag.x;
+      drag.dy = event.clientY - drag.y;
+      const limit = drag.width * 0.65;
+      drag.card.style.setProperty("--drag-x", `${Math.max(-limit, Math.min(limit, drag.dx))}px`);
+      drag.card.style.setProperty("--drag-y", `${Math.max(-55, Math.min(55, drag.dy))}px`);
+    });
+    function finish(event, cancelled = false) {
+      if (!drag || drag.id !== event.pointerId) return;
+      const current = drag;
+      drag = null;
+      current.card.classList.remove("is-dragging");
+      pile.classList.remove("is-dragging");
+      if (current.card.hasPointerCapture(event.pointerId)) current.card.releasePointerCapture(event.pointerId);
+      const distance = Math.hypot(current.dx, current.dy);
+      suppressClick = !cancelled && distance > 8;
+      if (!cancelled && distance > 40) next();
+      else arrange();
+    }
+    pile.addEventListener("pointerup", (event) => finish(event));
+    pile.addEventListener("pointercancel", (event) => finish(event, true));
+    pile.addEventListener("lostpointercapture", (event) => finish(event, true));
+    pile.addEventListener("click", (event) => {
+      if (!event.target.closest(".polaroid-card")) return;
+      if (suppressClick && event.detail !== 0) { suppressClick = false; return; }
+      next();
+    });
+    pile.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && drag) finish({pointerId: drag.id}, true);
+    });
+    arrange();
+  }
+
+  attachPolaroidPile();
   attachNavigationGeometry();
   attachInteractiveGrid();
   const footerArt = document.querySelector(".footer-art-link");
