@@ -320,6 +320,78 @@ main {
   font-weight: 520;
 }
 
+.landing-doodle {
+  display: block;
+  height: auto;
+  flex: none;
+  pointer-events: none;
+  user-select: none;
+  mix-blend-mode: multiply;
+}
+
+.hero-connect-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.coding-doodle {
+  width: clamp(100px, 12vw, 152px);
+  margin-right: 6%;
+}
+
+.projects-heading {
+  position: relative;
+  min-height: 104px;
+  padding-right: 140px;
+  align-items: center;
+}
+
+.sketching-doodle {
+  position: absolute;
+  right: 18px;
+  top: 0;
+  width: 112px;
+  transform: rotate(-4deg);
+}
+
+.footer-opening {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.footer-opening .footer-invitation {
+  margin-bottom: 0;
+}
+
+.footer-doodle {
+  width: 116px;
+  margin-right: 5%;
+}
+
+@media (max-width: 540px) {
+  .coding-doodle {
+    width: 100px;
+    margin-right: 0;
+  }
+
+  .projects-heading {
+    min-height: 0;
+    padding-right: 0;
+  }
+
+  .sketching-doodle { display: none; }
+
+  .footer-doodle {
+    width: 80px;
+    margin-right: 0;
+  }
+}
+
 h1,
 h2,
 h3,

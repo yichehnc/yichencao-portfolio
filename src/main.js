@@ -146,7 +146,10 @@
       </header>
       ${content}
       <footer class="footer">
-        <p class="footer-invitation">Good things start with a conversation.</p>
+        <div class="footer-opening">
+          <p class="footer-invitation">Good things start with a conversation.</p>
+          ${!isProjectPage && !isBackgroundPage && !isResumePage ? `<img class="landing-doodle footer-doodle" src="${assetUrl("assets/illustrations/yichen-ux-flow.webp")}" width="448" height="448" alt="" aria-hidden="true" loading="lazy" decoding="async" draggable="false" />` : ""}
+        </div>
         <a class="footer-art-link" href="mailto:yichenc2017@gmail.com" aria-label="Let's collaborate — email Yichen Cao">
           <svg class="footer-wordmark" viewBox="0 0 1200 360" aria-hidden="true" focusable="false">
             <defs>
@@ -362,14 +365,18 @@
           <div class="hero-copy">
             <p class="hello">Hello! I'm Yichen.</p>
             <h1>AI-native product designer, crafting UX design with good taste, function, and human in the loop</h1>
-            <a class="primary-link" href="https://cal.com/" target="_blank" rel="noreferrer">Let's Connect</a>
+            <div class="hero-connect-row">
+              <a class="primary-link" href="https://cal.com/" target="_blank" rel="noreferrer">Let's Connect</a>
+              <img class="landing-doodle coding-doodle" src="${assetUrl("assets/illustrations/yichen-ai-coding.webp")}" width="448" height="448" alt="" aria-hidden="true" decoding="async" draggable="false" />
+            </div>
             ${renderToolCarousel()}
           </div>
         </section>
         <section id="case-studies" class="work-section section-shell" aria-labelledby="work-title">
-          <div class="section-heading">
+          <div class="section-heading projects-heading">
             <span>01</span>
             <h2 id="work-title">Projects</h2>
+            <img class="landing-doodle sketching-doodle" src="${assetUrl("assets/illustrations/yichen-sketching.webp")}" width="448" height="448" alt="" aria-hidden="true" loading="lazy" decoding="async" draggable="false" />
           </div>
           <div class="project-filter-tabs" aria-label="Project filters">
             ${projectFilters
