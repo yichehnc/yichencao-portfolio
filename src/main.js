@@ -436,7 +436,7 @@
     const characters = {
       coding: "yichen-ai-coding.webp",
       sketching: "yichen-sketching.webp",
-      flow: "yichen-ux-flow.webp",
+      flow: "yichen-human-portrait.webp",
     };
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -459,6 +459,7 @@
       animation?.cancel();
       pop.hidden = true;
       restingDoodle.src = defaultSource;
+      restingDoodle.classList.remove("is-portrait");
       hero.querySelectorAll(".hero-word").forEach((word) => word.classList.remove("is-playing"));
     }
     hero.querySelectorAll(".hero-word").forEach((word) => {
@@ -470,6 +471,7 @@
         // Only mouse clicks reveal a doodle beside the cursor; it never captures input.
         const besideCursor = finePointer.matches && window.innerWidth >= 768 && event.detail > 0 && event.pointerType !== "touch";
         const target = besideCursor ? pop : restingDoodle;
+        target.classList.toggle("is-portrait", word.dataset.character === "flow");
         target.src = source;
         if (besideCursor) {
           const size = 160;

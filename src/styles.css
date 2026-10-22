@@ -391,6 +391,15 @@ main {
 
 .hero-character-pop[hidden] { display: none; }
 
+.hero-character-pop.is-portrait {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.coding-doodle.is-portrait { mix-blend-mode: normal; }
+
 @media (prefers-reduced-motion: reduce) {
   .hero-word { transition: none; }
 }
