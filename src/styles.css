@@ -1494,6 +1494,12 @@ dd {
   aspect-ratio: 16 / 9;
 }
 
+.case-study-mlai .hero-image {
+  aspect-ratio: 1895 / 867;
+  height: auto;
+  object-fit: contain;
+}
+
 .case-study-carevo .case-hero {
   grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
   column-gap: 36px;

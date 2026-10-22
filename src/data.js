@@ -4,6 +4,8 @@ window.PORTFOLIO_PROJECTS = [
     title: "MLAI Founder Tools - Vibe Raising",
     cardTitle: "MLAI Founder Tools",
     cardImage: "assets/mlai/founder-tools-thumbnail.png",
+    heroImage: "assets/mlai/founder-tools-thumbnail.png",
+    heroImageAlt: "MLAI Founder Tools website introducing monthly founder updates and investor networking",
     date: "2026",
     roles: "Product Design Engineer",
     client: "MLAI",
