@@ -236,7 +236,8 @@ h1 {
   font-size: clamp(44px, 6.8vw, 96px);
   line-height: 1.08;
   width: 100%;
-  text-align: justify;
+  text-align: left;
+  text-wrap: pretty;
 }
 
 .primary-link {
