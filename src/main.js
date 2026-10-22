@@ -141,7 +141,7 @@
         <nav class="nav">
           <a href="${homeHref("#case-studies")}">Projects</a>
           <a href="${backgroundUrl()}">Background</a>
-          <a href="${resumeUrl()}">About Me</a>
+          <a href="${resumeUrl()}" data-about-navigation>About Me</a>
         </nav>
       </header>
       ${content}
@@ -688,7 +688,8 @@
 
   function attachNavigationGeometry() {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const storageKey = "portfolio-navigation-geometry";
+    const wideViewport = window.matchMedia("(min-width: 768px)");
+    const storageKey = "portfolio-about-navigation-geometry";
     let activeBurst;
     let cleanupTimer;
 
@@ -700,7 +701,7 @@
 
     function burst(x = window.innerWidth * 0.75, y = 90) {
       clearBurst();
-      if (reduceMotion.matches) return;
+      if (reduceMotion.matches || !wideViewport.matches) return;
       const layer = document.createElement("div");
       layer.className = "navigation-geometry";
       layer.setAttribute("aria-hidden", "true");
@@ -729,8 +730,8 @@
 
     // Keep native navigation, modifier keys, downloads and external links intact.
     document.addEventListener("click", (event) => {
-      const link = event.target.closest("a[href]");
-      if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.hasAttribute("download") || (link.target && link.target !== "_self") || reduceMotion.matches) return;
+      const link = event.target.closest("a[data-about-navigation]");
+      if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.hasAttribute("download") || (link.target && link.target !== "_self") || reduceMotion.matches || !wideViewport.matches) return;
       const target = new URL(link.href, window.location.href);
       if (target.origin !== window.location.origin || !["http:", "https:", "file:"].includes(target.protocol)) return;
       const bounds = link.getBoundingClientRect();
@@ -748,12 +749,13 @@
     try {
       const pending = JSON.parse(sessionStorage.getItem(storageKey) || "null");
       sessionStorage.removeItem(storageKey);
-      if (pending && pending.path === window.location.pathname && pending.search === window.location.search && Date.now() - pending.time < 10000) {
+      if (isResumePage && pending && pending.path === window.location.pathname && pending.search === window.location.search && Date.now() - pending.time < 10000) {
         burst(pending.x * window.innerWidth, pending.y * window.innerHeight);
       }
     } catch { /* Optional enhancement only. */ }
 
     reduceMotion.addEventListener("change", clearBurst);
+    wideViewport.addEventListener("change", clearBurst);
     window.addEventListener("pagehide", clearBurst);
   }
 

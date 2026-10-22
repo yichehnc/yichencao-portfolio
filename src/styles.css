@@ -887,7 +887,7 @@ h2 {
   gap: 72px;
 }
 
-/* A small, non-blocking composition on navigation; never a full-screen overlay. */
+/* A small composition for About Me navigation, disabled on mobile. */
 .navigation-geometry {
   position: fixed;
   width: 0;
@@ -919,7 +919,7 @@ h2 {
   60% { opacity: 0.75; }
   100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(var(--turn)) scale(1); }
 }
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce), (max-width: 767px) {
   .navigation-geometry { display: none; }
   .geometry-piece { animation: none; }
 }
