@@ -285,7 +285,8 @@ main {
 }
 
 .hero-copy::before,
-.hero-copy::after {
+.hero-copy::after,
+.footer::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -303,17 +304,19 @@ main {
   -webkit-mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.92) 0, rgba(0, 0, 0, 0.82) 64%, transparent 100%);
 }
 
-.hero-copy::after {
+.hero-copy::after,
+.footer::after {
   opacity: 0;
   background:
-    radial-gradient(circle 200px at var(--hero-glow-x, 50%) var(--hero-glow-y, 50%), rgba(255, 197, 126, 0.32), transparent 58%),
-    radial-gradient(circle 360px at var(--hero-glow-x, 50%) var(--hero-glow-y, 50%), rgba(255, 232, 204, 0.44), transparent 70%);
+    radial-gradient(circle 200px at var(--glow-x, 50%) var(--glow-y, 50%), rgba(255, 197, 126, 0.32), transparent 58%),
+    radial-gradient(circle 360px at var(--glow-x, 50%) var(--glow-y, 50%), rgba(255, 232, 204, 0.44), transparent 70%);
   filter: blur(18px);
-  mask-image: radial-gradient(circle 280px at var(--hero-glow-x, 50%) var(--hero-glow-y, 50%), rgba(0, 0, 0, 1) 0, rgba(0, 0, 0, 0.7) 54%, transparent 84%);
-  -webkit-mask-image: radial-gradient(circle 280px at var(--hero-glow-x, 50%) var(--hero-glow-y, 50%), rgba(0, 0, 0, 1) 0, rgba(0, 0, 0, 0.7) 54%, transparent 84%);
+  mask-image: radial-gradient(circle 280px at var(--glow-x, 50%) var(--glow-y, 50%), rgba(0, 0, 0, 1) 0, rgba(0, 0, 0, 0.7) 54%, transparent 84%);
+  -webkit-mask-image: radial-gradient(circle 280px at var(--glow-x, 50%) var(--glow-y, 50%), rgba(0, 0, 0, 1) 0, rgba(0, 0, 0, 0.7) 54%, transparent 84%);
 }
 
-.hero-copy.is-glow-active::after {
+.hero-copy.is-glow-active::after,
+.footer.is-glow-active::after {
   opacity: 1;
 }
 
@@ -1247,6 +1250,14 @@ h2 {
 
 .footer::before {
   display: none;
+}
+
+.footer::after {
+  z-index: -1;
+}
+
+@media (prefers-reduced-motion: reduce), (hover: none) {
+  .footer::after { display: none; }
 }
 
 .footer-invitation {

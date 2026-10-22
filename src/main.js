@@ -186,36 +186,38 @@
   }
 
   function attachInteractiveGrid() {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const heroCopy = document.querySelector(".hero-copy");
-    let frame = 0;
-
-    function clearGlow() {
-      heroCopy?.classList.remove("is-glow-active");
-      document.body.classList.remove("is-grid-hot");
-    }
-
-    if (heroCopy) {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const pointerMode = window.matchMedia("(hover: hover) and (pointer: fine)");
+    document.querySelectorAll(".hero-copy, .footer").forEach((surface) => {
+      let frame = 0;
+      function clearGlow() {
+        window.cancelAnimationFrame(frame);
+        surface.classList.remove("is-glow-active");
+      }
       function setPosition(event) {
-        const bounds = heroCopy.getBoundingClientRect();
+        if (reduceMotion.matches || !pointerMode.matches || event.pointerType === "touch") return;
+        const bounds = surface.getBoundingClientRect();
         const offsetX = event.clientX - bounds.left;
         const offsetY = event.clientY - bounds.top;
 
         window.cancelAnimationFrame(frame);
         frame = window.requestAnimationFrame(() => {
-          heroCopy.style.setProperty("--hero-glow-x", `${offsetX}px`);
-          heroCopy.style.setProperty("--hero-glow-y", `${offsetY}px`);
-          heroCopy.classList.add("is-glow-active");
+          surface.style.setProperty("--glow-x", `${offsetX}px`);
+          surface.style.setProperty("--glow-y", `${offsetY}px`);
+          surface.classList.add("is-glow-active");
         });
       }
 
-      heroCopy.addEventListener("pointermove", setPosition, { passive: true });
-      heroCopy.addEventListener("pointerenter", setPosition, { passive: true });
-      heroCopy.addEventListener("pointerleave", clearGlow);
-    }
-
-    document.addEventListener("pointerleave", clearGlow);
-    if (reduceMotion) document.body.classList.add("reduce-grid-motion");
+      surface.addEventListener("pointermove", setPosition, { passive: true });
+      surface.addEventListener("pointerenter", setPosition, { passive: true });
+      surface.addEventListener("pointerleave", clearGlow);
+      surface.addEventListener("pointercancel", clearGlow);
+      window.addEventListener("blur", clearGlow);
+      window.addEventListener("scroll", clearGlow, { passive: true });
+      reduceMotion.addEventListener("change", clearGlow);
+      pointerMode.addEventListener("change", clearGlow);
+    });
+    if (reduceMotion.matches) document.body.classList.add("reduce-grid-motion");
   }
 
   function renderHome() {
