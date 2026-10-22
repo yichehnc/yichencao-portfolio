@@ -122,6 +122,8 @@ window.PORTFOLIO_PROJECTS = [
     actionUrl: "https://carevo.com.au",
     actionLabel: "Visit CareVo",
     accent: "carevo",
+    brandImage: "assets/carevo/landing-page.png",
+    brandImageAlt: "CareVo’s landing page, with its blue wordmark, NDIS and aged-care provider search, and a support worker with a client.",
     heroImage: "assets/carevo/connection-flow.svg",
     heroImageAlt: "CareVo product overview: share your care needs, explore suitable providers, and choose who to connect with.",
     summary: "UX research and accessibility design for an NDIS marketplace.",

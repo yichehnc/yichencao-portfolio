@@ -555,6 +555,14 @@
                 : ""
             }
           </div>
+          ${project.brandImage ? `
+            <figure class="case-brand-snapshot">
+              <a href="${project.actionUrl}" target="_blank" rel="noreferrer" aria-label="Explore ${project.title}’s website">
+                <img src="${assetUrl(project.brandImage)}" alt="${project.brandImageAlt}" />
+              </a>
+              <figcaption>CareVo’s website <span>Brand & product context ↗</span></figcaption>
+            </figure>
+          ` : ""}
           <dl class="meta-list">
             ${metaItems
               .map(
