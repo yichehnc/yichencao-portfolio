@@ -425,16 +425,60 @@
     document.title = "About Me - Yichen Cao";
     app.innerHTML = shell(`
       <main class="about-page">
-        <section class="about-section section-shell" aria-labelledby="about-title">
-          <div class="section-heading">
-            <span>01</span>
-            <h2 id="about-title">About Me</h2>
+        <section class="about-intro" aria-labelledby="about-title">
+          <p class="about-eyebrow">A little more human / About Yichen</p>
+          <div class="about-intro-grid">
+            <h1 id="about-title">A designer.<br />An explorer.<br /><em>Always curious.</em></h1>
+            <div class="about-intro-note">
+              <img src="${assetUrl("assets/about/portrait.webp")}" width="500" height="500" alt="Portrait of Yichen Cao" />
+              <p>Hi, I’m Yichen — a product designer based in Melbourne. I started in architecture. These days, I turn research into digital experiences, and ideas into things people can use.</p>
+              <a class="text-link" href="#my-story">A few things that shaped me <span aria-hidden="true">↓</span></a>
+            </div>
           </div>
+        </section>
+        <section class="about-moodboard" aria-labelledby="moodboard-title">
+          <div class="about-board-heading"><h2 id="moodboard-title">Field notes from my life</h2><span>Work, wander & everything between</span></div>
+          <div class="moodboard-grid">
+            <figure class="mood-photo mood-hike">
+              <img src="${assetUrl("assets/about/hiking-portrait.webp")}" width="1500" height="1003" alt="Yichen in a bright hiking jacket and pink beanie on a rocky mountain ridge" />
+              <figcaption><span>01 / Away from the desk</span>My kind of headspace.</figcaption>
+            </figure>
+            <article class="mood-note mood-compass">
+              <span class="note-index">A small introduction</span>
+              <p>Drawn to<br />good questions.<br /><em>And the long way round.</em></p>
+              <svg viewBox="0 0 80 80" aria-hidden="true"><path d="M40 6V74M6 40H74M17 17L63 63M17 63L63 17" fill="none" stroke="currentColor" stroke-width="1.5" /><circle cx="40" cy="40" r="22" fill="white" stroke="currentColor" /><path d="M48 23L43 43L23 49L37 37Z" fill="currentColor" /></svg>
+            </article>
+            <figure class="mood-photo mood-studio">
+              <img src="${assetUrl("assets/about/architecture-studio.webp")}" width="1024" height="768" alt="Yichen presenting architectural drawings and models during a studio critique" loading="lazy" />
+              <figcaption><span>02 / Where it began</span>Thinking through spaces, systems and people.</figcaption>
+            </figure>
+            <article class="mood-note mood-transition">
+              <span class="note-index">Same curiosity, new medium</span>
+              <p>Spaces <span aria-hidden="true">↗</span><br />Interfaces</p>
+              <small>Architecture → code → product design.<br />The thread: how people experience things.</small>
+            </article>
+            <figure class="mood-photo mood-still-life">
+              <img src="${assetUrl("assets/about/creative-still-life.webp")}" width="1100" height="1100" alt="Pixel-art still life showing a Figma window, headphones, a mug and an ice bath towel" loading="lazy" />
+              <figcaption><span>03 / A playful self-portrait</span>Still Life with Figma Window and Ice Bath Towel — ChatGPT, 2025.</figcaption>
+            </figure>
+            <figure class="mood-photo mood-landscape">
+              <img src="${assetUrl("assets/about/mountain-trail.webp")}" width="1600" height="1069" alt="A winding hiking trail crossing an open mountain landscape beneath a wide sky" loading="lazy" />
+              <figcaption><span>04 / Room to think</span>Less screen time. More sky.</figcaption>
+            </figure>
+            <div class="mood-signoff" aria-hidden="true"><span>A few pieces of me.</span><img src="${assetUrl("assets/about/personal-mark.webp")}" width="368" height="122" alt="" loading="lazy" /></div>
+          </div>
+        </section>
+        <section class="about-story" id="my-story" aria-labelledby="story-title">
+          <div class="about-story-heading"><p class="about-eyebrow">The connecting thread</p><h2 id="story-title">Different scales.<br />The same care.</h2></div>
+          <div class="about-chapters">
+            <article><span class="note-index">01 / Spaces & people</span><h3>I learned to look closely.</h3><p>Architecture taught me to consider both the whole system and the smallest detail. I studied Design and Architecture at the University of Melbourne, completing my Master of Architecture with First Class Honours. In the studio, an idea had to be explored, tested and explained — not just look good on a page.</p><p>Teaching design from 2020 to 2024 strengthened that habit. Helping students work through complex ideas taught me to listen, ask clearer questions and make room for different ways of thinking.</p></article>
+            <article><span class="note-index">02 / From plans to prototypes</span><h3>I wanted to build the experience, too.</h3><p>That curiosity led me to software engineering at Holberton School Australia, then UX/UI design through RMIT Online. Code gave me a way to make ideas tangible; UX gave me a way to test them with the people they were for.</p><p>Since then, I’ve worked on dining recommendations with Relish, clinician workflows at Support Sorted, and research and accessibility design for CareVo. At MLAI, I bring research, product design and AI-assisted building together on Startup Pulse.</p></article>
+            <article><span class="note-index">03 / Beyond the screen</span><h3>I make room for the outdoors.</h3><p>I love hiking: a winding trail, a wide sky, and a reason to slow down and notice what’s around me. It’s a different kind of exploration from design, but one I make time for.</p><p>Whether I’m working through a prototype or heading out for a walk, I like staying curious. There’s usually something worth noticing along the way.</p></article>
+          </div>
+        </section>
+        <section class="about-section about-practice section-shell" aria-labelledby="practice-title">
+          <div class="section-heading"><span>Now</span><h2 id="practice-title">What I bring to the table</h2></div>
           <div class="about-panel">
-            <section class="about-summary" aria-labelledby="about-summary-title">
-              <p class="case-section-eyebrow" id="about-summary-title">Summary</p>
-              <p>${profile.summary || ""}</p>
-            </section>
             <section class="about-skills" aria-labelledby="about-skills-title">
               <p class="case-section-eyebrow" id="about-skills-title">Skills</p>
               <div class="skill-groups">
