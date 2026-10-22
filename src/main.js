@@ -365,8 +365,11 @@
       <main>
         <section class="hero">
           <div class="hero-copy">
-            <p class="hello">Hello! I'm Yichen.</p>
-            <h1><button class="hero-word" type="button" data-character="coding" title="Meet my AI coding side">AI-native</button> <button class="hero-word" type="button" data-character="sketching" title="Meet my product design side">product</button> designer, crafting UX design with good taste, function, and <button class="hero-word" type="button" data-character="flow" title="Meet my human-centered design side">human</button> <span class="hero-phrase">in the loop</span></h1>
+            <div class="hero-greeting">
+              <img class="hero-portrait" src="${assetUrl("assets/illustrations/yichen-human-portrait.webp")}" width="448" height="448" alt="" aria-hidden="true" decoding="async" draggable="false" />
+              <p class="hello">Hello! I'm Yichen.</p>
+            </div>
+            <h1><button class="hero-word" type="button" data-character="coding" title="Meet my AI coding side">AI-native</button> <button class="hero-word" type="button" data-character="sketching" title="Meet my product design side">product</button> designer, crafting UX design with good taste, function, and human <span class="hero-phrase">in the loop</span></h1>
             <div class="hero-connect-row">
               <img class="landing-doodle hero-sketching-doodle" src="${assetUrl("assets/illustrations/yichen-sketching.webp")}" width="448" height="448" alt="" aria-hidden="true" decoding="async" draggable="false" />
               <a class="primary-link" href="https://cal.com/" target="_blank" rel="noreferrer">Let's Connect</a>
@@ -436,7 +439,6 @@
     const characters = {
       coding: "yichen-ai-coding.webp",
       sketching: "yichen-sketching.webp",
-      flow: "yichen-human-portrait.webp",
     };
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -447,7 +449,7 @@
     pop.draggable = false;
     pop.hidden = true;
     document.body.append(pop);
-    // Warm the three small local assets so the first click is as smooth as later clicks.
+    // Warm the small local assets so the first click is as smooth as later clicks.
     Object.values(characters).forEach((file) => {
       const image = new Image();
       image.src = assetUrl(`assets/illustrations/${file}`);
@@ -459,7 +461,6 @@
       animation?.cancel();
       pop.hidden = true;
       restingDoodle.src = defaultSource;
-      restingDoodle.classList.remove("is-portrait");
       hero.querySelectorAll(".hero-word").forEach((word) => word.classList.remove("is-playing"));
     }
     hero.querySelectorAll(".hero-word").forEach((word) => {
@@ -471,7 +472,6 @@
         // Only mouse clicks reveal a doodle beside the cursor; it never captures input.
         const besideCursor = finePointer.matches && window.innerWidth >= 768 && event.detail > 0 && event.pointerType !== "touch";
         const target = besideCursor ? pop : restingDoodle;
-        target.classList.toggle("is-portrait", word.dataset.character === "flow");
         target.src = source;
         if (besideCursor) {
           const size = 160;

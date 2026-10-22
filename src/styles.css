@@ -315,10 +315,27 @@ main {
 }
 
 .hello {
-  margin: 0 0 18px;
+  margin: 0;
   text-align: center;
   font-size: clamp(24px, 3vw, 42px);
   font-weight: 520;
+}
+
+.hero-greeting {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.hero-portrait {
+  display: block;
+  width: 96px;
+  height: auto;
+  flex: none;
+  pointer-events: none;
+  user-select: none;
 }
 
 .landing-doodle {
@@ -390,15 +407,6 @@ main {
 }
 
 .hero-character-pop[hidden] { display: none; }
-
-.hero-character-pop.is-portrait {
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
-.coding-doodle.is-portrait { mix-blend-mode: normal; }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-word { transition: none; }
@@ -1895,6 +1903,16 @@ dd {
   .footer div {
     text-align: left;
   }
+}
+
+@media (max-width: 767px) {
+  .hero { min-height: 0; padding: 16px 0 32px; }
+  .hero-copy { min-height: 0; justify-content: flex-start; }
+  .hero-greeting { gap: 8px; margin-bottom: 12px; }
+  .hero-portrait { width: 64px; }
+  .hero-copy h1 { margin-bottom: 16px; }
+  .hero-connect-row { min-height: 88px; }
+  .hero-copy .skill-carousel { margin-top: 12px; }
 }
 
 @media (max-width: 540px) {
