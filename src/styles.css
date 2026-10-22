@@ -826,6 +826,87 @@ h2 {
   gap: 72px;
 }
 
+.about-influences {
+  padding: 88px 0;
+  border-bottom: 1px solid var(--ink);
+}
+
+.influences-heading { max-width: 720px; margin-bottom: 48px; }
+.influences-heading h2 {
+  margin: 24px 0;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.06;
+  letter-spacing: -0.045em;
+}
+.influences-heading > p:last-child { max-width: 540px; font-size: 17px; line-height: 1.7; color: var(--soft-ink); }
+.influences-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 72px; align-items: start; }
+.influence-card { margin: 0; min-width: 0; }
+.influence-card > img { width: 100%; height: auto; }
+.influence-diller { padding-top: 96px; }
+.influence-card figcaption { margin-top: 28px; }
+.influence-card h3 { font-size: 28px; margin: 16px 0; letter-spacing: -0.025em; }
+.influence-card p { font-size: 16px; line-height: 1.75; color: var(--soft-ink); }
+.influence-card .influence-aside { font-size: 13px; }
+.geometry-replay {
+  display: inline-flex;
+  align-items: center;
+  gap: 32px;
+  min-height: 48px;
+  padding: 12px 18px;
+  border: 1px solid var(--ink);
+  background: var(--white);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.geometry-replay:is(:hover, :focus-visible) { background: var(--ink); color: var(--white); }
+.geometry-replay:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+/* A small, non-blocking composition on navigation; never a full-screen overlay. */
+.navigation-geometry {
+  position: fixed;
+  width: 0;
+  height: 0;
+  z-index: 20;
+  pointer-events: none;
+  color: var(--ink);
+}
+.geometry-piece {
+  position: absolute;
+  display: block;
+  width: 14px;
+  height: 14px;
+  background: currentColor;
+  opacity: 0;
+  animation: geometry-scatter 600ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay) both;
+}
+.geometry-disc { width: 24px; height: 24px; border-radius: 50%; }
+.geometry-dot { width: 6px; height: 6px; border-radius: 50%; }
+.geometry-bar { width: 7px; height: 34px; }
+.geometry-line { width: 32px; height: 2px; }
+.geometry-ring { width: 21px; height: 21px; border: 1.5px solid currentColor; border-radius: 50%; background: white; }
+.geometry-square { border: 1.5px solid currentColor; background: white; }
+.geometry-arc { width: 40px; height: 40px; border: 1.5px solid currentColor; border-right-color: transparent; border-bottom-color: transparent; border-radius: 50%; background: none; }
+.geometry-triangle { width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 25px solid currentColor; background: none; }
+@keyframes geometry-scatter {
+  0% { opacity: 0; transform: translate(-50%, -50%) rotate(0deg) scale(0.35); }
+  18% { opacity: 0.85; }
+  60% { opacity: 0.75; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(var(--turn)) scale(1); }
+}
+@media (max-width: 700px) {
+  .about-influences { padding: 56px 0; }
+  .influences-grid { grid-template-columns: 1fr; gap: 40px; }
+  .influence-diller { padding-top: 0; }
+  .influence-diller > img { max-width: 400px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .navigation-geometry { display: none; }
+  .geometry-piece { animation: none; }
+  .geometry-replay { display: none; }
+}
+
 .about-summary p:last-child {
   max-width: 980px;
   margin: 0;

@@ -476,6 +476,24 @@
             <article><span class="note-index">03 / Beyond the screen</span><h3>I make room for the outdoors.</h3><p>I love hiking: a winding trail, a wide sky, and a reason to slow down and notice what’s around me. It’s a different kind of exploration from design, but one I make time for.</p><p>Whether I’m working through a prototype or heading out for a walk, I like staying curious. There’s usually something worth noticing along the way.</p></article>
           </div>
         </section>
+        <section class="about-influences" aria-labelledby="influences-title">
+          <div class="influences-heading">
+            <p class="about-eyebrow">The references I return to</p>
+            <h2 id="influences-title">A little geometry.<br />A lasting north star.</h2>
+            <p>Bauhaus lives in the soul of my design: a love of form, function and making. These are two of the influences I carry with me.</p>
+          </div>
+          <div class="influences-grid">
+            <figure class="influence-card influence-lissitzky">
+              <img src="${assetUrl("assets/about/el-lissitzky-1922.webp")}" width="1000" height="825" alt="El Lissitzky design from 1922, with diagonal typography, circles, fine arcs and geometric marks" loading="lazy" />
+              <figcaption><span class="note-index">01 / A visual language</span><h3>El Lissitzky</h3><p>I’m drawn to the tension between simple shapes: a circle, a diagonal, a line that changes the rhythm of a page. This 1922 work is a reference I return to for composition and movement.</p><p class="influence-aside">Its geometry inspired the small black-and-white bursts that accompany navigation on this site.</p></figcaption>
+              <button class="geometry-replay" type="button">Play the geometry <span aria-hidden="true">↗</span></button>
+            </figure>
+            <figure class="influence-card influence-diller">
+              <img src="${assetUrl("assets/about/elizabeth-diller.webp")}" width="714" height="1000" alt="Elizabeth Diller on a rooftop, pointing toward the skyline" loading="lazy" />
+              <figcaption><span class="note-index">02 / My architectural north star</span><h3>Elizabeth Diller</h3><p>Elizabeth Diller has been a north star for me for a long time. As my practice has moved from architecture into product design, she remains part of the way I think about what design can be.</p></figcaption>
+            </figure>
+          </div>
+        </section>
         <section class="about-section about-practice section-shell" aria-labelledby="practice-title">
           <div class="section-heading"><span>Now</span><h2 id="practice-title">What I bring to the table</h2></div>
           <div class="about-panel">
@@ -680,6 +698,82 @@
     renderHome();
   }
 
+  function attachNavigationGeometry() {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const storageKey = "portfolio-navigation-geometry";
+    let activeBurst;
+    let cleanupTimer;
+
+    function clearBurst() {
+      activeBurst?.remove();
+      activeBurst = null;
+      window.clearTimeout(cleanupTimer);
+    }
+
+    function burst(x = window.innerWidth * 0.75, y = 90) {
+      clearBurst();
+      if (reduceMotion.matches) return;
+      const layer = document.createElement("div");
+      layer.className = "navigation-geometry";
+      layer.setAttribute("aria-hidden", "true");
+      layer.style.left = `${Math.max(86, Math.min(x, window.innerWidth - 86))}px`;
+      layer.style.top = `${Math.max(86, Math.min(y, window.innerHeight - 86))}px`;
+      const pieces = [
+        ["disc", -52, -35, 0], ["bar", 35, -46, -36],
+        ["ring", 57, 18, 22], ["square", -26, 44, -38],
+        ["line", -63, 10, -35], ["dot", 20, 57, 0],
+        ["triangle", 6, -65, 20], ["arc", -9, -10, -42],
+        ["dot", 65, -22, 0], ["line", -44, 60, -35],
+      ];
+      pieces.forEach(([shape, dx, dy, angle], index) => {
+        const piece = document.createElement("i");
+        piece.className = `geometry-piece geometry-${shape}`;
+        piece.style.setProperty("--dx", `${dx}px`);
+        piece.style.setProperty("--dy", `${dy}px`);
+        piece.style.setProperty("--turn", `${angle}deg`);
+        piece.style.setProperty("--delay", `${index * 12}ms`);
+        layer.appendChild(piece);
+      });
+      document.body.appendChild(layer);
+      activeBurst = layer;
+      cleanupTimer = window.setTimeout(clearBurst, 750);
+    }
+
+    // Keep native navigation, modifier keys, downloads and external links intact.
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest("a[href]");
+      if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.hasAttribute("download") || (link.target && link.target !== "_self") || reduceMotion.matches) return;
+      const target = new URL(link.href, window.location.href);
+      if (target.origin !== window.location.origin || !["http:", "https:", "file:"].includes(target.protocol)) return;
+      const bounds = link.getBoundingClientRect();
+      const x = event.detail ? event.clientX : bounds.left + bounds.width / 2;
+      const y = event.detail ? event.clientY : bounds.top + bounds.height / 2;
+      if (target.pathname === window.location.pathname && target.search === window.location.search && target.hash) {
+        burst(x, y);
+        return;
+      }
+      try {
+        sessionStorage.setItem(storageKey, JSON.stringify({path: target.pathname, search: target.search, time: Date.now(), x: x / window.innerWidth, y: y / window.innerHeight}));
+      } catch { /* Navigation still works when storage is unavailable. */ }
+    });
+
+    try {
+      const pending = JSON.parse(sessionStorage.getItem(storageKey) || "null");
+      sessionStorage.removeItem(storageKey);
+      if (pending && pending.path === window.location.pathname && pending.search === window.location.search && Date.now() - pending.time < 10000) {
+        burst(pending.x * window.innerWidth, pending.y * window.innerHeight);
+      }
+    } catch { /* Optional enhancement only. */ }
+
+    document.querySelector(".geometry-replay")?.addEventListener("click", (event) => {
+      const bounds = event.currentTarget.getBoundingClientRect();
+      burst(bounds.left + bounds.width / 2, bounds.top - 60);
+    });
+    reduceMotion.addEventListener("change", clearBurst);
+    window.addEventListener("pagehide", clearBurst);
+  }
+
+  attachNavigationGeometry();
   attachInteractiveGrid();
   const footerArt = document.querySelector(".footer-art-link");
   if (footerArt) {
