@@ -391,7 +391,9 @@ main {
   width: 200px;
   height: 200px;
   object-fit: contain;
-  mix-blend-mode: multiply;
+  /* Opaque portrait details must cover the headline, not blend into it. */
+  mix-blend-mode: normal;
+  isolation: isolate;
   pointer-events: none;
   user-select: none;
 }

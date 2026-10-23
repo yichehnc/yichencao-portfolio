@@ -393,8 +393,8 @@
         <section class="hero">
           <div class="hero-copy">
             <div class="hero-greeting">
-              <img class="hero-portrait" src="${assetUrl("assets/illustrations/yichen-human-portrait.webp")}" width="448" height="448" alt="" aria-hidden="true" decoding="async" draggable="false" />
               <p class="hello">Hello! I'm Yichen.</p>
+              <img class="hero-portrait" src="${assetUrl("assets/illustrations/yichen-collared-portrait.png")}" width="1254" height="1254" alt="" aria-hidden="true" decoding="async" draggable="false" />
             </div>
             <h1><button class="hero-word" type="button" data-character="coding" title="Meet my AI coding side">AI-native</button> <button class="hero-word" type="button" data-character="sketching" title="Meet my product design side">product</button> designer, crafting UX design with good taste, function, and <span class="hero-handwritten">human in the loop</span></h1>
             <div class="hero-connect-row">
@@ -463,7 +463,7 @@
     const restingDoodle = hero.querySelector(".coding-doodle");
     const defaultSource = restingDoodle.src;
     const characters = {
-      coding: "yichen-ai-coding-readable.png",
+      coding: "yichen-collared-portrait.png",
       sketching: "yichen-sketching.webp",
     };
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");

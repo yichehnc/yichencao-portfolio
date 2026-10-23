@@ -1,0 +1,7 @@
+{
+  "asset": "yichen-collared-portrait.png",
+  "source": "User-supplied ChatGPT Image Oct 23, 2026, 02_41_56 AM.png",
+  "tool": "Built-in image generation tool, edit mode",
+  "transparent_background": true,
+  "prompt": "Use case: background-extraction. Edit the supplied black-and-white doodle portrait for a portfolio avatar. Remove ONLY the outer white background to genuine alpha transparency. Preserve this exact character, proportions, closed smile, simple oval eyes, arched eyebrows, tiny mole under the left eye (viewer right), tiny mole below the mouth, shoulder-length black hair, hoop earring, collar and shoulder strokes. Do not redesign or add details. Keep the face, neck and interior shirt/collar white and opaque, so text behind cannot show through. Preserve white highlights within the hair. Square output with the whole head and collar visible and modest transparent margins. No text, no shadow, no border."
+}
