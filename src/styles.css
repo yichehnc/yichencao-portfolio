@@ -270,7 +270,8 @@ main {
   transition: opacity 220ms ease;
 }
 
-.hero-copy::before {
+.hero-copy::before,
+.footer::before {
   opacity: 1;
   background-image:
     linear-gradient(rgb(23 23 23 / 4.5%) 1px, transparent 1px),
@@ -1399,7 +1400,6 @@ main.background-page {
 .footer::before {
   display: block;
   inset: 0;
-  background: var(--brand-backdrop) center / cover no-repeat;
   border-radius: 0;
   opacity: 1;
   transform: none;
