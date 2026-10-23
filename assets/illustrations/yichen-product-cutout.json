@@ -1,0 +1,5 @@
+{
+  "asset": "yichen-product-cutout.png",
+  "tool": "Built-in image generation tool, background-extraction edit",
+  "prompt": "Use case: background-extraction. Remove only the white background from this exact black-and-white illustration of a woman sketching at a desk, producing a genuine transparent PNG. Keep the character, facial features, moles, hair, pose, clothing, hands, pencil, paper, table, stool and legs unchanged. Make the empty space outside and between the furniture legs transparent. Preserve opaque white inside the face, shirt, hands, paper, tabletop, furniture and shoes so underlying webpage text does not show through them. No redesign, no additional objects, no shadows. Preserve the square canvas and complete illustration without clipping."
+}

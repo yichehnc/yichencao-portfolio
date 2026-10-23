@@ -463,8 +463,8 @@
     const restingDoodle = hero.querySelector(".coding-doodle");
     const defaultSource = restingDoodle.src;
     const characters = {
-      coding: "yichen-collared-portrait.png",
-      sketching: "yichen-sketching.webp",
+      coding: "yichen-smiling-head.png",
+      sketching: "yichen-product-cutout.png",
     };
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
