@@ -7,3 +7,5 @@
 - Portfolio brand direction (2026-10-23): ElevenLabs-inspired neutral surfaces and black/white pill CTAs, with a very small amount of saturated orange #FF4704 sampled from the supplied elevenlabs2.png. This explicitly supersedes the previous monochrome-only preference. Orange is for tiny markers and underlines, not body text or full CTA fills; avoid muted terracotta/Claude orange. Use the lightweight grained gradient in assets/brand/atmosphere.svg for introductory backdrops, retain the hand-drawn illustrations/Caveat phrase, and respect reduced motion. Shared tokens live in src/styles.css; design-system/index.html is the visual reference.
 
 - Personal design influences: Bauhaus is central to Yichen's design outlook; El Lissitzky's geometric compositions inspire visual motion; Elizabeth Diller is a long-standing architectural north star. Keep these influences distinct rather than labeling Lissitzky's work as Bauhaus.
+
+- Preserve the faint 40px grid overlay in the landing-page introduction alongside the grained gradient. The user considers it an important visual cue.

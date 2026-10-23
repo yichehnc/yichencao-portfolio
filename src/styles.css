@@ -271,7 +271,15 @@ main {
 
 .hero-copy::before {
   opacity: 1;
-  background: var(--brand-backdrop) center / cover no-repeat;
+  background-image:
+    linear-gradient(rgb(23 23 23 / 4.5%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(23 23 23 / 4.5%) 1px, transparent 1px),
+    var(--brand-backdrop);
+  background-size: 40px 40px, 40px 40px, cover;
+  background-position: center;
+  background-repeat: repeat, repeat, no-repeat;
+  mask-image: radial-gradient(ellipse at center, #000 55%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 55%, transparent 100%);
 }
 
 .hero-copy::after,
@@ -828,7 +836,7 @@ h2 {
   border: 0;
   border-top: 1px solid rgba(23, 23, 23, 0.18);
   background: transparent;
-  color: var(--soft-ink);
+  color: var(--muted);
   font: inherit;
   text-align: left;
   cursor: pointer;
@@ -849,6 +857,8 @@ h2 {
   font-weight: 500;
   line-height: 1.15;
   letter-spacing: -.035em;
+  color: #858585;
+  transition: color var(--motion-fast) ease;
 }
 .experience-role {
   display: block;
@@ -862,8 +872,14 @@ h2 {
   font-size: 24px;
   transition: transform 200ms ease;
 }
-.experience-trigger[aria-expanded="true"] { color: var(--ink); }
-.experience-trigger[aria-expanded="true"] .experience-company {
+.experience-trigger[data-state="preview"] .experience-company,
+.experience-trigger:focus-visible .experience-company { color: var(--soft-ink); }
+@media (hover: hover) and (pointer: fine) {
+  .experience-trigger:hover .experience-company { color: var(--soft-ink); }
+}
+.experience-trigger[data-state="selected"],
+.experience-trigger[data-state="selected"] .experience-company { color: #000; }
+.experience-trigger[data-state="selected"] .experience-company {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 7px;
@@ -897,7 +913,7 @@ h2 {
   letter-spacing: -.025em;
 }
 .experience-detail strong { color: var(--ink); font-weight: 700; }
-.experience-trigger[aria-expanded="true"] .experience-company { text-decoration-color: var(--accent); text-decoration-thickness: 2px; }
+.experience-trigger[data-state="selected"] .experience-company { text-decoration-color: var(--accent); text-decoration-thickness: 2px; }
 .experience-tools { margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(23, 23, 23, .12); }
 .experience-tools > span { font-size: 12px; }
 .experience-tools p { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; }
@@ -923,7 +939,7 @@ h2 {
   .experience-trigger[aria-expanded="true"] .experience-indicator { transform: rotate(135deg); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .experience-indicator { transition: none; }
+  .experience-indicator, .experience-company { transition: none; }
 }
 .education-section.section-shell { padding-top: 0; }
 

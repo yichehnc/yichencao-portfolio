@@ -538,20 +538,22 @@
     const desktop = window.matchMedia("(min-width: 921px)");
     const hover = window.matchMedia("(hover: hover) and (pointer: fine)");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let active = 0;
+    let active = -1;
+    let selected = -1;
     let animation;
 
     function select(index, animate = true) {
-      if (index === active && explorer.classList.contains("is-enhanced")) return;
+      const changed = index !== active;
       animation?.cancel();
       active = index;
       buttons.forEach((button, i) => {
         button.setAttribute("aria-expanded", String(i === active));
+        button.dataset.state = i === active ? (i === selected ? "selected" : "preview") : "idle";
         panels[i].hidden = i !== active;
       });
       explorer.classList.add("is-enhanced");
       const panel = panels[active];
-      if (animate && panel?.animate && !reducedMotion.matches) {
+      if (animate && changed && panel?.animate && !reducedMotion.matches) {
         animation = panel.animate([
           { opacity: 0, transform: "translateY(8px)" },
           { opacity: 1, transform: "translateY(0)" }
@@ -567,14 +569,22 @@
       button.addEventListener("focus", () => {
         if (desktop.matches) select(index);
       });
-      button.addEventListener("click", () => select(!desktop.matches && active === index ? -1 : index));
+      button.addEventListener("click", () => {
+        selected = selected === index ? -1 : index;
+        select(selected);
+      });
+    });
+    explorer.addEventListener("pointerleave", () => {
+      if (desktop.matches) select(selected);
+    });
+    explorer.addEventListener("focusout", (event) => {
+      if (!explorer.contains(event.relatedTarget)) select(selected);
     });
     desktop.addEventListener("change", () => {
-      animation?.cancel();
-      if (desktop.matches && active < 0) select(0, false);
+      select(selected, false);
     });
     reducedMotion.addEventListener("change", () => animation?.cancel());
-    select(0, false);
+    select(-1, false);
   }
 
   function renderBackground() {
@@ -588,20 +598,20 @@
             <h1 id="background-title">Experience</h1>
           </div>
           <p class="experience-intro">I’m a product designer with a background in architecture, software development and design education. I bring research, UX/UI design and AI-assisted building together—from understanding the problem to shipping the experience.</p>
-          <p class="experience-hint"><span class="experience-hint-desktop">Explore a role — hover, focus or select.</span><span class="experience-hint-mobile">Tap a role to explore.</span></p>
+          <p class="experience-hint"><span class="experience-hint-desktop">Hover to preview. Click to keep a role open.</span><span class="experience-hint-mobile">Tap a role to explore.</span></p>
           <div class="experience-explorer">
             ${background
               .map(
                 (item, index) => `
                   <article class="experience-entry" style="--experience-row: ${index + 1}">
                     <h3 class="experience-heading">
-                      <button class="experience-trigger" type="button" id="experience-trigger-${index}" aria-expanded="true" aria-controls="experience-detail-${index}">
+                      <button class="experience-trigger" type="button" id="experience-trigger-${index}" aria-expanded="false" aria-controls="experience-detail-${index}">
                         <span class="experience-period">${item.period}</span>
                         <span class="experience-company">${item.title.split(" · ")[1]}<span class="experience-indicator" aria-hidden="true">↗</span></span>
                         <span class="experience-role">${item.title.split(" · ")[0]}</span>
                       </button>
                     </h3>
-                    <div class="experience-detail" id="experience-detail-${index}" role="region" aria-labelledby="experience-trigger-${index}">
+                    <div class="experience-detail" id="experience-detail-${index}" role="region" aria-labelledby="experience-trigger-${index}" hidden>
                       <p class="experience-detail-label">${String(index + 1).padStart(2, "0")} / ${item.period}</p>
                       <h4>${item.title.split(" · ")[0]}</h4>
                       <p>${experienceText(item.body)}</p>
