@@ -136,7 +136,7 @@
       <header class="site-header">
         <a class="brand" href="${homeHref()}" aria-label="Yichen Cao home">
           <span>Yichen Cao</span>
-          <small>Product Designer<br />based in Melbourne</small>
+          <small>Product Designer · ANZ PR · Open to relo</small>
         </a>
         <nav class="nav" aria-label="Main navigation">
           <a href="${homeHref("#case-studies")}"${!isBackgroundPage && !isResumePage ? ' aria-current="page"' : ""}>Work</a>
