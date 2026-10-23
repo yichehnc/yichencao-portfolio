@@ -514,6 +514,7 @@ window.PORTFOLIO_BACKGROUND = [
   {
     "period": "Feb 2026 – Present",
     "title": "Product Design Engineer · MLAI / Stone & Chalk",
+    "tools": ["Claude Code", "Codex", "Figma", "Linear", "GitHub", "Granola"],
     "body": "Built Startup Pulse (Vibe Raising), an AI-native startup database and founder update platform, from idea to MVP. I own the product roadmap and front-end experience, working with software developers, back-end and DevOps teams.",
     "highlights": [
       "Ran 70+ founder and investor interviews and usability tests, turning research into a prioritised roadmap.",
@@ -525,6 +526,7 @@ window.PORTFOLIO_BACKGROUND = [
   {
     "period": "2026 · Contract",
     "title": "Product Builder & UX/UI Designer · CareVo",
+    "tools": ["UX research", "WCAG 2.2", "Accessibility design"],
     "body": "Delivered UX research and accessibility design for a Sydney HealthTech startup’s NDIS marketplace.",
     "highlights": [
       "Translated stakeholder feedback into clear, documented deliverables.",
@@ -534,6 +536,7 @@ window.PORTFOLIO_BACKGROUND = [
   {
     "period": "Jul 2025 – Feb 2026",
     "title": "Product Designer · Support Sorted",
+    "tools": ["Clinician interviews", "Usability testing", "Competitor analysis"],
     "body": "Worked on clinician workflows at a HealthTech startup backed by the Melbourne Accelerator Program.",
     "highlights": [
       "Conducted clinician interviews, usability sessions and competitor analysis to uncover pain points and inform feature priorities.",
@@ -543,6 +546,7 @@ window.PORTFOLIO_BACKGROUND = [
   {
     "period": "Feb 2024 – Jul 2025",
     "title": "Product Manager · Relish",
+    "tools": ["Progressive web app", "Product backlog", "Scrum"],
     "body": "Led product work for a progressive web app exploring dining recommendations, from research to an MVP shown at Canva Demo Day.",
     "highlights": [
       "Used user interviews and competitor research to identify gaps and shape features.",
@@ -552,6 +556,7 @@ window.PORTFOLIO_BACKGROUND = [
   {
     "period": "Jan 2020 – Dec 2024",
     "title": "Design Academic · University of Melbourne",
+    "tools": ["Design systems", "Computational design", "Prototyping"],
     "body": "Taught at the Melbourne School of Design, mentoring more than 3,000 students through design research, problem analysis and iterative prototyping.",
     "highlights": [
       "Facilitated technical workshops on design systems and computational design.",

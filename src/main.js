@@ -498,6 +498,58 @@
     });
   }
 
+  function experienceText(text) {
+    const safeText = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    return safeText.replace(/70\+|80\+|more than half|more than 3,000|WCAG 2\.2|Figma|Linear|GitHub|reusable design system|progressive web app|Canva Demo Day|clinician interviews|computational design/g, "<strong>$&</strong>");
+  }
+
+  function attachExperienceExplorer() {
+    const explorer = document.querySelector(".experience-explorer");
+    if (!explorer) return;
+    const buttons = [...explorer.querySelectorAll(".experience-trigger")];
+    const panels = [...explorer.querySelectorAll(".experience-detail")];
+    const desktop = window.matchMedia("(min-width: 921px)");
+    const hover = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let active = 0;
+    let animation;
+
+    function select(index, animate = true) {
+      if (index === active && explorer.classList.contains("is-enhanced")) return;
+      animation?.cancel();
+      active = index;
+      buttons.forEach((button, i) => {
+        button.setAttribute("aria-expanded", String(i === active));
+        panels[i].hidden = i !== active;
+      });
+      explorer.classList.add("is-enhanced");
+      const panel = panels[active];
+      if (animate && panel?.animate && !reducedMotion.matches) {
+        animation = panel.animate([
+          { opacity: 0, transform: "translateY(8px)" },
+          { opacity: 1, transform: "translateY(0)" }
+        ], { duration: 220, easing: "cubic-bezier(.2,.7,.2,1)" });
+      }
+    }
+
+    buttons.forEach((button, index) => {
+      button.addEventListener("pointerenter", (event) => {
+        // Touch uses the explicit tap interaction, even on hybrid devices.
+        if (desktop.matches && hover.matches && event.pointerType !== "touch") select(index);
+      });
+      button.addEventListener("focus", () => {
+        if (desktop.matches) select(index);
+      });
+      button.addEventListener("click", () => select(!desktop.matches && active === index ? -1 : index));
+    });
+    desktop.addEventListener("change", () => {
+      animation?.cancel();
+      if (desktop.matches && active < 0) select(0, false);
+    });
+    reducedMotion.addEventListener("change", () => animation?.cancel());
+    select(0, false);
+  }
+
   function renderBackground() {
     setPageContext("background");
     document.title = "Experience - Yichen Cao";
@@ -509,16 +561,25 @@
             <h1 id="background-title">Experience</h1>
           </div>
           <p class="experience-intro">I’m a product designer with a background in architecture, software development and design education. I bring research, UX/UI design and AI-assisted building together—from understanding the problem to shipping the experience.</p>
-          <div class="timeline">
+          <p class="experience-hint"><span class="experience-hint-desktop">Explore a role — hover, focus or select.</span><span class="experience-hint-mobile">Tap a role to explore.</span></p>
+          <div class="experience-explorer">
             ${background
               .map(
-                (item) => `
-                  <article class="timeline-item">
-                    <p>${item.period}</p>
-                    <div>
-                      <h3>${item.title}</h3>
-                      <p>${item.body}</p>
-                      ${item.highlights ? `<ul class="experience-highlights">${item.highlights.map((highlight) => `<li>${highlight}</li>`).join("")}</ul>` : ""}
+                (item, index) => `
+                  <article class="experience-entry" style="--experience-row: ${index + 1}">
+                    <h3 class="experience-heading">
+                      <button class="experience-trigger" type="button" id="experience-trigger-${index}" aria-expanded="true" aria-controls="experience-detail-${index}">
+                        <span class="experience-period">${item.period}</span>
+                        <span class="experience-company">${item.title.split(" · ")[1]}<span class="experience-indicator" aria-hidden="true">↗</span></span>
+                        <span class="experience-role">${item.title.split(" · ")[0]}</span>
+                      </button>
+                    </h3>
+                    <div class="experience-detail" id="experience-detail-${index}" role="region" aria-labelledby="experience-trigger-${index}">
+                      <p class="experience-detail-label">${String(index + 1).padStart(2, "0")} / ${item.period}</p>
+                      <h4>${item.title.split(" · ")[0]}</h4>
+                      <p>${experienceText(item.body)}</p>
+                      ${item.highlights ? `<ul class="experience-highlights">${item.highlights.map((highlight) => `<li>${experienceText(highlight)}</li>`).join("")}</ul>` : ""}
+                      ${item.tools ? `<div class="experience-tools"><span>Tools & methods</span><p>${item.tools.map((tool) => `<strong>${tool}</strong>`).join("")}</p></div>` : ""}
                     </div>
                   </article>
                 `
@@ -534,6 +595,7 @@
         </section>
       </main>
     `);
+    attachExperienceExplorer();
   }
 
   function renderResume() {
