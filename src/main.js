@@ -139,9 +139,9 @@
           <small>Product Designer<br />based in Melbourne</small>
         </a>
         <nav class="nav" aria-label="Main navigation">
-          <a href="${homeHref("#case-studies")}">Work</a>
+          <a href="${homeHref("#case-studies")}"${!isBackgroundPage && !isResumePage ? ' aria-current="page"' : ""}>Work</a>
           <a href="${backgroundUrl()}"${isBackgroundPage ? ' aria-current="page"' : ""}>Experience</a>
-          <a href="${resumeUrl()}" data-about-navigation>About Me</a>
+          <a href="${resumeUrl()}"${isResumePage ? ' aria-current="page"' : ""} data-about-navigation>About Me</a>
         </nav>
       </header>
       ${content}
@@ -217,7 +217,34 @@
       reduceMotion.addEventListener("change", clearGlow);
       pointerMode.addEventListener("change", clearGlow);
     });
-    if (reduceMotion.matches) document.body.classList.add("reduce-grid-motion");
+  }
+
+  function attachSectionReveals() {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reducedMotion.matches || !("IntersectionObserver" in window)) return;
+    const animations = new Set();
+    const observer = new window.IntersectionObserver((entries) => {
+      entries.forEach(({ isIntersecting, target }) => {
+        if (!isIntersecting) return;
+        observer.unobserve(target);
+        if (!target.animate || reducedMotion.matches) return;
+        const animation = target.animate([
+          { opacity: .5, transform: "translateY(8px)" },
+          { opacity: 1, transform: "translateY(0)" }
+        ], { duration: 280, easing: "cubic-bezier(.22,1,.36,1)" });
+        animations.add(animation);
+        animation.finished.then(() => animations.delete(animation), () => animations.delete(animation));
+      });
+    }, { threshold: .15 });
+    // Content is visible by default; motion never gates reading or navigation.
+    document.querySelectorAll(".section-heading, .case-section-copy, .about-board-heading").forEach((node) => observer.observe(node));
+    function stop() {
+      observer.disconnect();
+      animations.forEach((animation) => animation.cancel());
+      animations.clear();
+    }
+    reducedMotion.addEventListener("change", () => { if (reducedMotion.matches) stop(); });
+    window.addEventListener("pagehide", stop, { once: true });
   }
 
   function renderHome() {
@@ -1025,6 +1052,7 @@
   attachPolaroidPile();
   attachNavigationGeometry();
   attachInteractiveGrid();
+  attachSectionReveals();
   const footerArt = document.querySelector(".footer-art-link");
   if (footerArt) {
     const pointerMode = window.matchMedia("(hover: hover) and (pointer: fine)");

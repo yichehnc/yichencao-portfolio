@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Visual system — Yichen Cao</title>
+  <link rel="stylesheet" href="../src/styles.css?v=portfolio-brand" />
+  <style>
+    .brand-guide { padding: 40px 0 80px; }
+    .guide-intro { position: relative; isolation: isolate; padding: 64px 0; }
+    .guide-intro::before { content: ""; position: absolute; z-index: -1; inset: -40px 0; background: var(--brand-backdrop) center / cover; }
+    .guide-kicker { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+    .guide-intro h1 { max-width: 800px; margin: 24px 0; font-size: clamp(40px, 6vw, 76px); font-weight: 500; line-height: 1.08; letter-spacing: -.04em; }
+    .guide-intro > p:last-child { max-width: 620px; font-size: 18px; color: var(--soft-ink); }
+    .guide-section { padding: 48px 0; border-top: 1px solid var(--line); }
+    .guide-section h2 { margin: 0 0 24px; font-size: 28px; line-height: 1.2; }
+    .guide-section > p { max-width: 700px; color: var(--soft-ink); }
+    .guide-swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .guide-swatch { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+    .guide-color { height: 100px; background: var(--swatch); }
+    .guide-swatch p { padding: 16px; margin: 0; font-size: 14px; }
+    .guide-swatch span { display: block; color: var(--soft-ink); font-size: 12px; margin-top: 4px; }
+    .guide-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin: 28px 0; }
+    .guide-secondary { display: inline-flex; min-height: 48px; align-items: center; padding: 0 24px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: white; font-size: 15px; transition: border-color var(--motion-fast); }
+    .guide-secondary:hover { border-color: var(--ink); }
+    .guide-secondary:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+    .guide-type { font-size: clamp(28px, 4vw, 48px); line-height: 1.25; letter-spacing: -.025em; }
+    .guide-backdrop { display: grid; place-content: center; min-height: 330px; padding: 32px; text-align: center; border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--brand-backdrop) center / cover; }
+    .guide-backdrop p { margin: 0; font-size: clamp(28px, 4vw, 44px); font-weight: 500; }
+    .guide-rules { padding-left: 20px; max-width: 720px; color: var(--soft-ink); }
+    .guide-rules li + li { margin-top: 12px; }
+    @media (max-width: 600px) { .guide-swatches { grid-template-columns: repeat(2, 1fr); } .guide-intro { padding: 36px 0; } }
+    @media (prefers-reduced-motion: reduce) { .guide-secondary { transition: none; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../"><span>Yichen Cao</span><small>Portfolio<br />Visual system</small></a>
+    <nav class="nav" aria-label="Preview navigation"><a href="../">Work</a><a href="../background/">Experience</a><a href="../resume/">About Me</a></nav>
+  </header>
+  <main class="brand-guide">
+    <section class="guide-intro">
+      <p class="guide-kicker">Yichen Cao / Visual identity</p>
+      <h1>Clear thinking.<br />A little <span class="hero-handwritten">human warmth.</span></h1>
+      <p>An editorial foundation, a hand-drawn personality, and small moments of vivid orange. Inspired by the clarity of ElevenLabs and the personal feel of the supplied Núria reference.</p>
+    </section>
+    <section class="guide-section">
+      <h2>01 / Palette</h2>
+      <div class="guide-swatches">
+        <div class="guide-swatch"><div class="guide-color" style="--swatch:var(--ink)"></div><p>Ink<span>#171717 · type & primary actions</span></p></div>
+        <div class="guide-swatch"><div class="guide-color" style="--swatch:var(--paper)"></div><p>Paper<span>#FFFFFF · breathing room</span></p></div>
+        <div class="guide-swatch"><div class="guide-color" style="--swatch:var(--panel)"></div><p>Surface<span>#F5F5F4 · quiet separation</span></p></div>
+        <div class="guide-swatch"><div class="guide-color" style="--swatch:var(--accent)"></div><p>Signal orange<span>#FF4704 · small accents only</span></p></div>
+      </div>
+      <p>The orange is sampled from the supplied ElevenLabs screenshot. Use it for a small dot, a selected underline or a fine graphic detail. Keep readable text in ink and the main buttons black and white.</p>
+    </section>
+    <section class="guide-section">
+      <h2>02 / Type & actions</h2>
+      <p class="guide-type">Good taste, function, and<br /><span class="hero-handwritten">human in the loop.</span></p>
+      <p>System sans serif for clarity. Caveat for a small personal note. Bold highlights for evidence: <strong>70+ interviews</strong>, <strong>80+ founders</strong>, <strong>WCAG 2.2</strong>.</p>
+      <div class="guide-row"><a class="primary-link" href="../#case-studies">Explore the work</a><a class="guide-secondary" href="../background/">View experience</a><a class="text-link" href="../resume/">A little about me ↗</a></div>
+    </section>
+    <section class="guide-section">
+      <h2>03 / Atmosphere</h2>
+      <div class="guide-backdrop"><p>Space to think.<br /><span class="hero-handwritten">Texture to feel.</span></p></div>
+      <p>A softly grained neutral gradient with a hint of orange. Used behind introductions and the footer, leaving work imagery and detailed content clear.</p>
+    </section>
+    <section class="guide-section">
+      <h2>04 / Shape, space & motion</h2>
+      <ul class="guide-rules">
+        <li>24px cards, pill-shaped actions, fine neutral borders and a very light shadow.</li>
+        <li>48px minimum primary controls, a consistent 8px spacing rhythm, and readable mobile layouts.</li>
+        <li>180ms hover feedback, 280ms one-time content reveals, and a subtle pointer glow on desktop.</li>
+        <li>Content stays visible without animation. Reduced-motion settings disable travel and decorative movement.</li>
+        <li>Keep the character illustrations, handwritten phrase and project imagery. Texture supports the content; it never covers it.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

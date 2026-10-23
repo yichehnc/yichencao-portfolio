@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <radialGradient id="mist">
+      <stop stop-color="#9ea5ac" stop-opacity=".32"/>
+      <stop offset="1" stop-color="#9ea5ac" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orange">
+      <stop stop-color="#ff4704" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#ff4704" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="paper">
+      <stop offset=".2" stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".82" numOctaves="3" stitchTiles="stitch" seed="12"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <radialGradient id="edge-fade">
+      <stop offset=".45" stop-color="#fff"/>
+      <stop offset="1" stop-color="#000"/>
+    </radialGradient>
+    <mask id="fade"><rect width="1200" height="800" fill="url(#edge-fade)"/></mask>
+  </defs>
+  <g mask="url(#fade)">
+    <ellipse cx="220" cy="400" rx="470" ry="360" fill="url(#mist)"/>
+    <ellipse cx="970" cy="460" rx="430" ry="350" fill="url(#orange)"/>
+    <ellipse cx="610" cy="230" rx="470" ry="330" fill="url(#paper)"/>
+    <rect width="1200" height="800" filter="url(#grain)" opacity=".075"/>
+  </g>
+</svg>
