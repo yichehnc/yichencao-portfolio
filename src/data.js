@@ -18,7 +18,7 @@ window.PORTFOLIO_PROJECTS = [
     summary:
       "A founder-facing update tool that helps early-stage teams build investor trust before they raise.",
     subtitle:
-      "Product design, front-end build, and product strategy for a monthly founder update workflow.",
+      "Helping founders build investor trust before they raise. A product story through three lenses: context, competitor and customer.",
     meta: [
       { label: "Role", value: "Product Design Engineer" },
       { label: "Timeline", value: "2026 · Ongoing" },
@@ -32,20 +32,26 @@ window.PORTFOLIO_PROJECTS = [
     accent: "mlai",
     sections: [
       {
-        eyebrow: "01 / At-a-glance",
-        title: "Overview",
+        eyebrow: "01 / Context · The opportunity",
+        title: "Build the relationship before the raise.",
         body:
-          "<p>MLAI Founder Tools explores how founders can turn monthly operating updates into a lightweight relationship-building system. The product gives teams a clearer way to collect progress, shape updates, and share momentum before a formal raise.</p><p>This placeholder overview keeps the structure in place while leaving the final content open for editing.</p>",
+          "<p>MLAI Founder Tools helps early-stage founders share progress with investors before a formal raise. The starting idea was a monthly update: a repeatable way to communicate momentum and build a relationship over time.</p><p>My role brought product strategy, UX research, interface design and front-end implementation together. The challenge was to make that recurring task useful enough for founders to return to, and simple enough to fit around building their business.</p><p><strong>The design question:</strong> How might we help founders turn everyday progress into a clear update they feel confident sharing?</p>",
+      },
+      {
+        eyebrow: "02 / Competitor · Market-research lens",
+        title: "What would make another tool worth using?",
+        body:
+          "<p>The competitive question is broader than a feature checklist: what would make a founder choose a dedicated update workflow over the way they already communicate?</p><p>Three questions frame the comparison with alternatives such as email, documents and investor relationship tools:</p><ul><li><strong>Effort:</strong> How much work does it take to move from scattered progress to a shareable update?</li><li><strong>Relevance:</strong> Can the workflow adapt to an early-stage company without demanding metrics it does not yet have?</li><li><strong>Trust:</strong> Is it clear what information is collected, who can see it, and what the founder controls?</li></ul><p>The positioning to test: a lightweight update workflow that helps founders communicate consistently while keeping them in control of their information.</p>",
       },
       {
         variant: "dark",
-        eyebrow: "02 / Design journey",
-        title: "Design Journey",
+        eyebrow: "03 / Customer · Listening to founders",
+        title: "Less reporting effort. More confidence to share.",
         journey: [
           {
-            title: "User interviews",
+            title: "Understand the friction behind the update",
             body:
-              "I conducted founder interviews to understand preferences and pain points around monthly and investor updates.",
+              "I interviewed founders and tested the onboarding and update workflow. One session exposed two connected barriers: too many empty fields for a pre-seed company, and reluctance to connect business accounts without understanding data access. That participant preferred manual input and suggested speaking through prompts instead of completing a long form.",
             evidence: [
               {
                 src: "assets/mlai/workflow-user-interview.png",
@@ -60,9 +66,9 @@ window.PORTFOLIO_PROJECTS = [
             ],
           },
           {
-            title: "Affinity mapping",
+            title: "Turn individual feedback into design priorities",
             body:
-              "I organised interview insights into categories that could guide reporting, prototype structure, and product decisions.",
+              "I grouped the research around time, uncertainty about content, finding relevant investors and building trust. The testing board translated these themes into priorities: clearer wording, guidance around metrics, visibility over distribution and less demanding onboarding. Voice input and stage-specific fields emerged as directions to explore, rather than assumptions to build around.",
             evidence: [
               {
                 src: "assets/mlai/workflow-affinity-mapping.png",
@@ -76,10 +82,16 @@ window.PORTFOLIO_PROJECTS = [
               },
             ],
           },
+        ],
+      },
+      {
+        eyebrow: "04 / From the 3Cs to design",
+        title: "Make the next step clear.",
+        journey: [
           {
-            title: "Rapid prototyping",
+            title: "Shape the update journey",
             body:
-              "I used fast sketches and high-fidelity iterations to align the idea with stakeholders before moving into build.",
+              "The context set the goal: build a repeatable communication habit before fundraising. The competitor lens sharpened the question of effort and value. Customer research made clarity and control the priorities. I used sketches, a journey map and high-fidelity iterations to align the workflow with stakeholders before moving into build.",
             evidence: [
               {
                 src: "assets/mlai/workflow-user-journey-map.png",
@@ -89,9 +101,9 @@ window.PORTFOLIO_PROJECTS = [
             ],
           },
           {
-            title: "Vibe code, refine, launch",
+            title: "Carry the decisions into the build",
             body:
-              "I explored AI-assisted build tools, refined the founder/investor experience, then shipped a live MLAI page introducing Vibe Raising.",
+              "I used AI-assisted development to refine the founder and investor experience and shipped the MLAI page introducing Vibe Raising. Implementation work also documented update audience visibility, connecting the research concern about control to a concrete product requirement.",
             evidence: [
               {
                 src: "assets/mlai/workflow-linear-ticket.png",
@@ -104,7 +116,7 @@ window.PORTFOLIO_PROJECTS = [
       },
       {
         variant: "proof-note",
-        eyebrow: "03 / Result",
+        eyebrow: "05 / Result",
         title: "Result",
         body:
           "<p>The result helped MLAI build a startup registry that secured $40K in LaunchVic funding, supporting the goal of helping 1,000 startups in Australia by 2030.</p>",
