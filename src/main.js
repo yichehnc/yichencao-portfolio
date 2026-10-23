@@ -138,9 +138,9 @@
           <span>Yichen Cao</span>
           <small>Product Designer<br />based in Melbourne</small>
         </a>
-        <nav class="nav">
-          <a href="${homeHref("#case-studies")}">Projects</a>
-          <a href="${backgroundUrl()}">Background</a>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="${homeHref("#case-studies")}">Work</a>
+          <a href="${backgroundUrl()}"${isBackgroundPage ? ' aria-current="page"' : ""}>Experience</a>
           <a href="${resumeUrl()}" data-about-navigation>About Me</a>
         </nav>
       </header>
@@ -346,11 +346,11 @@
       const visible = expanded ? [...primary, ...secondary] : primary;
 
       grid.innerHTML = visible.length ? masonryMarkup(visible)
-        : `<p class="empty-filter">No projects match ${activeFilter} yet.</p>`;
+        : `<p class="empty-filter">No works match ${activeFilter} yet.</p>`;
       grid.dataset.columns = String(columnCount());
       toggle.hidden = !canCollapse;
       toggle.setAttribute("aria-expanded", String(expanded));
-      toggle.textContent = expanded ? "Show fewer projects" : `Show more projects (${secondary.length})`;
+      toggle.textContent = expanded ? "Show fewer works" : `Show more works (${secondary.length})`;
     }
 
     function updateFilterButtons() {
@@ -372,7 +372,7 @@
             <h1><button class="hero-word" type="button" data-character="coding" title="Meet my AI coding side">AI-native</button> <button class="hero-word" type="button" data-character="sketching" title="Meet my product design side">product</button> designer, crafting UX design with good taste, function, and <span class="hero-handwritten">human in the loop</span></h1>
             <div class="hero-connect-row">
               <img class="landing-doodle hero-whiteboard-doodle" src="${assetUrl("assets/illustrations/yichen-ux-flow.webp")}" width="448" height="448" alt="" aria-hidden="true" decoding="async" draggable="false" />
-              <a class="primary-link" href="https://cal.com/" target="_blank" rel="noreferrer">Let's Connect</a>
+              <a class="primary-link" href="${profile.links.find((link) => link.label === "LinkedIn").url}" target="_blank" rel="noreferrer">Let's Connect</a>
               <img class="landing-doodle coding-doodle" src="${assetUrl("assets/illustrations/yichen-ai-coding-readable.png")}" width="448" height="448" alt="" aria-hidden="true" decoding="async" draggable="false" />
             </div>
             ${renderToolCarousel()}
@@ -381,10 +381,10 @@
         <section id="case-studies" class="work-section section-shell" aria-labelledby="work-title">
           <div class="section-heading projects-heading">
             <span>01</span>
-            <h2 id="work-title">Projects</h2>
+            <h2 id="work-title">Works</h2>
             <img class="landing-doodle sketching-doodle" src="${assetUrl("assets/illustrations/yichen-sketching.webp")}" width="448" height="448" alt="" aria-hidden="true" loading="lazy" decoding="async" draggable="false" />
           </div>
-          <div class="project-filter-tabs" aria-label="Project filters">
+          <div class="project-filter-tabs" aria-label="Work filters">
             ${projectFilters
               .map(
                 (filter) => `
@@ -394,7 +394,7 @@
               .join("")}
           </div>
           <div id="primary-projects" class="project-grid" aria-live="polite"></div>
-          <button class="project-more-toggle filter-pill" type="button" aria-expanded="false" aria-controls="primary-projects" hidden>Show more projects</button>
+          <button class="project-more-toggle filter-pill" type="button" aria-expanded="false" aria-controls="primary-projects" hidden>Show more works</button>
         </section>
       </main>
     `);
@@ -506,8 +506,9 @@
         <section id="background" class="background-section section-shell" aria-labelledby="background-title">
           <div class="section-heading">
             <span>01</span>
-            <h2 id="background-title">Experience</h2>
+            <h1 id="background-title">Experience</h1>
           </div>
+          <p class="experience-intro">I’m a product designer with a background in architecture, software development and design education. I bring research, UX/UI design and AI-assisted building together—from understanding the problem to shipping the experience.</p>
           <div class="timeline">
             ${background
               .map(
@@ -517,11 +518,18 @@
                     <div>
                       <h3>${item.title}</h3>
                       <p>${item.body}</p>
+                      ${item.highlights ? `<ul class="experience-highlights">${item.highlights.map((highlight) => `<li>${highlight}</li>`).join("")}</ul>` : ""}
                     </div>
                   </article>
                 `
               )
               .join("")}
+          </div>
+        </section>
+        <section class="education-section section-shell" aria-labelledby="education-title">
+          <div class="section-heading"><span>02</span><h2 id="education-title">Education</h2></div>
+          <div class="timeline">
+            ${(window.PORTFOLIO_EDUCATION || []).map((item) => `<article class="timeline-item"><p>${item.period}</p><div><h3>${item.title}</h3><p>${item.body}</p></div></article>`).join("")}
           </div>
         </section>
       </main>
@@ -655,7 +663,7 @@
 
     app.innerHTML = shell(`
       <main class="case-study${project.accent ? ` case-study-${project.accent}` : ""}">
-        <a class="back-link" href="${homeHref("#case-studies")}">Back to projects</a>
+        <a class="back-link" href="${homeHref("#case-studies")}">Back to works</a>
         <section class="case-hero">
           <div class="case-title">
             <span class="case-eyebrow">${project.category}</span>

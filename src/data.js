@@ -512,33 +512,73 @@ window.PORTFOLIO_TOOLS = [
 
 window.PORTFOLIO_BACKGROUND = [
   {
-    period: "Feb 2026 - Present",
-    title: "Product Design Engineer, MLAI - Vibe Raising",
-    body:
-      "Designed and built Vibe Raising, an AI-native investor update platform using Claude Code, Codex, Figma, Linear, and Notion. Presented at a Melbourne Codex event, secured investor interest ahead of launch, and translated founder and investor research into a prioritised sprint roadmap.",
+    "period": "Feb 2026 – Present",
+    "title": "Product Design Engineer · MLAI / Stone & Chalk",
+    "body": "Built Startup Pulse (Vibe Raising), an AI-native startup database and founder update platform, from idea to MVP. I own the product roadmap and front-end experience, working with software developers, back-end and DevOps teams.",
+    "highlights": [
+      "Ran 70+ founder and investor interviews and usability tests, turning research into a prioritised roadmap.",
+      "Connected feedback in Figma affinity maps to specifications, Linear and GitHub issues; led Scrum ceremonies and shared the MVP at a Codex meetup.",
+      "Supported 80+ founders posting monthly updates and personally onboarded more than half of users to their first update.",
+      "Built a reusable design system and adapted the experience for web, tablet and mobile as Pulse moved into MLAI Chat."
+    ]
   },
   {
-    period: "Jul 2025 - Feb 2026",
-    title: "Product Designer, Support Sorted",
-    body:
-      "Conducted clinician interviews, usability sessions, and competitor analysis for a MAP-backed HealthTech startup. Collaborated on onboarding improvements and synthesised feedback into actionable recommendations that supported clinician workflows.",
+    "period": "2026 · Contract",
+    "title": "Product Builder & UX/UI Designer · CareVo",
+    "body": "Delivered UX research and accessibility design for a Sydney HealthTech startup’s NDIS marketplace.",
+    "highlights": [
+      "Translated stakeholder feedback into clear, documented deliverables.",
+      "Worked on WCAG 2.2 accessibility design to make the marketplace easier to read and navigate."
+    ]
   },
   {
-    period: "Feb 2025 - Jul 2025",
-    title: "Project Manager & Head of Logistics, Chill Bunny Wellness",
-    body:
-      "Coordinated project delivery and logistics across a growing wellness operation, keeping planning, communication, and execution aligned across stakeholders.",
+    "period": "Jul 2025 – Feb 2026",
+    "title": "Product Designer · Support Sorted",
+    "body": "Worked on clinician workflows at a HealthTech startup backed by the Melbourne Accelerator Program.",
+    "highlights": [
+      "Conducted clinician interviews, usability sessions and competitor analysis to uncover pain points and inform feature priorities.",
+      "Collaborated on onboarding improvements and turned feedback into actionable design recommendations."
+    ]
   },
   {
-    period: "Feb 2024 - Jul 2024",
-    title: "Product Manager, Relish Progressive Web App",
-    body:
-      "Led user interviews and competitor research for a dining recommendation startup. Managed backlog, Scrum ceremonies, stakeholder priorities, and technical constraints while showcasing the MVP at Canva Demo Day.",
+    "period": "Feb 2024 – Jul 2025",
+    "title": "Product Manager · Relish",
+    "body": "Led product work for a progressive web app exploring dining recommendations, from research to an MVP shown at Canva Demo Day.",
+    "highlights": [
+      "Used user interviews and competitor research to identify gaps and shape features.",
+      "Managed the backlog and Scrum ceremonies with developers and the product owner, balancing user needs, stakeholder priorities and technical constraints."
+    ]
   },
   {
-    period: "Jan 2020 - Dec 2024",
-    title: "Academic Tutor, Melbourne School of Design, University of Melbourne",
-    body:
-      "Mentored over 3,000 students through design research, problem analysis, technical workshops, and iterative prototyping, helping connect critical feedback to practical product and design development.",
+    "period": "Jan 2020 – Dec 2024",
+    "title": "Design Academic · University of Melbourne",
+    "body": "Taught at the Melbourne School of Design, mentoring more than 3,000 students through design research, problem analysis and iterative prototyping.",
+    "highlights": [
+      "Facilitated technical workshops on design systems and computational design.",
+      "Helped students interpret critical feedback and connect design theory with practical work."
+    ]
+  }
+];
+
+window.PORTFOLIO_EDUCATION = [
+  {
+    "period": "Jul – Nov 2024",
+    "title": "UX/UI Design · RMIT Online",
+    "body": "Victoria Digital Jobs Program. User and stakeholder research, wireframes, prototypes and design systems using Figma and Adobe Creative Suite."
   },
+  {
+    "period": "Oct 2023 – Jul 2024",
+    "title": "Full Stack Software Engineering · Holberton School Australia",
+    "body": "Built web applications with React, Node.js and Flask, developing skills in data structures, agile workflows and collaboration with developers."
+  },
+  {
+    "period": "Feb 2020 – Dec 2022",
+    "title": "Master of Architecture · University of Melbourne",
+    "body": "First Class Honours, with a focus on computational design."
+  },
+  {
+    "period": "Feb 2017 – Dec 2019",
+    "title": "Bachelor of Design · University of Melbourne",
+    "body": "A foundation in design, architecture and how people experience spaces."
+  }
 ];
