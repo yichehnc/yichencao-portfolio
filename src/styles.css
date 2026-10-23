@@ -369,13 +369,13 @@ main {
 }
 
 .coding-doodle,
-.hero-sketching-doodle {
+.hero-whiteboard-doodle {
   position: absolute;
   width: clamp(156px, 17vw, 220px);
 }
 
 .coding-doodle { right: 6%; }
-.hero-sketching-doodle { left: 6%; transform: rotate(-5deg); }
+.hero-whiteboard-doodle { left: 6%; }
 
 .hero-word {
   display: inline-block;
@@ -465,14 +465,14 @@ main {
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     gap: 4px;
   }
-  .coding-doodle, .hero-sketching-doodle {
+  .coding-doodle, .hero-whiteboard-doodle {
     position: static;
     width: 104px;
     max-width: 100%;
     justify-self: center;
   }
   .coding-doodle { right: 0; }
-  .hero-sketching-doodle { left: 0; }
+  .hero-whiteboard-doodle { left: 0; }
 
   .projects-heading {
     min-height: 0;

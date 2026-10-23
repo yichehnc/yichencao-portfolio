@@ -371,9 +371,9 @@
             </div>
             <h1><button class="hero-word" type="button" data-character="coding" title="Meet my AI coding side">AI-native</button> <button class="hero-word" type="button" data-character="sketching" title="Meet my product design side">product</button> designer, crafting UX design with good taste, function, and <span class="hero-handwritten">human in the loop</span></h1>
             <div class="hero-connect-row">
-              <img class="landing-doodle hero-sketching-doodle" src="${assetUrl("assets/illustrations/yichen-sketching.webp")}" width="448" height="448" alt="" aria-hidden="true" decoding="async" draggable="false" />
+              <img class="landing-doodle hero-whiteboard-doodle" src="${assetUrl("assets/illustrations/yichen-ux-flow.webp")}" width="448" height="448" alt="" aria-hidden="true" decoding="async" draggable="false" />
               <a class="primary-link" href="https://cal.com/" target="_blank" rel="noreferrer">Let's Connect</a>
-              <img class="landing-doodle coding-doodle" src="${assetUrl("assets/illustrations/yichen-ai-coding.webp")}" width="448" height="448" alt="" aria-hidden="true" decoding="async" draggable="false" />
+              <img class="landing-doodle coding-doodle" src="${assetUrl("assets/illustrations/yichen-ai-coding-readable.png")}" width="448" height="448" alt="" aria-hidden="true" decoding="async" draggable="false" />
             </div>
             ${renderToolCarousel()}
           </div>
@@ -436,7 +436,7 @@
     const restingDoodle = hero.querySelector(".coding-doodle");
     const defaultSource = restingDoodle.src;
     const characters = {
-      coding: "yichen-ai-coding.webp",
+      coding: "yichen-ai-coding-readable.png",
       sketching: "yichen-sketching.webp",
     };
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
