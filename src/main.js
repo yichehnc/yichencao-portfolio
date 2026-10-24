@@ -250,7 +250,7 @@
   function renderHome() {
     setPageContext("home");
     const projectItems = [...projects, ...comingSoon.map((item) => ({ ...item, muted: true }))];
-    const projectFilters = ["All", "Product", "Startup", "Case Study", "UX/UI", "Vibe Coding", "Motion"];
+    const projectFilters = ["All", "Product", "Startup", "Case Study", "UX/UI", "Visual", "Vibe Coding", "Motion"];
     const filterTerms = {
       Product: ["product"],
       Startup: ["startup"],
@@ -539,7 +539,7 @@
     const hover = window.matchMedia("(hover: hover) and (pointer: fine)");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let active = -1;
-    let selected = -1;
+    let selected = buttons.length ? 0 : -1;
     let animation;
 
     function select(index, animate = true) {
@@ -584,7 +584,7 @@
       select(selected, false);
     });
     reducedMotion.addEventListener("change", () => animation?.cancel());
-    select(-1, false);
+    select(selected, false);
   }
 
   function renderBackground() {
