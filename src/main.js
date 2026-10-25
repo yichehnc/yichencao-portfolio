@@ -4,6 +4,7 @@
   const tools = window.PORTFOLIO_TOOLS || [];
   const background = window.PORTFOLIO_BACKGROUND || [];
   const profile = window.PORTFOLIO_PROFILE || {};
+  const testimonials = window.PORTFOLIO_TESTIMONIALS || [];
   const app = document.querySelector("#app");
   const currentPath = window.location.pathname.replace(/\/index\.html$/, "").replace(/\/+$/, "");
   const currentPathLower = currentPath.toLowerCase();
@@ -127,6 +128,38 @@
           </div>
         </div>
       </div>
+    `;
+  }
+
+  function renderTestimonials() {
+    if (!testimonials.length) return "";
+    return `
+      <section class="testimonial-section section-shell" aria-labelledby="testimonial-title">
+        <div class="section-heading">
+          <span>02</span>
+          <h2 id="testimonial-title">Kind words</h2>
+        </div>
+        ${testimonials
+          .map(
+            (item) => `
+              <figure class="testimonial">
+                <blockquote class="testimonial-quote">
+                  ${item.quote.map((paragraph) => `<p>${paragraph}</p>`).join("")}
+                </blockquote>
+                <figcaption class="testimonial-credit">
+                  <span class="testimonial-name">${item.name}</span>
+                  <span class="testimonial-role">${item.role}</span>
+                  <span class="testimonial-meta">${item.relationship}${
+                    item.sourceUrl
+                      ? ` · <a href="${item.sourceUrl}" target="_blank" rel="noreferrer">via LinkedIn <span aria-hidden="true">↗</span></a>`
+                      : ""
+                  }</span>
+                </figcaption>
+              </figure>
+            `
+          )
+          .join("")}
+      </section>
     `;
   }
 
@@ -423,6 +456,7 @@
           <div id="primary-projects" class="project-grid" aria-live="polite"></div>
           <button class="project-more-toggle filter-pill" type="button" aria-expanded="false" aria-controls="primary-projects" hidden>Show more works</button>
         </section>
+        ${renderTestimonials()}
       </main>
     `);
 

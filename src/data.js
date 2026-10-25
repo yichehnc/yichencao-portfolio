@@ -547,6 +547,19 @@ window.PORTFOLIO_PROJECTS = [
 
 window.PORTFOLIO_COMING_SOON = [];
 
+window.PORTFOLIO_TESTIMONIALS = [
+  {
+    quote: [
+      "Yichen strikes me as an outstanding individual with great knowledge, drive and excellent interpersonal skills (which all are pivotal for this subject). She has a great attitude towards fulfilling the tasks at hand, and she operates at the highest level both individually, as well as within our team. She remains professional yet at the same time highly personable in her interactions with students and her collaborators.",
+      "I can highly recommend Yichen as an addition to any work environment that focuses on design excellence, in particular if supported by digital means.",
+    ],
+    name: "Dominik Holzer",
+    role: "Associate Professor in Digital Architectural Design, University of Melbourne",
+    relationship: "Managed Yichen directly",
+    sourceUrl: "https://www.linkedin.com/in/ycaoc/details/recommendations/",
+  },
+];
+
 window.PORTFOLIO_PROFILE = {
   summary:
     "Rigorous Product Designer with a multidisciplinary background in UX/UI design, software development, teaching, and research. I work across user interviews, usability testing, AI-assisted prototyping, and front-end implementation to turn ambiguous product problems into clear, shippable experiences.",

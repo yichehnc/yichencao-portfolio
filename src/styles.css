@@ -2213,3 +2213,87 @@ dd {
     animation: none;
   }
 }
+
+/* Testimonials: a single quiet quote above the footer. */
+.testimonial-section {
+  position: relative;
+  z-index: 1;
+}
+
+.testimonial {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 24px;
+  margin: 0;
+}
+
+.testimonial-quote {
+  grid-column: 2;
+  max-width: 820px;
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: clamp(21px, 2.2vw, 28px);
+  line-height: 1.42;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.testimonial-quote p {
+  margin: 0 0 0.9em;
+}
+
+.testimonial-quote p:first-child::before {
+  content: "\201C";
+  margin-left: -0.45em;
+  color: var(--accent);
+}
+
+.testimonial-quote p:last-child {
+  margin-bottom: 0;
+}
+
+.testimonial-quote p:last-child::after {
+  content: "\201D";
+}
+
+.testimonial-credit {
+  grid-column: 2;
+  display: grid;
+  gap: 4px;
+  margin-top: 16px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  max-width: 820px;
+  font-size: 14px;
+  color: var(--soft-ink);
+}
+
+.testimonial-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.testimonial-meta {
+  color: var(--muted);
+}
+
+.testimonial-meta a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 3px;
+  transition: color var(--motion-fast) var(--ease-out);
+}
+
+.testimonial-meta a:hover,
+.testimonial-meta a:focus-visible {
+  color: var(--ink);
+}
+
+@media (max-width: 679px) {
+  .testimonial { grid-template-columns: 1fr; }
+  .testimonial-quote,
+  .testimonial-credit { grid-column: 1; }
+  .testimonial-quote p:first-child::before { margin-left: 0; }
+}
