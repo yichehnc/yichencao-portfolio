@@ -209,37 +209,62 @@
     }
 
     const divider = document.querySelector(".section-transition");
-    const roller = divider && divider.querySelector(".st-roller");
-    if (!divider || !roller) return;
-
+    const canvas = divider && divider.querySelector(".st-canvas");
+    if (!canvas) return;
+    const context = canvas.getContext("2d");
     const clamp = (value) => Math.min(1, Math.max(0, value));
     const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
-    const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+    let width = 0;
+    let height = 0;
     let frame = 0;
 
-    function update() {
+    function resize() {
+      const ratio = window.devicePixelRatio || 1;
+      width = divider.clientWidth;
+      height = divider.clientHeight;
+      canvas.width = Math.round(width * ratio);
+      canvas.height = Math.round(height * ratio);
+      context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    }
+
+    // A single pulse of hairlines travels left to right as you scroll, then settles flat onto the rule.
+    function draw() {
       frame = 0;
       const bounds = divider.getBoundingClientRect();
       const viewport = window.innerHeight || 1;
       const center = bounds.top + bounds.height / 2;
-      const progress = clamp((viewport * 0.95 - center) / (viewport * 0.55));
-      const roll = easeInOut(clamp((progress - 0.12) / 0.88));
-      const size = roller.offsetWidth || 44;
-      const travel = Math.max(0, divider.clientWidth - size - 10) * roll;
-      const spin = (travel / (size / 2)) * (180 / Math.PI);
-      divider.style.setProperty("--rule", easeOut(clamp(progress * 1.6)).toFixed(4));
-      divider.style.setProperty("--roll", roll.toFixed(4));
-      divider.style.setProperty("--spin", `${spin.toFixed(1)}deg`);
-      divider.style.setProperty("--pop", clamp((roll - 0.3) / 0.25).toFixed(4));
+      const progress = easeInOut(clamp((viewport * 0.95 - center) / (viewport * 0.6)));
+      const styles = getComputedStyle(document.documentElement);
+      const ink = styles.getPropertyValue("--ink").trim() || "#171717";
+      const accent = styles.getPropertyValue("--accent").trim() || "#ff4704";
+      const pitch = width < 680 ? 8 : 10;
+      const count = Math.floor(width / pitch);
+      const baseline = height * 0.78;
+      const peak = height * 0.7;
+      const crest = -0.2 + 1.4 * progress;
+
+      context.clearRect(0, 0, width, height);
+      for (let i = 0; i < count; i += 1) {
+        const x = count > 1 ? i / (count - 1) : 0;
+        const bump = Math.exp(-Math.pow((x - crest) / 0.075, 2));
+        const lineHeight = peak * bump;
+        if (lineHeight < 1) continue;
+        context.fillStyle = bump > 0.94 ? accent : ink;
+        context.fillRect(Math.round(x * (width - 1)), baseline - lineHeight, 1, lineHeight);
+      }
     }
 
     function request() {
-      if (!frame) frame = window.requestAnimationFrame(update);
+      if (!frame) frame = window.requestAnimationFrame(draw);
     }
 
+    resize();
+    draw();
     window.addEventListener("scroll", request, { passive: true });
-    window.addEventListener("resize", request);
-    update();
+    window.addEventListener("resize", () => {
+      resize();
+      request();
+    });
   }
 
   function attachTestimonials() {
@@ -552,9 +577,7 @@
         </section>
         <div class="section-transition" aria-hidden="true">
           <span class="st-rule"></span>
-          <span class="st-hoop"></span>
-          <span class="st-roller"><i></i></span>
-          <span class="st-stopper"></span>
+          <canvas class="st-canvas"></canvas>
         </div>
         ${renderTestimonials()}
       </main>
