@@ -139,28 +139,74 @@
           <span>02</span>
           <h2 id="testimonial-title">Kind words</h2>
         </div>
-        ${testimonials
-          .map(
-            (item) => `
-              <figure class="testimonial">
-                <blockquote class="testimonial-quote">
-                  ${item.quote.map((paragraph) => `<p>${paragraph}</p>`).join("")}
-                </blockquote>
-                <figcaption class="testimonial-credit">
-                  <span class="testimonial-name">${item.name}</span>
-                  <span class="testimonial-role">${item.role}</span>
-                  <span class="testimonial-meta">${item.relationship}${
-                    item.sourceUrl
-                      ? ` · <a href="${item.sourceUrl}" target="_blank" rel="noreferrer">via LinkedIn <span aria-hidden="true">↗</span></a>`
-                      : ""
-                  }</span>
-                </figcaption>
-              </figure>
-            `
-          )
-          .join("")}
+        <div class="testimonial-card" data-count="${testimonials.length}">
+          <div class="testimonial-card-track" id="testimonial-track">
+            ${testimonials
+              .map(
+                (item, index) => `
+                  <figure class="testimonial-slide${index === 0 ? " is-active" : ""}" data-index="${index}">
+                    <blockquote class="testimonial-quote">
+                      ${item.quote
+                        .map(
+                          (paragraph, pIndex, arr) =>
+                            `<p>${pIndex === 0 ? "\u201C" : ""}${paragraph}${pIndex === arr.length - 1 ? "\u201D" : ""}</p>`
+                        )
+                        .join("")}
+                    </blockquote>
+                    ${item.quote.join(" ").length > 220 ? `<button class="testimonial-more" type="button" aria-expanded="false">Read more</button>` : ""}
+                    <figcaption class="testimonial-footer">
+                      <div class="testimonial-credit">
+                        <span class="testimonial-name">${item.name}</span>
+                        <span class="testimonial-role">${item.role}</span>
+                        <span class="testimonial-meta">${item.relationship}${
+                          item.sourceUrl
+                            ? ` · <a href="${item.sourceUrl}" target="_blank" rel="noreferrer">via LinkedIn <span aria-hidden="true">↗</span></a>`
+                            : ""
+                        }</span>
+                      </div>
+                      ${
+                        testimonials.length > 1
+                          ? `
+                            <div class="testimonial-nav" aria-label="More recommendations">
+                              <button class="testimonial-arrow" type="button" data-dir="prev" aria-label="Previous recommendation">←</button>
+                              <button class="testimonial-arrow" type="button" data-dir="next" aria-label="Next recommendation">→</button>
+                            </div>
+                          `
+                          : ""
+                      }
+                    </figcaption>
+                  </figure>
+                `
+              )
+              .join("")}
+          </div>
+        </div>
       </section>
     `;
+  }
+
+  function attachTestimonials() {
+    const card = document.querySelector(".testimonial-card");
+    if (!card) return;
+    const slides = Array.from(card.querySelectorAll(".testimonial-slide"));
+    let active = 0;
+
+    function showSlide(index) {
+      active = (index + slides.length) % slides.length;
+      slides.forEach((slide, slideIndex) => slide.classList.toggle("is-active", slideIndex === active));
+    }
+
+    card.querySelectorAll('[data-dir="prev"]').forEach((button) => button.addEventListener("click", () => showSlide(active - 1)));
+    card.querySelectorAll('[data-dir="next"]').forEach((button) => button.addEventListener("click", () => showSlide(active + 1)));
+
+    card.querySelectorAll(".testimonial-more").forEach((button) => {
+      button.addEventListener("click", () => {
+        const slide = button.closest(".testimonial-slide");
+        const expanded = slide.classList.toggle("is-expanded");
+        button.setAttribute("aria-expanded", String(expanded));
+        button.textContent = expanded ? "Read less" : "Read more";
+      });
+    });
   }
 
   function shell(content) {
@@ -463,6 +509,7 @@
     renderMasonry();
     updateFilterButtons();
     attachHeroWordplay();
+    attachTestimonials();
 
     document.querySelector(".project-more-toggle").addEventListener("click", () => {
       moreProjectsExpanded = !moreProjectsExpanded;
