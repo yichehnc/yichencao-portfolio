@@ -139,48 +139,47 @@
           <span>02</span>
           <h2 id="testimonial-title"><span class="reveal-line"><span>Recommendations</span></span></h2>
         </div>
-        <div class="testimonial-card" data-count="${testimonials.length}">
-          <div class="testimonial-card-track" id="testimonial-track">
-            ${testimonials
-              .map(
-                (item, index) => `
-                  <figure class="testimonial-slide${index === 0 ? " is-active" : ""}" data-index="${index}">
-                    <blockquote class="testimonial-quote">
-                      ${item.quote
-                        .map(
-                          (paragraph, pIndex, arr) =>
-                            `<p>${pIndex === 0 ? "\u201C" : ""}${paragraph}${pIndex === arr.length - 1 ? "\u201D" : ""}</p>`
-                        )
-                        .join("")}
-                    </blockquote>
-                    <figcaption class="testimonial-footer">
-                      ${item.photo ? `<img class="testimonial-avatar" src="${assetUrl(item.photo)}" alt="${item.name}" width="56" height="56" loading="lazy" decoding="async" />` : ""}
-                      <div class="testimonial-credit">
-                        <span class="testimonial-name">${item.name}</span>
-                        <span class="testimonial-role">${item.role}</span>
-                        <span class="testimonial-meta">${item.relationship}${
-                          item.sourceUrl
-                            ? ` · <a href="${item.sourceUrl}" target="_blank" rel="noreferrer">via LinkedIn <span aria-hidden="true">↗</span></a>`
-                            : ""
-                        }</span>
-                      </div>
-                      ${
-                        testimonials.length > 1
-                          ? `
-                            <div class="testimonial-nav" aria-label="More recommendations">
-                              <button class="testimonial-arrow" type="button" data-dir="prev" aria-label="Previous recommendation">←</button>
-                              <button class="testimonial-arrow" type="button" data-dir="next" aria-label="Next recommendation">→</button>
-                            </div>
-                          `
+        <div class="testimonial-carousel" role="region" aria-roledescription="carousel" aria-label="Recommendations" tabindex="0">
+          ${testimonials
+            .map(
+              (item, index) => `
+                <figure class="testimonial-card" data-index="${index}" aria-roledescription="slide" aria-label="${index + 1} of ${testimonials.length}">
+                  <blockquote class="testimonial-quote">
+                    ${item.quote
+                      .map(
+                        (paragraph, pIndex, arr) =>
+                          `<p>${pIndex === 0 ? "\u201C" : ""}${paragraph}${pIndex === arr.length - 1 ? "\u201D" : ""}</p>`
+                      )
+                      .join("")}
+                  </blockquote>
+                  <figcaption class="testimonial-footer">
+                    ${item.photo ? `<img class="testimonial-avatar" src="${assetUrl(item.photo)}" alt="${item.name}" width="56" height="56" loading="lazy" decoding="async" />` : ""}
+                    <div class="testimonial-credit">
+                      <span class="testimonial-name">${item.name}</span>
+                      <span class="testimonial-role">${item.role}</span>
+                      <span class="testimonial-meta">${item.relationship}${
+                        item.sourceUrl
+                          ? ` · <a href="${item.sourceUrl}" target="_blank" rel="noreferrer">via LinkedIn <span aria-hidden="true">↗</span></a>`
                           : ""
-                      }
-                    </figcaption>
-                  </figure>
-                `
-              )
-              .join("")}
-          </div>
+                      }</span>
+                    </div>
+                  </figcaption>
+                </figure>
+              `
+            )
+            .join("")}
         </div>
+        ${
+          testimonials.length > 1
+            ? `
+              <div class="testimonial-controls">
+                <button class="testimonial-arrow" type="button" data-dir="prev" aria-label="Previous recommendation">←</button>
+                <button class="testimonial-arrow" type="button" data-dir="next" aria-label="Next recommendation">→</button>
+                <span class="testimonial-count" aria-live="polite"></span>
+              </div>
+            `
+            : ""
+        }
       </section>
     `;
   }
@@ -268,18 +267,62 @@
   }
 
   function attachTestimonials() {
-    const card = document.querySelector(".testimonial-card");
-    if (!card) return;
-    const slides = Array.from(card.querySelectorAll(".testimonial-slide"));
+    const carousel = document.querySelector(".testimonial-carousel");
+    if (!carousel) return;
+    const cards = Array.from(carousel.querySelectorAll(".testimonial-card"));
+    const prev = document.querySelector('.testimonial-controls [data-dir="prev"]');
+    const next = document.querySelector('.testimonial-controls [data-dir="next"]');
+    const count = document.querySelector(".testimonial-count");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const pad = (value) => String(value).padStart(2, "0");
     let active = 0;
+    let frame = 0;
 
-    function showSlide(index) {
-      active = (index + slides.length) % slides.length;
-      slides.forEach((slide, slideIndex) => slide.classList.toggle("is-active", slideIndex === active));
+    function nearest() {
+      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+      if (maxScroll > 0 && carousel.scrollLeft >= maxScroll - 2) return cards.length - 1;
+      let best = 0;
+      let bestDistance = Infinity;
+      cards.forEach((card, index) => {
+        const distance = Math.abs(card.offsetLeft - carousel.scrollLeft);
+        if (distance < bestDistance) {
+          best = index;
+          bestDistance = distance;
+        }
+      });
+      return best;
     }
 
-    card.querySelectorAll('[data-dir="prev"]').forEach((button) => button.addEventListener("click", () => showSlide(active - 1)));
-    card.querySelectorAll('[data-dir="next"]').forEach((button) => button.addEventListener("click", () => showSlide(active + 1)));
+    function sync() {
+      frame = 0;
+      active = nearest();
+      cards.forEach((card, index) => card.classList.toggle("is-active", index === active));
+      if (count) count.textContent = `${pad(active + 1)} / ${pad(cards.length)}`;
+      if (prev) prev.disabled = active === 0;
+      if (next) next.disabled = active === cards.length - 1;
+    }
+
+    function go(index) {
+      const target = cards[Math.min(cards.length - 1, Math.max(0, index))];
+      carousel.scrollTo({ left: target.offsetLeft, behavior: reduceMotion.matches ? "auto" : "smooth" });
+    }
+
+    carousel.classList.add("is-ready");
+    if (prev) prev.addEventListener("click", () => go(active - 1));
+    if (next) next.addEventListener("click", () => go(active + 1));
+    carousel.addEventListener(
+      "scroll",
+      () => {
+        if (!frame) frame = window.requestAnimationFrame(sync);
+      },
+      { passive: true }
+    );
+    carousel.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight") { event.preventDefault(); go(active + 1); }
+      if (event.key === "ArrowLeft") { event.preventDefault(); go(active - 1); }
+    });
+    window.addEventListener("resize", sync);
+    sync();
   }
 
   function shell(content) {

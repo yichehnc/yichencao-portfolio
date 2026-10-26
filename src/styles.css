@@ -2214,20 +2214,56 @@ dd {
   }
 }
 
-/* Testimonials: a rounded recommendation card above the footer. */
+/* Testimonials: a swipeable carousel of recommendation cards above the footer. */
 .testimonial-section {
   position: relative;
   z-index: 1;
 }
 
+.testimonial-carousel {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  margin: -16px 0;
+  padding: 16px 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.testimonial-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.testimonial-carousel:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+  border-radius: var(--radius-card);
+}
+
 .testimonial-card {
   position: relative;
-  max-width: 760px;
+  display: flex;
+  flex: 0 0 min(760px, 82%);
+  flex-direction: column;
+  margin: 0;
   padding: 48px 56px;
   border-radius: var(--radius-card);
   background: var(--panel);
   box-shadow: var(--shadow-soft);
   overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.testimonial-carousel.is-ready .testimonial-card {
+  opacity: 0.45;
+  transition: opacity 400ms var(--ease-out);
+}
+
+.testimonial-carousel.is-ready .testimonial-card.is-active {
+  opacity: 1;
 }
 
 .testimonial-card::before {
@@ -2238,25 +2274,6 @@ dd {
   width: 5px;
   height: 100%;
   background: var(--accent);
-}
-
-.testimonial-card-track {
-  position: relative;
-}
-
-.testimonial-slide {
-  display: none;
-  margin: 0;
-}
-
-.testimonial-slide.is-active {
-  display: block;
-  animation: testimonial-fade 320ms var(--ease-out) both;
-}
-
-@keyframes testimonial-fade {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .testimonial-quote {
@@ -2276,12 +2293,15 @@ dd {
   margin-bottom: 0;
 }
 
+.testimonial-quote {
+  margin-bottom: 24px;
+}
+
 .testimonial-footer {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin: 0;
-  margin-top: 24px;
+  margin: auto 0 0;
   padding-top: 20px;
   border-top: 1px solid var(--line);
 }
@@ -2326,10 +2346,19 @@ dd {
   color: var(--ink);
 }
 
-.testimonial-nav {
+.testimonial-controls {
   display: flex;
+  align-items: center;
   gap: 8px;
-  flex-shrink: 0;
+  margin-top: 28px;
+}
+
+.testimonial-count {
+  margin-left: 12px;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: var(--muted);
 }
 
 .testimonial-arrow {
@@ -2352,11 +2381,15 @@ dd {
   transform: translateY(-1px);
 }
 
+.testimonial-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+  border-color: var(--line);
+  transform: none;
+}
+
 @media (max-width: 679px) {
-  .testimonial-card { padding: 32px 24px; }
-  .testimonial-footer { flex-wrap: wrap; }
-  .testimonial-credit { flex-basis: calc(100% - 72px); }
-  .testimonial-nav { margin-left: 72px; }
+  .testimonial-card { flex-basis: 88%; padding: 32px 24px; }
 }
 
 /* Work -> Recommendations transition: a pulse of hairlines travels across a rule. */
@@ -2412,7 +2445,8 @@ dd {
   transition: transform 760ms var(--ease-out) 120ms;
 }
 
-.testimonial-section.reveal-ready .testimonial-card {
+.testimonial-section.reveal-ready .testimonial-carousel,
+.testimonial-section.reveal-ready .testimonial-controls {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 700ms ease 150ms, transform 900ms var(--ease-out) 150ms;
@@ -2424,14 +2458,8 @@ dd {
   transition: transform 700ms var(--ease-out) 150ms;
 }
 
-.testimonial-section.reveal-ready .testimonial-card-track {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 600ms ease 650ms, transform 700ms var(--ease-out) 650ms;
-}
-
 .testimonial-section.reveal-ready.is-revealed .section-heading > span { opacity: 1; }
 .testimonial-section.reveal-ready.is-revealed .reveal-line > span { transform: translateY(0); }
-.testimonial-section.reveal-ready.is-revealed .testimonial-card { opacity: 1; transform: none; }
+.testimonial-section.reveal-ready.is-revealed .testimonial-carousel,
+.testimonial-section.reveal-ready.is-revealed .testimonial-controls { opacity: 1; transform: none; }
 .testimonial-section.reveal-ready.is-revealed .testimonial-card::before { transform: scaleY(1); }
-.testimonial-section.reveal-ready.is-revealed .testimonial-card-track { opacity: 1; transform: none; }
