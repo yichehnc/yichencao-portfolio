@@ -137,7 +137,7 @@
       <section class="testimonial-section section-shell" aria-labelledby="testimonial-title">
         <div class="section-heading">
           <span>02</span>
-          <h2 id="testimonial-title">Recommendations</h2>
+          <h2 id="testimonial-title"><span class="reveal-line"><span>Recommendations</span></span></h2>
         </div>
         <div class="testimonial-card" data-count="${testimonials.length}">
           <div class="testimonial-card-track" id="testimonial-track">
@@ -183,6 +183,63 @@
         </div>
       </section>
     `;
+  }
+
+  // Work -> Recommendations: a scroll-scrubbed rule + rolling disc, then a staged reveal.
+  function attachSectionTransitions() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const section = document.querySelector(".testimonial-section");
+    if (section) {
+      section.classList.add("reveal-ready");
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            if (entries.some((entry) => entry.isIntersecting)) {
+              section.classList.add("is-revealed");
+              observer.disconnect();
+            }
+          },
+          { threshold: 0.15 }
+        );
+        observer.observe(section);
+      } else {
+        section.classList.add("is-revealed");
+      }
+    }
+
+    const divider = document.querySelector(".section-transition");
+    const roller = divider && divider.querySelector(".st-roller");
+    if (!divider || !roller) return;
+
+    const clamp = (value) => Math.min(1, Math.max(0, value));
+    const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+    const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+    let frame = 0;
+
+    function update() {
+      frame = 0;
+      const bounds = divider.getBoundingClientRect();
+      const viewport = window.innerHeight || 1;
+      const center = bounds.top + bounds.height / 2;
+      const progress = clamp((viewport * 0.95 - center) / (viewport * 0.55));
+      const roll = easeInOut(clamp((progress - 0.12) / 0.88));
+      const size = roller.offsetWidth || 44;
+      const travel = Math.max(0, divider.clientWidth - size - 10) * roll;
+      const spin = (travel / (size / 2)) * (180 / Math.PI);
+      divider.style.setProperty("--rule", easeOut(clamp(progress * 1.6)).toFixed(4));
+      divider.style.setProperty("--roll", roll.toFixed(4));
+      divider.style.setProperty("--spin", `${spin.toFixed(1)}deg`);
+      divider.style.setProperty("--pop", clamp((roll - 0.3) / 0.25).toFixed(4));
+    }
+
+    function request() {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    }
+
+    window.addEventListener("scroll", request, { passive: true });
+    window.addEventListener("resize", request);
+    update();
   }
 
   function attachTestimonials() {
@@ -493,6 +550,12 @@
           <div id="primary-projects" class="project-grid" aria-live="polite"></div>
           <button class="project-more-toggle filter-pill" type="button" aria-expanded="false" aria-controls="primary-projects" hidden>Show more works</button>
         </section>
+        <div class="section-transition" aria-hidden="true">
+          <span class="st-rule"></span>
+          <span class="st-hoop"></span>
+          <span class="st-roller"><i></i></span>
+          <span class="st-stopper"></span>
+        </div>
         ${renderTestimonials()}
       </main>
     `);
@@ -501,6 +564,7 @@
     updateFilterButtons();
     attachHeroWordplay();
     attachTestimonials();
+    attachSectionTransitions();
 
     document.querySelector(".project-more-toggle").addEventListener("click", () => {
       moreProjectsExpanded = !moreProjectsExpanded;

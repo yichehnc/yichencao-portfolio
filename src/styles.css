@@ -2358,3 +2358,134 @@ dd {
   .testimonial-credit { flex-basis: calc(100% - 72px); }
   .testimonial-nav { margin-left: 72px; }
 }
+
+/* Work -> Recommendations transition: a drawn rule with a disc that rolls through a hoop. */
+.section-transition {
+  --rule: 1;
+  --roll: 1;
+  --pop: 1;
+  --spin: 1080deg;
+  --roller: 44px;
+  --hoop: 64px;
+  --stopper: 56px;
+  position: relative;
+  height: clamp(110px, 13vw, 150px);
+  margin: -24px 0;
+  pointer-events: none;
+}
+
+.st-rule {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--ink);
+  transform: scaleX(var(--rule));
+  transform-origin: left center;
+}
+
+.st-hoop {
+  position: absolute;
+  top: calc(50% - var(--hoop));
+  left: calc(50% - var(--hoop) / 2);
+  width: var(--hoop);
+  height: var(--hoop);
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  transform: scale(var(--pop));
+  transform-origin: center bottom;
+  opacity: var(--pop);
+}
+
+.st-roller {
+  position: absolute;
+  top: calc(50% - var(--roller));
+  left: calc((100% - var(--roller) - 10px) * var(--roll));
+  width: var(--roller);
+  height: var(--roller);
+  border-radius: 50%;
+  background: var(--ink);
+  transform: rotate(var(--spin));
+}
+
+.st-roller i {
+  position: absolute;
+  top: 6px;
+  left: calc(50% - 3.5px);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.st-stopper {
+  position: absolute;
+  right: 0;
+  top: calc(50% - var(--stopper));
+  width: 6px;
+  height: var(--stopper);
+  background: var(--ink);
+  transform: scaleY(var(--pop));
+  transform-origin: center bottom;
+}
+
+@media (max-width: 679px) {
+  .section-transition {
+    --roller: 34px;
+    --hoop: 50px;
+    --stopper: 44px;
+  }
+}
+
+/* Staged reveal once the Recommendations section scrolls into view. */
+.testimonial-section .reveal-line {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+}
+
+.testimonial-section .reveal-line > span {
+  display: inline-block;
+}
+
+.testimonial-section .reveal-line,
+.testimonial-section .reveal-line > span {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.testimonial-section.reveal-ready .section-heading > span {
+  opacity: 0;
+  transition: opacity 500ms var(--ease-out);
+}
+
+.testimonial-section.reveal-ready .reveal-line > span {
+  transform: translateY(110%);
+  transition: transform 760ms var(--ease-out) 120ms;
+}
+
+.testimonial-section.reveal-ready .testimonial-card {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1000ms cubic-bezier(0.77, 0, 0.18, 1) 200ms;
+}
+
+.testimonial-section.reveal-ready .testimonial-card::before {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 700ms var(--ease-out) 150ms;
+}
+
+.testimonial-section.reveal-ready .testimonial-card-track {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 600ms ease 650ms, transform 700ms var(--ease-out) 650ms;
+}
+
+.testimonial-section.reveal-ready.is-revealed .section-heading > span { opacity: 1; }
+.testimonial-section.reveal-ready.is-revealed .reveal-line > span { transform: translateY(0); }
+.testimonial-section.reveal-ready.is-revealed .testimonial-card { clip-path: inset(-60px); }
+.testimonial-section.reveal-ready.is-revealed .testimonial-card::before { transform: scaleY(1); }
+.testimonial-section.reveal-ready.is-revealed .testimonial-card-track { opacity: 1; transform: none; }
