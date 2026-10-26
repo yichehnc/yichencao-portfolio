@@ -2260,22 +2260,12 @@ dd {
 }
 
 .testimonial-quote {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 6;
-  overflow: hidden;
   margin: 0;
   font-family: Georgia, serif;
-  font-size: clamp(20px, 2.1vw, 26px);
-  line-height: 1.42;
+  font-size: clamp(15px, 1.35vw, 17px);
+  line-height: 1.55;
   letter-spacing: -0.01em;
   color: var(--ink);
-}
-
-.testimonial-slide.is-expanded .testimonial-quote {
-  display: block;
-  -webkit-line-clamp: unset;
-  overflow: visible;
 }
 
 .testimonial-quote p {
@@ -2286,39 +2276,13 @@ dd {
   margin-bottom: 0;
 }
 
-.testimonial-more {
-  display: inline-flex;
-  align-items: center;
-  margin-top: 20px;
-  padding: 7px 18px;
-  border: none;
-  border-radius: var(--radius-pill);
-  background: var(--line);
-  color: var(--ink);
-  font: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background var(--motion-fast) var(--ease-out);
-}
-
-.testimonial-more[hidden] {
-  display: none;
-}
-
-.testimonial-more:hover,
-.testimonial-more:focus-visible {
-  background: var(--accent);
-  color: var(--white);
-}
-
 .testimonial-footer {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 24px;
   margin: 0;
-  margin-top: 28px;
+  margin-top: 24px;
   padding-top: 20px;
   border-top: 1px solid var(--line);
 }
