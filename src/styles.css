@@ -2302,6 +2302,10 @@ dd {
   transition: background var(--motion-fast) var(--ease-out);
 }
 
+.testimonial-more[hidden] {
+  display: none;
+}
+
 .testimonial-more:hover,
 .testimonial-more:focus-visible {
   background: var(--accent);

@@ -550,6 +550,25 @@ window.PORTFOLIO_COMING_SOON = [];
 window.PORTFOLIO_TESTIMONIALS = [
   {
     quote: [
+      "I had the privilege of working with Yichen while she worked as a Product Engineer at MLAI. Yichen operates with rare ownership and agency. She consistently took initiative, shipped solutions, and iterated quickly.",
+      "What impressed me most was her ability to navigate through ambiguity, making thoughtful decisions, and executing with both speed and craftsmanship. A builder paired with strong product instinct and taste. Any team working at the frontier of AI-native product and tech would be lucky to have her.",
+    ],
+    name: "Dr Sam Donegan",
+    role: "Medical Doctor, Full-Stack/AI Engineer and Entrepreneur",
+    relationship: "Managed Yichen directly",
+    sourceUrl: "https://www.linkedin.com/in/ycaoc/details/recommendations/",
+  },
+  {
+    quote: [
+      "YiChen is a very talented professional with a versatile skillset from design to coding. Articulate, YiChen has a unique ability to connect/listen and structure a well organised delivery, like she did for her group portfolio project at Holberton.",
+    ],
+    name: "Emmanuel Goutallier",
+    role: "Executive Partner @ onepoint · Consulting, Transformation, Technology · EdTech, CareTech",
+    relationship: "Was Yichen's mentor",
+    sourceUrl: "https://www.linkedin.com/in/ycaoc/details/recommendations/",
+  },
+  {
+    quote: [
       "Yichen strikes me as an outstanding individual with great knowledge, drive and excellent interpersonal skills (which all are pivotal for this subject). She has a great attitude towards fulfilling the tasks at hand, and she operates at the highest level both individually, as well as within our team. She remains professional yet at the same time highly personable in her interactions with students and her collaborators.",
       "I can highly recommend Yichen as an addition to any work environment that focuses on design excellence, in particular if supported by digital means.",
     ],

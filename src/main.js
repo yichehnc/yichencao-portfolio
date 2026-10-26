@@ -153,7 +153,7 @@
                         )
                         .join("")}
                     </blockquote>
-                    ${item.quote.join(" ").length > 220 ? `<button class="testimonial-more" type="button" aria-expanded="false">Read more</button>` : ""}
+                    <button class="testimonial-more" type="button" aria-expanded="false" hidden>Read more</button>
                     <figcaption class="testimonial-footer">
                       <div class="testimonial-credit">
                         <span class="testimonial-name">${item.name}</span>
@@ -191,10 +191,22 @@
     const slides = Array.from(card.querySelectorAll(".testimonial-slide"));
     let active = 0;
 
+    function syncMore(slide) {
+      const quote = slide.querySelector(".testimonial-quote");
+      const button = slide.querySelector(".testimonial-more");
+      if (!quote || !button) return;
+      const clamped = quote.scrollHeight > quote.clientHeight + 1;
+      button.hidden = !clamped && !slide.classList.contains("is-expanded");
+    }
+
     function showSlide(index) {
       active = (index + slides.length) % slides.length;
       slides.forEach((slide, slideIndex) => slide.classList.toggle("is-active", slideIndex === active));
+      syncMore(slides[active]);
     }
+
+    syncMore(slides[active]);
+    window.addEventListener("resize", () => syncMore(slides[active]));
 
     card.querySelectorAll('[data-dir="prev"]').forEach((button) => button.addEventListener("click", () => showSlide(active - 1)));
     card.querySelectorAll('[data-dir="next"]').forEach((button) => button.addEventListener("click", () => showSlide(active + 1)));
