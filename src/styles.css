@@ -2278,16 +2278,25 @@ dd {
 
 .testimonial-footer {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
+  align-items: center;
+  gap: 16px;
   margin: 0;
   margin-top: 24px;
   padding-top: 20px;
   border-top: 1px solid var(--line);
 }
 
+.testimonial-avatar {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--line);
+}
+
 .testimonial-credit {
+  flex: 1;
   display: grid;
   gap: 4px;
   font-size: 14px;
@@ -2345,5 +2354,7 @@ dd {
 
 @media (max-width: 679px) {
   .testimonial-card { padding: 32px 24px; }
-  .testimonial-footer { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .testimonial-footer { flex-wrap: wrap; }
+  .testimonial-credit { flex-basis: calc(100% - 72px); }
+  .testimonial-nav { margin-left: 72px; }
 }

@@ -137,7 +137,7 @@
       <section class="testimonial-section section-shell" aria-labelledby="testimonial-title">
         <div class="section-heading">
           <span>02</span>
-          <h2 id="testimonial-title">Kind words</h2>
+          <h2 id="testimonial-title">Recommendations</h2>
         </div>
         <div class="testimonial-card" data-count="${testimonials.length}">
           <div class="testimonial-card-track" id="testimonial-track">
@@ -154,6 +154,7 @@
                         .join("")}
                     </blockquote>
                     <figcaption class="testimonial-footer">
+                      ${item.photo ? `<img class="testimonial-avatar" src="${assetUrl(item.photo)}" alt="${item.name}" width="56" height="56" loading="lazy" decoding="async" />` : ""}
                       <div class="testimonial-credit">
                         <span class="testimonial-name">${item.name}</span>
                         <span class="testimonial-role">${item.role}</span>
