@@ -184,6 +184,16 @@
     { fx: 0.16, fy: 0.36, w: 24, mx: 0.25, my: 0.38, mw: 44 },
   ];
 
+  // Logo tiles sit on the corners of the screenshots so they overlap slightly.
+  const logoLayout = [
+    { fx: -0.165, fy: -0.2, mx: -0.02, my: -0.27 },
+    { fx: 0.255, fy: -0.17, mx: 0.13, my: -0.17 },
+    { fx: -0.29, fy: 0.15, hideMobile: true },
+    { fx: 0.3, fy: 0.03, hideMobile: true },
+    { fx: -0.085, fy: 0.25, mx: -0.07, my: 0.25 },
+    { fx: 0.085, fy: 0.3, mx: 0.07, my: 0.29 },
+  ];
+
   function renderStats() {
     if (!stats.beats.length) return "";
     const items = stats.collage
@@ -199,6 +209,16 @@
           </span>`;
       })
       .join("");
+    const logoItems = (stats.logos || [])
+      .map((name, index) => {
+        const layout = logoLayout[index % logoLayout.length];
+        return `
+          <span class="stat-item stat-logo" style="--aspect: 1 / 1"
+            data-fx="${layout.fx}" data-fy="${layout.fy}" data-mx="${layout.mx ?? layout.fx}" data-my="${layout.my ?? layout.fy}"${layout.hideMobile ? " data-hide-mobile" : ""}>
+            <img src="${assetUrl(`assets/stats/logos/${name}.webp`)}" alt="" loading="lazy" decoding="async" draggable="false" />
+          </span>`;
+      })
+      .join("");
     const beats = stats.beats
       .map((beat) =>
         beat.type === "headline"
@@ -211,7 +231,7 @@
     return `
       <section class="stat-section" aria-label="Impact highlights">
         <div class="stat-stage">
-          <div class="stat-collage" aria-hidden="true">${items}</div>
+          <div class="stat-collage" aria-hidden="true">${items}${logoItems}</div>
           <div class="stat-beats">${beats}</div>
         </div>
       </section>

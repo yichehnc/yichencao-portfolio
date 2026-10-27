@@ -2459,6 +2459,12 @@ dd {
   box-shadow: var(--shadow-soft);
 }
 
+.stat-logo {
+  width: 56px;
+  border-radius: 22%;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.16), 0 0 0 3px var(--paper);
+}
+
 .stat-item img {
   display: block;
   width: 100%;
@@ -2576,11 +2582,17 @@ dd {
   will-change: transform;
 }
 
+.stat-section.is-live .stat-logo {
+  width: clamp(44px, 5.2vw, 76px);
+  z-index: 2;
+}
+
 .stat-section.is-live .stat-item img {
   will-change: transform;
 }
 
 @media (max-width: 679px) {
   .stat-section.is-live .stat-item { width: calc(var(--mw) * 1%); }
+  .stat-section.is-live .stat-logo { width: 42px; }
   .stat-section.is-live .stat-item[data-hide-mobile] { display: none; }
 }

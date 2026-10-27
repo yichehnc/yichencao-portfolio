@@ -555,6 +555,8 @@ window.PORTFOLIO_STATS = {
     { type: "headline", text: "Built an AI-native pipeline" },
   ],
   // A string is a project slug (uses its card image); an object brings its own image.
+  // Small tool tiles that overlap the screenshots.
+  logos: ["spiral", "cloud-terminal", "openai", "slack", "github", "linear"],
   collage: [
     "mlai-founder-tools",
     "relish",
