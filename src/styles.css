@@ -2223,7 +2223,7 @@ dd {
 .testimonial-carousel {
   position: relative;
   display: flex;
-  gap: 40px;
+  gap: 16px;
   margin: 0;
   padding: 0;
   overflow-x: auto;
@@ -2255,20 +2255,22 @@ dd {
 
 .testimonial-card {
   display: flex;
-  flex: 0 0 min(440px, 80%);
+  flex: 0 0 min(420px, 80%);
   flex-direction: column;
   margin: 0;
-  padding: 28px 24px 0 0;
-  border-top: 1px solid var(--ink);
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--paper);
   scroll-snap-align: start;
 }
 
 .testimonial-quote {
-  margin: 0;
-  font-family: Georgia, serif;
-  font-size: clamp(15px, 1.2vw, 16px);
+  margin: 0 0 28px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
   line-height: 1.6;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   color: var(--ink);
 }
 
@@ -2278,10 +2280,6 @@ dd {
 
 .testimonial-quote p:last-child {
   margin-bottom: 0;
-}
-
-.testimonial-quote {
-  margin-bottom: 24px;
 }
 
 .testimonial-footer {
@@ -2332,7 +2330,7 @@ dd {
 }
 
 @media (max-width: 679px) {
-  .testimonial-card { flex-basis: 84%; padding: 24px 16px 0 0; }
+  .testimonial-card { flex-basis: 84%; padding: 24px; }
 }
 
 /* Work -> Recommendations transition: a pulse of hairlines travels across a rule. */

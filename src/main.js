@@ -772,16 +772,21 @@
       // Keep older work last, but distribute every visible card through the same waterfall.
       const primary = matches.filter((project) => activeFilter !== "All" || !project.secondary);
       const secondary = activeFilter === "All" ? matches.filter((project) => project.secondary) : [];
-      const canCollapse = columnCount() < 3 && primary.length > 0 && secondary.length > 0;
+      const phone = window.matchMedia("(max-width: 679px)").matches;
+      const ordered = [...primary, ...secondary];
+      // Phones show six projects; tablets fold the older work; desktop shows everything.
+      const collapsed = phone ? ordered.slice(0, 6) : primary;
+      const canCollapse = phone ? ordered.length > 6 : columnCount() < 3 && primary.length > 0 && secondary.length > 0;
+      const hiddenCount = ordered.length - collapsed.length;
       const expanded = !canCollapse || moreProjectsExpanded;
-      const visible = expanded ? [...primary, ...secondary] : primary;
+      const visible = expanded ? ordered : collapsed;
 
       grid.innerHTML = visible.length ? masonryMarkup(visible)
         : `<p class="empty-filter">No works match ${activeFilter} yet.</p>`;
       grid.dataset.columns = String(columnCount());
       toggle.hidden = !canCollapse;
       toggle.setAttribute("aria-expanded", String(expanded));
-      toggle.textContent = expanded ? "Show fewer works" : `Show more works (${secondary.length})`;
+      toggle.textContent = expanded ? "Show fewer works" : `Show more works (${hiddenCount})`;
     }
 
     function updateFilterButtons() {
