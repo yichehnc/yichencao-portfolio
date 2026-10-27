@@ -2233,6 +2233,21 @@ dd {
   -webkit-overflow-scrolling: touch;
 }
 
+.testimonial-carousel {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 1.5%, #000 98.5%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 1.5%, #000 98.5%, transparent);
+}
+
+.testimonial-carousel.is-marquee {
+  scroll-snap-type: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.testimonial-carousel.is-marquee.is-dragging {
+  cursor: grabbing;
+}
+
 .testimonial-carousel::-webkit-scrollbar {
   display: none;
 }
@@ -2246,7 +2261,7 @@ dd {
 .testimonial-card {
   position: relative;
   display: flex;
-  flex: 0 0 min(760px, 82%);
+  flex: 0 0 min(640px, 82%);
   flex-direction: column;
   margin: 0;
   padding: 48px 56px;
@@ -2255,15 +2270,6 @@ dd {
   box-shadow: var(--shadow-soft);
   overflow: hidden;
   scroll-snap-align: start;
-}
-
-.testimonial-carousel.is-ready .testimonial-card {
-  opacity: 0.45;
-  transition: opacity 400ms var(--ease-out);
-}
-
-.testimonial-carousel.is-ready .testimonial-card.is-active {
-  opacity: 1;
 }
 
 .testimonial-card::before {
@@ -2346,48 +2352,6 @@ dd {
   color: var(--ink);
 }
 
-.testimonial-controls {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 28px;
-}
-
-.testimonial-count {
-  margin-left: 12px;
-  font-size: 14px;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.04em;
-  color: var(--muted);
-}
-
-.testimonial-arrow {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  background: var(--white);
-  color: var(--ink);
-  font-size: 15px;
-  cursor: pointer;
-  transition: background var(--motion-fast) var(--ease-out), border-color var(--motion-fast) var(--ease-out), transform var(--motion-fast) var(--ease-out);
-}
-
-.testimonial-arrow:hover,
-.testimonial-arrow:focus-visible {
-  border-color: var(--ink);
-  transform: translateY(-1px);
-}
-
-.testimonial-arrow:disabled {
-  opacity: 0.35;
-  cursor: default;
-  border-color: var(--line);
-  transform: none;
-}
-
 @media (max-width: 679px) {
   .testimonial-card { flex-basis: 88%; padding: 32px 24px; }
 }
@@ -2445,8 +2409,7 @@ dd {
   transition: transform 760ms var(--ease-out) 120ms;
 }
 
-.testimonial-section.reveal-ready .testimonial-carousel,
-.testimonial-section.reveal-ready .testimonial-controls {
+.testimonial-section.reveal-ready .testimonial-carousel {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 700ms ease 150ms, transform 900ms var(--ease-out) 150ms;
@@ -2460,8 +2423,7 @@ dd {
 
 .testimonial-section.reveal-ready.is-revealed .section-heading > span { opacity: 1; }
 .testimonial-section.reveal-ready.is-revealed .reveal-line > span { transform: translateY(0); }
-.testimonial-section.reveal-ready.is-revealed .testimonial-carousel,
-.testimonial-section.reveal-ready.is-revealed .testimonial-controls { opacity: 1; transform: none; }
+.testimonial-section.reveal-ready.is-revealed .testimonial-carousel { opacity: 1; transform: none; }
 .testimonial-section.reveal-ready.is-revealed .testimonial-card::before { transform: scaleY(1); }
 
 /* Pinned stat section: static by default, becomes a scroll-scrubbed stage when JS adds .is-live. */

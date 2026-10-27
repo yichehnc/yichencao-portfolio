@@ -170,17 +170,6 @@
             )
             .join("")}
         </div>
-        ${
-          testimonials.length > 1
-            ? `
-              <div class="testimonial-controls">
-                <button class="testimonial-arrow" type="button" data-dir="prev" aria-label="Previous recommendation">←</button>
-                <button class="testimonial-arrow" type="button" data-dir="next" aria-label="Next recommendation">→</button>
-                <span class="testimonial-count" aria-live="polite"></span>
-              </div>
-            `
-            : ""
-        }
       </section>
     `;
   }
@@ -406,60 +395,122 @@
   function attachTestimonials() {
     const carousel = document.querySelector(".testimonial-carousel");
     if (!carousel) return;
-    const cards = Array.from(carousel.querySelectorAll(".testimonial-card"));
-    const prev = document.querySelector('.testimonial-controls [data-dir="prev"]');
-    const next = document.querySelector('.testimonial-controls [data-dir="next"]');
-    const count = document.querySelector(".testimonial-count");
+    const cards = Array.from(carousel.children);
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const pad = (value) => String(value).padStart(2, "0");
-    let active = 0;
-    let frame = 0;
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 
-    function nearest() {
-      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-      if (maxScroll > 0 && carousel.scrollLeft >= maxScroll - 2) return cards.length - 1;
-      let best = 0;
-      let bestDistance = Infinity;
-      cards.forEach((card, index) => {
-        const distance = Math.abs(card.offsetLeft - carousel.scrollLeft);
-        if (distance < bestDistance) {
-          best = index;
-          bestDistance = distance;
-        }
-      });
-      return best;
+    function stepBy(direction) {
+      const card = carousel.querySelector(".testimonial-card");
+      const step = card ? card.getBoundingClientRect().width + 20 : 300;
+      carousel.scrollBy({ left: direction * step, behavior: reduceMotion.matches ? "auto" : "smooth" });
     }
 
-    function sync() {
-      frame = 0;
-      active = nearest();
-      cards.forEach((card, index) => card.classList.toggle("is-active", index === active));
-      if (count) count.textContent = `${pad(active + 1)} / ${pad(cards.length)}`;
-      if (prev) prev.disabled = active === 0;
-      if (next) next.disabled = active === cards.length - 1;
-    }
-
-    function go(index) {
-      const target = cards[Math.min(cards.length - 1, Math.max(0, index))];
-      carousel.scrollTo({ left: target.offsetLeft, behavior: reduceMotion.matches ? "auto" : "smooth" });
-    }
-
-    carousel.classList.add("is-ready");
-    if (prev) prev.addEventListener("click", () => go(active - 1));
-    if (next) next.addEventListener("click", () => go(active + 1));
-    carousel.addEventListener(
-      "scroll",
-      () => {
-        if (!frame) frame = window.requestAnimationFrame(sync);
-      },
-      { passive: true }
-    );
     carousel.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowRight") { event.preventDefault(); go(active + 1); }
-      if (event.key === "ArrowLeft") { event.preventDefault(); go(active - 1); }
+      if (event.key === "ArrowRight") { event.preventDefault(); stepBy(1); }
+      if (event.key === "ArrowLeft") { event.preventDefault(); stepBy(-1); }
     });
-    window.addEventListener("resize", sync);
-    sync();
+
+    // Touch and reduced-motion visitors: plain swipe / scroll with snapping.
+    if (!finePointer.matches || reduceMotion.matches || cards.length < 2) return;
+
+    // Desktop: the row drifts on its own, loops forever, and can be dragged or scrolled by hand.
+    cards.forEach((card) => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      clone.setAttribute("inert", "");
+      carousel.appendChild(clone);
+    });
+    carousel.classList.add("is-marquee");
+
+    const speed = 28; // px per second
+    let setWidth = 0;
+    let position = 0;
+    let last = 0;
+    let hovering = false;
+    let focused = false;
+    let dragging = false;
+    let visible = true;
+    let resumeAt = 0;
+
+    function measure() {
+      const first = carousel.children[0];
+      const firstClone = carousel.children[cards.length];
+      setWidth = firstClone.offsetLeft - first.offsetLeft;
+    }
+
+    function wrap() {
+      if (!setWidth) return;
+      if (carousel.scrollLeft >= setWidth) {
+        carousel.scrollLeft -= setWidth;
+        position = carousel.scrollLeft;
+      } else if (carousel.scrollLeft <= 0 && (dragging || performance.now() < resumeAt)) {
+        carousel.scrollLeft = setWidth;
+        position = setWidth;
+      }
+    }
+
+    function loop(now) {
+      const dt = Math.min(64, now - (last || now));
+      last = now;
+      const paused = hovering || focused || dragging || now < resumeAt || !visible || document.hidden;
+      if (!paused) {
+        position += (speed * dt) / 1000;
+        if (position >= setWidth) position -= setWidth;
+        carousel.scrollLeft = position;
+      }
+      window.requestAnimationFrame(loop);
+    }
+
+    // Manual scrolling (trackpad, wheel, scrollbar-less drag) hands control to the user for a moment.
+    carousel.addEventListener("scroll", () => {
+      if (hovering || focused || dragging || performance.now() < resumeAt) position = carousel.scrollLeft;
+      wrap();
+    }, { passive: true });
+    carousel.addEventListener("wheel", () => { resumeAt = performance.now() + 1800; }, { passive: true });
+    carousel.addEventListener("pointerenter", () => { hovering = true; });
+    carousel.addEventListener("pointerleave", () => { hovering = false; resumeAt = performance.now() + 600; });
+    carousel.addEventListener("focusin", () => { focused = true; });
+    carousel.addEventListener("focusout", () => { focused = false; });
+
+    let startX = 0;
+    let startLeft = 0;
+    let moved = 0;
+    carousel.addEventListener("pointerdown", (event) => {
+      if (event.pointerType !== "mouse" || event.button !== 0) return;
+      dragging = true;
+      moved = 0;
+      startX = event.clientX;
+      startLeft = carousel.scrollLeft;
+      carousel.classList.add("is-dragging");
+      carousel.setPointerCapture(event.pointerId);
+    });
+    carousel.addEventListener("pointermove", (event) => {
+      if (!dragging) return;
+      const delta = event.clientX - startX;
+      moved = Math.max(moved, Math.abs(delta));
+      let next = startLeft - delta;
+      if (next <= 0) { startLeft += setWidth; next += setWidth; }
+      if (next >= setWidth) { startLeft -= setWidth; next -= setWidth; }
+      carousel.scrollLeft = next;
+    });
+    function endDrag() {
+      if (!dragging) return;
+      dragging = false;
+      resumeAt = performance.now() + 1500;
+      carousel.classList.remove("is-dragging");
+    }
+    carousel.addEventListener("pointerup", endDrag);
+    carousel.addEventListener("pointercancel", endDrag);
+    carousel.addEventListener("click", (event) => {
+      if (moved > 5) { event.preventDefault(); event.stopPropagation(); moved = 0; }
+    }, true);
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver((entries) => { visible = entries.some((entry) => entry.isIntersecting); }).observe(carousel);
+    }
+    window.addEventListener("resize", () => { measure(); wrap(); });
+    measure();
+    window.requestAnimationFrame(loop);
   }
 
   function shell(content) {
