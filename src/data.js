@@ -547,6 +547,15 @@ window.PORTFOLIO_PROJECTS = [
 
 window.PORTFOLIO_COMING_SOON = [];
 
+window.PORTFOLIO_STATS = {
+  beats: [
+    { type: "count", value: 80, suffix: "+", caption: "customer adoption, scaled from 0" },
+    { type: "count", value: 200, suffix: "+", caption: "updates shipped" },
+    { type: "headline", text: "Built an AI-native pipeline" },
+  ],
+  collage: ["mlai-founder-tools", "relish", "carevo", "cloud-mind", "plantasia", "plottiq-site-compare"],
+};
+
 window.PORTFOLIO_TESTIMONIALS = [
   {
     quote: [

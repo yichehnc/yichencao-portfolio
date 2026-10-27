@@ -2463,3 +2463,131 @@ dd {
 .testimonial-section.reveal-ready.is-revealed .testimonial-carousel,
 .testimonial-section.reveal-ready.is-revealed .testimonial-controls { opacity: 1; transform: none; }
 .testimonial-section.reveal-ready.is-revealed .testimonial-card::before { transform: scaleY(1); }
+
+/* Pinned stat section: static by default, becomes a scroll-scrubbed stage when JS adds .is-live. */
+.stat-section {
+  position: relative;
+  z-index: 1;
+}
+
+.stat-stage {
+  display: grid;
+  gap: 56px;
+  padding: 96px 0;
+}
+
+.stat-beats {
+  display: grid;
+  gap: 48px;
+  text-align: center;
+  order: -1;
+}
+
+.stat-collage {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.stat-item {
+  display: block;
+  aspect-ratio: var(--aspect);
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.stat-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.stat-number {
+  margin: 0;
+  font-size: clamp(88px, 14vw, 200px);
+  font-weight: 560;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-plus {
+  color: var(--accent);
+}
+
+.stat-caption {
+  margin: 14px 0 0;
+  font-size: clamp(18px, 2vw, 26px);
+  color: var(--soft-ink);
+}
+
+.stat-headline {
+  max-width: 12ch;
+  margin: 0 auto;
+  font-size: clamp(38px, 5.4vw, 78px);
+  text-wrap: balance;
+  font-weight: 560;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.stat-section.is-live {
+  height: 320vh;
+  height: 320svh;
+}
+
+.stat-section.is-live .stat-stage {
+  position: sticky;
+  top: 0;
+  display: block;
+  height: 100vh;
+  height: 100svh;
+  padding: 0;
+  overflow: hidden;
+}
+
+.stat-section.is-live .stat-beats {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  gap: 0;
+  padding: 0 16px;
+  pointer-events: none;
+}
+
+.stat-section.is-live .stat-beat {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.stat-section.is-live .stat-collage {
+  position: absolute;
+  inset: 0;
+  display: block;
+  pointer-events: none;
+}
+
+.stat-section.is-live .stat-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--w) * 1%);
+  translate: -50% -50%;
+  opacity: 0;
+  will-change: transform;
+}
+
+.stat-section.is-live .stat-item img {
+  will-change: transform;
+}
+
+@media (max-width: 679px) {
+  .stat-section.is-live .stat-item { width: calc(var(--mw) * 1%); }
+  .stat-section.is-live .stat-item[data-hide-mobile] { display: none; }
+}

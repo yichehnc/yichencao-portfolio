@@ -5,6 +5,7 @@
   const background = window.PORTFOLIO_BACKGROUND || [];
   const profile = window.PORTFOLIO_PROFILE || {};
   const testimonials = window.PORTFOLIO_TESTIMONIALS || [];
+  const stats = window.PORTFOLIO_STATS || { beats: [], collage: [] };
   const app = document.querySelector("#app");
   const currentPath = window.location.pathname.replace(/\/index\.html$/, "").replace(/\/+$/, "");
   const currentPathLower = currentPath.toLowerCase();
@@ -182,6 +183,143 @@
         }
       </section>
     `;
+  }
+
+  // Pinned stat section: scale story told over a collage of work snapshots.
+  const statLayout = [
+    { fx: -0.3, fy: -0.3, w: 28, mx: -0.2, my: -0.36, mw: 46 },
+    { fx: 0.33, fy: -0.26, w: 17, mx: 0.28, my: -0.3, mw: 32 },
+    { fx: -0.38, fy: 0.06, w: 20, hideMobile: true },
+    { fx: 0.37, fy: 0.12, w: 18, hideMobile: true },
+    { fx: -0.17, fy: 0.33, w: 20, mx: -0.24, my: 0.34, mw: 38 },
+    { fx: 0.16, fy: 0.36, w: 24, mx: 0.25, my: 0.38, mw: 44 },
+  ];
+
+  function renderStats() {
+    if (!stats.beats.length) return "";
+    const items = stats.collage
+      .map((slug) => projects.find((project) => project.slug === slug))
+      .filter(Boolean)
+      .map((project, index) => {
+        const layout = statLayout[index % statLayout.length];
+        const aspect = String(project.aspect || "4 / 3");
+        return `
+          <span class="stat-item" style="--w: ${layout.w}; --mw: ${layout.mw || 40}; --aspect: ${aspect}"
+            data-fx="${layout.fx}" data-fy="${layout.fy}" data-mx="${layout.mx ?? layout.fx}" data-my="${layout.my ?? layout.fy}"${layout.hideMobile ? " data-hide-mobile" : ""}>
+            <img src="${assetUrl(project.cardImage || project.image)}" alt="" loading="lazy" decoding="async" draggable="false" />
+          </span>`;
+      })
+      .join("");
+    const beats = stats.beats
+      .map((beat) =>
+        beat.type === "headline"
+          ? `<div class="stat-beat"><h2 class="stat-headline">${beat.text}</h2></div>`
+          : `<div class="stat-beat"><p class="stat-number"><span data-count="${beat.value}">${beat.value}</span><span class="stat-plus">${beat.suffix || ""}</span></p><p class="stat-caption">${beat.caption}</p></div>`
+      )
+      .join("");
+    return `
+      <section class="stat-section" aria-label="Impact highlights">
+        <div class="stat-stage">
+          <div class="stat-collage" aria-hidden="true">${items}</div>
+          <div class="stat-beats">${beats}</div>
+        </div>
+      </section>
+    `;
+  }
+
+  function attachStats() {
+    const section = document.querySelector(".stat-section");
+    if (!section) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!(window.CSS && CSS.supports("position", "sticky"))) return;
+
+    const stage = section.querySelector(".stat-stage");
+    const items = Array.from(section.querySelectorAll(".stat-item"));
+    const beatEls = Array.from(section.querySelectorAll(".stat-beat"));
+    const mobile = window.matchMedia("(max-width: 679px)");
+    const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+    const seg = (p, a, b) => clamp((p - a) / (b - a));
+    const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+    const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+    const speeds = [-1, 1, -0.6, 0.8, -0.9, 0.7];
+    // in / out / count windows (0-1 of the pinned scroll) for each beat
+    const timeline = [
+      { in: [0, 0.14], out: [0.38, 0.48], count: [0, 0.34] },
+      { in: [0.46, 0.58], out: [0.7, 0.78], count: [0.46, 0.66] },
+      { in: [0.78, 0.9], out: null, count: null },
+    ];
+
+    section.classList.add("is-live");
+    let width = 0;
+    let height = 0;
+    let target = 0;
+    let shown = 0;
+    let frame = 0;
+
+    function measure() {
+      width = stage.clientWidth;
+      height = stage.clientHeight;
+    }
+
+    function readTarget() {
+      const rect = section.getBoundingClientRect();
+      const total = section.offsetHeight - stage.offsetHeight;
+      target = total > 0 ? clamp(-rect.top / total) : 0;
+    }
+
+    function render(d) {
+      const small = mobile.matches;
+      // As the closing headline arrives, the collage eases outward to clear the centre.
+      const push = 1 + 0.08 * easeInOut(seg(d, 0.74, 0.95));
+      items.forEach((item, index) => {
+        const t = easeOut(seg(d, 0.02 * index, 0.26 + 0.02 * index));
+        const fx = parseFloat(small ? item.dataset.mx : item.dataset.fx);
+        const fy = parseFloat(small ? item.dataset.my : item.dataset.fy);
+        const drift = (d - 0.5) * speeds[index % speeds.length] * height * 0.1;
+        item.style.opacity = t > 0.001 ? "1" : "0";
+        item.style.transform = `translate3d(${(fx * width * push * t).toFixed(1)}px, ${((fy * height * push + drift) * t).toFixed(1)}px, 0) scale(${t.toFixed(3)})`;
+        const image = item.firstElementChild;
+        if (image) image.style.transform = `scale(${(2 - t).toFixed(3)})`;
+      });
+
+      beatEls.forEach((beat, index) => {
+        const plan = timeline[index];
+        if (!plan) return;
+        const enter = easeOut(seg(d, plan.in[0], plan.in[1]));
+        const exit = plan.out ? easeInOut(seg(d, plan.out[0], plan.out[1])) : 0;
+        const alpha = enter * (1 - exit);
+        beat.style.opacity = alpha.toFixed(3);
+        beat.style.visibility = alpha < 0.01 ? "hidden" : "visible";
+        beat.style.transform = `translate3d(0, ${((1 - enter) * 40 - exit * 40).toFixed(2)}%, 0)`;
+        const counter = beat.querySelector("[data-count]");
+        if (counter && plan.count) {
+          counter.textContent = String(Math.round(parseFloat(counter.dataset.count) * easeInOut(seg(d, plan.count[0], plan.count[1]))));
+        }
+      });
+    }
+
+    function tick() {
+      frame = 0;
+      const diff = target - shown;
+      shown = Math.abs(diff) < 0.0004 ? target : shown + diff * 0.14;
+      render(shown);
+      if (shown !== target) frame = window.requestAnimationFrame(tick);
+    }
+
+    function onScroll() {
+      readTarget();
+      if (!frame) frame = window.requestAnimationFrame(tick);
+    }
+
+    measure();
+    readTarget();
+    shown = target;
+    render(shown);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", () => {
+      measure();
+      onScroll();
+    });
   }
 
   // Work -> Recommendations: a scroll-scrubbed rule + rolling disc, then a staged reveal.
@@ -618,6 +756,7 @@
           <div id="primary-projects" class="project-grid" aria-live="polite"></div>
           <button class="project-more-toggle filter-pill" type="button" aria-expanded="false" aria-controls="primary-projects" hidden>Show more works</button>
         </section>
+        ${renderStats()}
         <div class="section-transition" aria-hidden="true">
           <span class="st-rule"></span>
           <canvas class="st-canvas"></canvas>
@@ -630,6 +769,7 @@
     updateFilterButtons();
     attachHeroWordplay();
     attachTestimonials();
+    attachStats();
     attachSectionTransitions();
 
     document.querySelector(".project-more-toggle").addEventListener("click", () => {
