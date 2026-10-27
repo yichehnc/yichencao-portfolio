@@ -774,9 +774,10 @@
       const secondary = activeFilter === "All" ? matches.filter((project) => project.secondary) : [];
       const phone = window.matchMedia("(max-width: 679px)").matches;
       const ordered = [...primary, ...secondary];
-      // Phones show six projects; tablets fold the older work; desktop shows everything.
-      const collapsed = phone ? ordered.slice(0, 6) : primary;
-      const canCollapse = phone ? ordered.length > 6 : columnCount() < 3 && primary.length > 0 && secondary.length > 0;
+      // Phones show the first six works; larger screens drop the last six.
+      // Larger screens hide the last six works behind "Show more" on the All view.
+      const collapsed = phone ? ordered.slice(0, 6) : ordered.slice(0, Math.max(0, ordered.length - 6));
+      const canCollapse = phone ? ordered.length > 6 : activeFilter === "All" && ordered.length > 6;
       const hiddenCount = ordered.length - collapsed.length;
       const expanded = !canCollapse || moreProjectsExpanded;
       const visible = expanded ? ordered : collapsed;
