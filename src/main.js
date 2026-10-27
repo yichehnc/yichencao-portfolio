@@ -182,6 +182,7 @@
     { fx: 0.385, fy: 0.12, w: 22, hideMobile: true },
     { fx: -0.17, fy: 0.33, w: 22, mx: -0.24, my: 0.34, mw: 42 },
     { fx: 0.16, fy: 0.36, w: 24, mx: 0.25, my: 0.38, mw: 44 },
+    { fx: 0.0, fy: -0.36, w: 15, hideMobile: true },
   ];
 
   // Logo tiles sit on the corners of the screenshots so they overlap slightly.

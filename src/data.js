@@ -559,11 +559,12 @@ window.PORTFOLIO_STATS = {
   logos: ["spiral", "cloud-terminal", "openai", "slack", "github", "linear"],
   collage: [
     "mlai-founder-tools",
-    "relish",
+    "suso",
     { image: "assets/stats/carevo.webp", aspect: "1400 / 681" },
     { image: "assets/stats/roo-points.webp", aspect: "1400 / 809" },
     { image: "assets/stats/connections.webp", aspect: "1400 / 815" },
     "plottiq-site-compare",
+    "walley-bank",
   ],
 };
 

@@ -2223,19 +2223,14 @@ dd {
 .testimonial-carousel {
   position: relative;
   display: flex;
-  gap: 20px;
-  margin: -16px 0;
-  padding: 16px 0;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
-}
-
-.testimonial-carousel {
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 1.5%, #000 98.5%, transparent);
-  mask-image: linear-gradient(to right, transparent, #000 1.5%, #000 98.5%, transparent);
 }
 
 .testimonial-carousel.is-marquee {
@@ -2259,34 +2254,20 @@ dd {
 }
 
 .testimonial-card {
-  position: relative;
   display: flex;
-  flex: 0 0 min(640px, 82%);
+  flex: 0 0 min(440px, 80%);
   flex-direction: column;
   margin: 0;
-  padding: 48px 56px;
-  border-radius: var(--radius-card);
-  background: var(--panel);
-  box-shadow: var(--shadow-soft);
-  overflow: hidden;
+  padding: 28px 24px 0 0;
+  border-top: 1px solid var(--ink);
   scroll-snap-align: start;
-}
-
-.testimonial-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 5px;
-  height: 100%;
-  background: var(--accent);
 }
 
 .testimonial-quote {
   margin: 0;
   font-family: Georgia, serif;
-  font-size: clamp(15px, 1.35vw, 17px);
-  line-height: 1.55;
+  font-size: clamp(15px, 1.2vw, 16px);
+  line-height: 1.6;
   letter-spacing: -0.01em;
   color: var(--ink);
 }
@@ -2306,16 +2287,14 @@ dd {
 .testimonial-footer {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   margin: auto 0 0;
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
 }
 
 .testimonial-avatar {
   flex-shrink: 0;
-  width: 56px;
-  height: 56px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   object-fit: cover;
   background: var(--line);
@@ -2353,7 +2332,7 @@ dd {
 }
 
 @media (max-width: 679px) {
-  .testimonial-card { flex-basis: 88%; padding: 32px 24px; }
+  .testimonial-card { flex-basis: 84%; padding: 24px 16px 0 0; }
 }
 
 /* Work -> Recommendations transition: a pulse of hairlines travels across a rule. */
@@ -2415,16 +2394,9 @@ dd {
   transition: opacity 700ms ease 150ms, transform 900ms var(--ease-out) 150ms;
 }
 
-.testimonial-section.reveal-ready .testimonial-card::before {
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 700ms var(--ease-out) 150ms;
-}
-
 .testimonial-section.reveal-ready.is-revealed .section-heading > span { opacity: 1; }
 .testimonial-section.reveal-ready.is-revealed .reveal-line > span { transform: translateY(0); }
 .testimonial-section.reveal-ready.is-revealed .testimonial-carousel { opacity: 1; transform: none; }
-.testimonial-section.reveal-ready.is-revealed .testimonial-card::before { transform: scaleY(1); }
 
 /* Pinned stat section: static by default, becomes a scroll-scrubbed stage when JS adds .is-live. */
 .stat-section {
