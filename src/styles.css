@@ -638,8 +638,24 @@ h2 {
     transform 180ms ease;
 }
 
-.project-card:hover {
-  transform: translateY(-3px);
+/* Hover bloom: the image softly swells and a gentle glow opens around it. */
+.project-card img,
+.project-card .project-visual {
+  transition:
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 620ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover img,
+  .project-card:hover .project-visual,
+  .project-card:focus-within img,
+  .project-card:focus-within .project-visual {
+    transform: scale(1.035);
+    box-shadow: 0 0 0 6px rgb(255 255 255 / 70%), 0 18px 60px rgb(23 23 23 / 14%), 0 0 80px rgb(255 71 4 / 10%);
+    filter: saturate(1.06) brightness(1.02);
+  }
 }
 
 .project-card a,
@@ -2194,7 +2210,8 @@ dd {
   .nav a::after,
   .brand span::after { transition: none; }
   .primary-link:hover,
-  .project-card:hover { transform: none; }
+  .project-card:hover img,
+  .project-card:hover .project-visual { transform: none; }
   .footer-spark {
     transition: none;
     transform: none !important;
