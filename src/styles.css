@@ -2262,10 +2262,11 @@ dd {
   border: 1px solid var(--line);
   border-radius: var(--radius-card);
   background:
-    radial-gradient(circle at 0% 0%, rgb(255 71 4 / 9%), transparent 55%),
-    radial-gradient(circle at 100% 100%, rgb(60 110 255 / 10%), transparent 55%),
+    radial-gradient(circle at 0% 0%, rgb(120 150 255 / 5%), transparent 60%),
+    radial-gradient(circle at 100% 100%, rgb(90 200 220 / 6%), transparent 60%),
     var(--paper);
   scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .testimonial-quote {
@@ -2333,7 +2334,14 @@ dd {
 }
 
 @media (max-width: 679px) {
-  .testimonial-card { flex-basis: 84%; padding: 24px; }
+  .testimonial-carousel {
+    margin-right: -28px;
+    padding-right: 28px;
+    scroll-padding-left: 0;
+    touch-action: pan-x pan-y;
+    align-items: flex-start;
+  }
+  .testimonial-card { flex-basis: 80%; padding: 24px; }
 }
 
 /* Work -> Recommendations transition: a pulse of hairlines travels across a rule. */
