@@ -2261,7 +2261,10 @@ dd {
   padding: 32px;
   border: 1px solid var(--line);
   border-radius: var(--radius-card);
-  background: var(--paper);
+  background:
+    radial-gradient(circle at 0% 0%, rgb(255 71 4 / 9%), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgb(60 110 255 / 10%), transparent 55%),
+    var(--paper);
   scroll-snap-align: start;
 }
 
