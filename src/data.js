@@ -551,9 +551,18 @@ window.PORTFOLIO_STATS = {
   beats: [
     { type: "count", value: 80, suffix: "+", caption: "customer adoption, scaled from 0" },
     { type: "count", value: 200, suffix: "+", caption: "updates shipped" },
+    { type: "list", label: "Design", items: ["Product growth strategy", "In-app campaign", "Payment plan"] },
     { type: "headline", text: "Built an AI-native pipeline" },
   ],
-  collage: ["mlai-founder-tools", "relish", "carevo", "cloud-mind", "plantasia", "plottiq-site-compare"],
+  // A string is a project slug (uses its card image); an object brings its own image.
+  collage: [
+    "mlai-founder-tools",
+    "relish",
+    { image: "assets/stats/carevo.webp", aspect: "1400 / 681" },
+    { image: "assets/stats/roo-points.webp", aspect: "1400 / 809" },
+    { image: "assets/stats/connections.webp", aspect: "1400 / 815" },
+    "plottiq-site-compare",
+  ],
 };
 
 window.PORTFOLIO_TESTIMONIALS = [

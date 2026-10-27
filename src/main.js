@@ -189,16 +189,16 @@
   const statLayout = [
     { fx: -0.3, fy: -0.3, w: 28, mx: -0.2, my: -0.36, mw: 46 },
     { fx: 0.33, fy: -0.26, w: 17, mx: 0.28, my: -0.3, mw: 32 },
-    { fx: -0.38, fy: 0.06, w: 20, hideMobile: true },
-    { fx: 0.37, fy: 0.12, w: 18, hideMobile: true },
-    { fx: -0.17, fy: 0.33, w: 20, mx: -0.24, my: 0.34, mw: 38 },
+    { fx: -0.385, fy: 0.06, w: 22, hideMobile: true },
+    { fx: 0.385, fy: 0.12, w: 22, hideMobile: true },
+    { fx: -0.17, fy: 0.33, w: 22, mx: -0.24, my: 0.34, mw: 42 },
     { fx: 0.16, fy: 0.36, w: 24, mx: 0.25, my: 0.38, mw: 44 },
   ];
 
   function renderStats() {
     if (!stats.beats.length) return "";
     const items = stats.collage
-      .map((slug) => projects.find((project) => project.slug === slug))
+      .map((entry) => (typeof entry === "string" ? projects.find((project) => project.slug === entry) : entry))
       .filter(Boolean)
       .map((project, index) => {
         const layout = statLayout[index % statLayout.length];
@@ -214,7 +214,9 @@
       .map((beat) =>
         beat.type === "headline"
           ? `<div class="stat-beat"><h2 class="stat-headline">${beat.text}</h2></div>`
-          : `<div class="stat-beat"><p class="stat-number"><span data-count="${beat.value}">${beat.value}</span><span class="stat-plus">${beat.suffix || ""}</span></p><p class="stat-caption">${beat.caption}</p></div>`
+          : beat.type === "list"
+          ? `<div class="stat-beat"><p class="stat-label">${beat.label}</p><ul class="stat-list">${beat.items.map((item) => `<li>${item}</li>`).join("")}</ul></div>`
+          : `<div class="stat-beat"><p class="stat-number"><span>${beat.value}</span><span class="stat-plus">${beat.suffix || ""}</span></p><p class="stat-caption">${beat.caption}</p></div>`
       )
       .join("");
     return `
@@ -242,11 +244,12 @@
     const easeOut = (t) => 1 - Math.pow(1 - t, 3);
     const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
     const speeds = [-1, 1, -0.6, 0.8, -0.9, 0.7];
-    // in / out / count windows (0-1 of the pinned scroll) for each beat
+    // in / out windows (0-1 of the pinned scroll) for each beat
     const timeline = [
-      { in: [0, 0.14], out: [0.38, 0.48], count: [0, 0.34] },
-      { in: [0.46, 0.58], out: [0.7, 0.78], count: [0.46, 0.66] },
-      { in: [0.78, 0.9], out: null, count: null },
+      { in: [0, 0.12], out: [0.26, 0.34] },
+      { in: [0.3, 0.4], out: [0.52, 0.6] },
+      { in: [0.56, 0.68], out: [0.78, 0.86] },
+      { in: [0.82, 0.93], out: null },
     ];
 
     section.classList.add("is-live");
@@ -270,7 +273,7 @@
     function render(d) {
       const small = mobile.matches;
       // As the closing headline arrives, the collage eases outward to clear the centre.
-      const push = 1 + 0.08 * easeInOut(seg(d, 0.74, 0.95));
+      const push = 1 + 0.08 * easeInOut(seg(d, 0.8, 0.95));
       items.forEach((item, index) => {
         const t = easeOut(seg(d, 0.02 * index, 0.26 + 0.02 * index));
         const fx = parseFloat(small ? item.dataset.mx : item.dataset.fx);
@@ -291,10 +294,6 @@
         beat.style.opacity = alpha.toFixed(3);
         beat.style.visibility = alpha < 0.01 ? "hidden" : "visible";
         beat.style.transform = `translate3d(0, ${((1 - enter) * 40 - exit * 40).toFixed(2)}%, 0)`;
-        const counter = beat.querySelector("[data-count]");
-        if (counter && plan.count) {
-          counter.textContent = String(Math.round(parseFloat(counter.dataset.count) * easeInOut(seg(d, plan.count[0], plan.count[1]))));
-        }
       });
     }
 
