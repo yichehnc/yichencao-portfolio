@@ -263,7 +263,7 @@ window.PORTFOLIO_PROJECTS = [
     cardTitle: "Plott iQ",
     roles: "Product prototyping",
     category: "Case Study · Site comparison",
-    filters: ["Product", "Case Study", "UX", "UI"],
+    filters: ["Product", "Startup", "Case Study", "UX", "UI"],
     aspect: "16 / 9",
     internalPage: true,
     actionUrl: "https://plottiq-site-compare.vercel.app/",

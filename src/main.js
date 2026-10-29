@@ -670,6 +670,15 @@
     };
     let activeFilter = "All";
     let moreProjectsExpanded = false;
+    const filterOrder = {
+      Product: ["mlai-founder-tools", "carevo", "mlai-chat"],
+      Startup: ["carevo", "plottiq-site-compare", "mlai-founder-tools", "mlai-chat"],
+      "Case Study": ["plottiq-site-compare", "rea-redesign", "kinetic"],
+      "UX/UI": ["carevo", "mlai-chat", "mlai-founder-tools"],
+      Visual: ["speed-of-modernity", "the-lived-in-room", "ghost-hardware"],
+      "Vibe Coding": ["think-less", "plantasia", "invisible-cities"],
+      Motion: ["ghost-hardware", "speed-of-modernity"],
+    };
 
     function aspectHeightWeight(aspect) {
       const [wide, tall] = String(aspect || "1 / 1")
@@ -760,7 +769,7 @@
       const columns = Array.from({ length: count }, () => ({ height: 0, cards: [] }));
 
       items.forEach((project) => {
-        const shortest = columns.find((column) => column.cards.some((card) => card.slug === project.afterSlug))
+        const shortest = (activeFilter === "All" && columns.find((column) => column.cards.some((card) => card.slug === project.afterSlug)))
           || columns.reduce((best, column) => (column.height < best.height ? column : best), columns[0]);
         shortest.cards.push(project);
         shortest.height += aspectHeightWeight(project.aspect) + 0.28;
@@ -774,6 +783,13 @@
       const toggle = document.querySelector(".project-more-toggle");
       if (!grid || !toggle) return;
       const matches = projectItems.filter(matchesFilter);
+      const priority = filterOrder[activeFilter] || [];
+      const rank = (project) => {
+        const index = priority.indexOf(project.slug);
+        return index === -1 ? priority.length : index;
+      };
+      // Stable sorting preserves the existing order for the remaining matching projects.
+      matches.sort((a, b) => rank(a) - rank(b));
       // Keep older work last, but distribute every visible card through the same waterfall.
       const primary = matches.filter((project) => activeFilter !== "All" || !project.secondary);
       const secondary = activeFilter === "All" ? matches.filter((project) => project.secondary) : [];
