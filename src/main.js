@@ -537,7 +537,7 @@
   function shell(content) {
     return `
       <div class="interactive-grid-bg" aria-hidden="true"></div>
-      <header class="site-header">
+      <header class="site-header" id="top" tabindex="-1">
         <a class="brand" href="${homeHref()}" aria-label="Yichen Cao home">
           <span>Yichen Cao</span>
           <small>Product Designer · ANZ PR · Open to relo</small>
@@ -552,6 +552,7 @@
       <footer class="footer">
         <div class="footer-opening">
           <p class="footer-invitation">Good things start with a conversation.</p>
+          <a class="back-to-top" href="#top">Back to top <span aria-hidden="true">↑</span></a>
           ${!isProjectPage && !isBackgroundPage && !isResumePage ? `<img class="landing-doodle footer-doodle" src="${assetUrl("assets/illustrations/yichen-ux-flow.webp")}" width="448" height="448" alt="" aria-hidden="true" loading="lazy" decoding="async" draggable="false" />` : ""}
         </div>
         <a class="footer-art-link" href="mailto:yichenc2017@gmail.com" aria-label="Let's chat — email Yichen Cao">
@@ -1226,7 +1227,7 @@
           ${
             project.heroImage
               ? project.slug === "mlai-chat"
-                ? deviceMockup(project.heroImage, project.heroImageAlt || project.title, "laptop", false)
+                ? deviceMockup(project.heroImage, project.heroImageAlt || project.title, "phone", false)
                 : `<img class="case-image hero-image" src="${assetUrl(project.heroImage)}" alt="${project.heroImageAlt || project.title}" />`
               : project.image
               ? `<img class="case-image hero-image" src="${assetUrl(project.image)}" alt="${project.title}" />`

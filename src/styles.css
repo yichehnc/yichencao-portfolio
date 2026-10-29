@@ -1943,6 +1943,24 @@ dd {
   margin: 0;
 }
 
+.back-to-top {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--ink);
+  font-size: 14px;
+  white-space: nowrap;
+}
+.back-to-top:hover { background: var(--ink); color: var(--white); }
+.back-to-top:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.footer-opening { flex-wrap: wrap; gap: 20px; }
+
 .case-study-mlai-chat .hero-image {
   aspect-ratio: 1832 / 912;
   height: auto;
