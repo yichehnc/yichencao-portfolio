@@ -1158,6 +1158,15 @@
     `);
   }
 
+  function deviceMockup(src, alt, device, lazy = true) {
+    return `<div class="device-stage device-stage-${device}">
+      <div class="device-mockup device-${device}">
+        <div class="device-screen"><img src="${assetUrl(src)}" alt="${alt}" ${lazy ? 'loading="lazy"' : ''} /></div>
+        <span class="device-hardware" aria-hidden="true"></span>
+      </div>
+    </div>`;
+  }
+
   function renderProject(slug) {
     setPageContext("project");
     const project = projects.find((item) => item.slug === slug);
@@ -1216,7 +1225,9 @@
           </dl>
           ${
             project.heroImage
-              ? `<img class="case-image hero-image" src="${assetUrl(project.heroImage)}" alt="${project.heroImageAlt || project.title}" />`
+              ? project.slug === "mlai-chat"
+                ? deviceMockup(project.heroImage, project.heroImageAlt || project.title, "laptop", false)
+                : `<img class="case-image hero-image" src="${assetUrl(project.heroImage)}" alt="${project.heroImageAlt || project.title}" />`
               : project.image
               ? `<img class="case-image hero-image" src="${assetUrl(project.image)}" alt="${project.title}" />`
               : `<div class="case-image hero-image project-visual project-visual-${project.accent || "default"}" aria-hidden="true">
@@ -1302,7 +1313,9 @@
                               .map(
                                 (item) => `
                                   <figure>
-                                    <img src="${assetUrl(item.src)}" alt="${item.alt}" loading="lazy" />
+                                    ${project.slug === "mlai-chat"
+                                      ? deviceMockup(item.src, item.alt, section.variant === "mobile-preview" ? "phone" : "laptop")
+                                      : `<img src="${assetUrl(item.src)}" alt="${item.alt}" loading="lazy" />`}
                                     <figcaption>${item.caption}</figcaption>
                                   </figure>
                                 `

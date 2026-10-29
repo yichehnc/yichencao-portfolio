@@ -1967,8 +1967,110 @@ dd {
 }
 
 .case-study-mlai-chat .case-section-mobile-preview .case-gallery {
-  max-width: 360px;
+  max-width: 100%;
   margin-inline: auto;
+}
+
+.device-stage {
+  display: grid;
+  place-items: center;
+  padding: clamp(24px, 5vw, 64px);
+  background: #eeede8;
+  border-radius: 24px;
+  min-width: 0;
+}
+
+.device-mockup { position: relative; width: 100%; }
+
+.device-screen {
+  overflow: hidden;
+  background: #fff;
+}
+
+.case-study-mlai-chat .device-screen img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  border: 0;
+  border-radius: 0;
+}
+
+.device-phone {
+  max-width: 300px;
+  padding: 9px;
+  border: 2px solid #73736f;
+  border-radius: 44px;
+  background: #20211f;
+  box-shadow: 0 18px 34px -18px #24242266;
+}
+
+.device-phone .device-screen { border-radius: 33px; }
+
+.device-phone::before,
+.device-phone::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  background: #73736f;
+  border-radius: 2px;
+}
+
+.device-phone::before { left: -4px; top: 100px; height: 52px; }
+.device-phone::after { right: -4px; top: 130px; height: 64px; }
+
+.device-phone .device-hardware {
+  position: absolute;
+  bottom: 16px;
+  left: 35%;
+  width: 30%;
+  height: 4px;
+  background: #20211f;
+  border-radius: 4px;
+}
+
+.device-laptop {
+  width: 94%;
+  margin-bottom: 14px;
+  padding: clamp(10px, 1.5vw, 18px) clamp(5px, .8vw, 10px) clamp(6px, 1vw, 12px);
+  background: #242522;
+  border: 2px solid #7c7d77;
+  border-radius: 16px 16px 5px 5px;
+  box-shadow: 0 20px 28px -20px #24242280;
+}
+
+.device-laptop::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: calc(50% - 2px);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #72756c;
+}
+
+.device-laptop .device-screen { border-radius: 3px; }
+
+.device-laptop .device-hardware {
+  position: absolute;
+  top: 100%;
+  left: -5%;
+  width: 110%;
+  height: 12px;
+  background: linear-gradient(#dddeda, #999b94);
+  border-radius: 2px 2px 50% 50% / 2px 2px 10px 10px;
+  box-shadow: 0 8px 12px -6px #24242255;
+}
+
+.device-laptop .device-hardware::after {
+  content: "";
+  display: block;
+  margin: auto;
+  width: 16%;
+  height: 4px;
+  border-radius: 0 0 5px 5px;
+  background: #82857e;
 }
 
 .case-study-mlai-chat .case-gallery figcaption {
