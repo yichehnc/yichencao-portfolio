@@ -1368,10 +1368,9 @@
       const zoomDialog = document.createElement("dialog");
       zoomDialog.className = "screen-lightbox";
       zoomDialog.setAttribute("aria-label", "Enlarged MLAI Chat screenshot");
-      zoomDialog.innerHTML = `<div class="screen-lightbox-toolbar"><span>Screen preview</span><div><button type="button" class="screen-zoom-toggle" aria-pressed="false">Zoom in</button><button type="button" class="screen-zoom-close" autofocus>Close ×</button></div></div><div class="screen-lightbox-viewport" tabindex="0" aria-label="Screenshot; scroll to explore when zoomed"><img alt="" /></div>`;
+      zoomDialog.innerHTML = `<div class="screen-lightbox-toolbar"><span>Click image to close</span><div><button type="button" class="screen-zoom-close" autofocus>Close ×</button></div></div><div class="screen-lightbox-viewport" role="button" tabindex="0" aria-label="Close enlarged screenshot"><img alt="" /></div>`;
       app.append(zoomDialog);
       const zoomTrigger = document.querySelector(".screen-zoom-trigger");
-      const zoomToggle = zoomDialog.querySelector(".screen-zoom-toggle");
       const zoomViewport = zoomDialog.querySelector(".screen-lightbox-viewport");
       let previousOverflow = "";
       zoomTrigger.addEventListener("click", () => {
@@ -1379,19 +1378,17 @@
         const enlargedImage = zoomDialog.querySelector("img");
         enlargedImage.src = selectedImage.src;
         enlargedImage.alt = selectedImage.alt;
-        zoomDialog.classList.remove("is-zoomed");
-        zoomToggle.textContent = "Zoom in";
-        zoomToggle.setAttribute("aria-pressed", "false");
         previousOverflow = document.body.style.overflow;
         document.body.style.overflow = "hidden";
         zoomDialog.showModal();
         zoomViewport.scrollTo(0, 0);
       });
-      zoomToggle.addEventListener("click", () => {
-        const zoomed = zoomDialog.classList.toggle("is-zoomed");
-        zoomToggle.textContent = zoomed ? "Fit to screen" : "Zoom in";
-        zoomToggle.setAttribute("aria-pressed", String(zoomed));
-        zoomViewport.scrollTo(0, 0);
+      zoomViewport.addEventListener("click", () => zoomDialog.close());
+      zoomViewport.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          zoomDialog.close();
+        }
       });
       zoomDialog.querySelector(".screen-zoom-close").addEventListener("click", () => zoomDialog.close());
       zoomDialog.addEventListener("click", (event) => {

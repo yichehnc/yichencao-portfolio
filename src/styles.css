@@ -2175,9 +2175,9 @@ dd {
 .screen-lightbox-toolbar > div { display: flex; gap: 8px; }
 .screen-lightbox button { min-height: 44px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; background: white; color: var(--ink); cursor: pointer; font: inherit; font-size: 13px; }
 .screen-lightbox button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.screen-lightbox-viewport { flex: 1; min-height: 0; overflow: auto; padding: 16px; }
+.screen-lightbox-viewport { flex: 1; min-height: 0; overflow: auto; padding: 16px; cursor: zoom-out; }
+.screen-lightbox-viewport:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; }
 .screen-lightbox-viewport img { display: block; width: 100%; height: 100%; object-fit: contain; }
-.screen-lightbox.is-zoomed .screen-lightbox-viewport img { width: auto; height: auto; max-width: none; max-height: none; }
 .screen-picker { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
 .screen-choice {
   appearance: none;
