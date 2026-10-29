@@ -1424,33 +1424,6 @@ main.background-page {
 
 .footer::after {
   z-index: -1;
-  inset: auto;
-  left: var(--glow-x, 50%);
-  top: var(--glow-y, 50%);
-  width: clamp(120px, 16vw, 210px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  background: #ff983b;
-  mix-blend-mode: multiply;
-}
-
-.footer::before {
-  inset: 0 -12px;
-  border-radius: 24px;
-  background-image:
-    url("../assets/brand/footer-grain.svg"),
-    radial-gradient(ellipse at 83% 22%, #f6bb86 0%, transparent 65%),
-    radial-gradient(ellipse at 12% 80%, #bacddc 0%, transparent 65%),
-    linear-gradient(125deg, #dce4e7, #f6e5ce 70%, #f5cfa5);
-  background-size: 180px 180px, cover, cover, cover;
-  background-repeat: repeat, no-repeat, no-repeat, no-repeat;
-  mask-image: linear-gradient(transparent, #000 12%, #000 94%, transparent);
-  -webkit-mask-image: linear-gradient(transparent, #000 12%, #000 94%, transparent);
-}
-
-.footer {
-  overflow: clip;
 }
 
 @media (prefers-reduced-motion: reduce), (hover: none) {
