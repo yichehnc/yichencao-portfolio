@@ -1159,10 +1159,10 @@
     `);
   }
 
-  function deviceMockup(src, alt, device, lazy = true) {
+  function deviceMockup(src, alt, device, lazy = true, zoomable = false) {
     return `<div class="device-stage device-stage-${device}">
       <div class="device-mockup device-${device}">
-        <div class="device-screen"><img src="${assetUrl(src)}" alt="${alt}" ${lazy ? 'loading="lazy"' : ''} /></div>
+        <div class="device-screen">${zoomable ? '<button type="button" class="screen-zoom-trigger" aria-label="Enlarge selected screenshot" aria-haspopup="dialog">' : ''}<img src="${assetUrl(src)}" alt="${alt}" ${lazy ? 'loading="lazy"' : ''} />${zoomable ? '</button>' : ''}</div>
         <span class="device-hardware" aria-hidden="true"></span>
       </div>
     </div>`;
@@ -1326,7 +1326,8 @@
                         ? project.slug === "mlai-chat" && section.variant === "web-preview"
                           ? `<div class="screen-showcase">
                               <div class="screen-showcase-heading"><span>THE PRODUCT, IN FIVE MOMENTS</span><span class="screen-counter">01 / 05</span></div>
-                              <div class="screen-feature" id="chat-screen-feature">${deviceMockup(section.gallery[0].src, section.gallery[0].alt, "laptop", false)}</div>
+                              <div class="screen-feature" id="chat-screen-feature">${deviceMockup(section.gallery[0].src, section.gallery[0].alt, "laptop", false, true)}</div>
+                              <p class="screen-zoom-hint">Click the screen to enlarge ↗</p>
                               <p class="screen-caption" aria-live="polite">${section.gallery[0].caption}</p>
                               <div class="screen-picker" role="group" aria-label="Explore MLAI Chat screens">
                                 ${section.gallery.map((item, i) => `<button type="button" class="screen-choice" aria-pressed="${i === 0}" aria-controls="chat-screen-feature" data-screen-index="${i}">
@@ -1362,6 +1363,44 @@
     `);
 
     if (project.slug === "mlai-chat") {
+      const zoomDialog = document.createElement("dialog");
+      zoomDialog.className = "screen-lightbox";
+      zoomDialog.setAttribute("aria-label", "Enlarged MLAI Chat screenshot");
+      zoomDialog.innerHTML = `<div class="screen-lightbox-toolbar"><span>Screen preview</span><div><button type="button" class="screen-zoom-toggle" aria-pressed="false">Zoom in</button><button type="button" class="screen-zoom-close" autofocus>Close ×</button></div></div><div class="screen-lightbox-viewport" tabindex="0" aria-label="Screenshot; scroll to explore when zoomed"><img alt="" /></div>`;
+      app.append(zoomDialog);
+      const zoomTrigger = document.querySelector(".screen-zoom-trigger");
+      const zoomToggle = zoomDialog.querySelector(".screen-zoom-toggle");
+      const zoomViewport = zoomDialog.querySelector(".screen-lightbox-viewport");
+      let previousOverflow = "";
+      zoomTrigger.addEventListener("click", () => {
+        const selectedImage = zoomTrigger.querySelector("img");
+        const enlargedImage = zoomDialog.querySelector("img");
+        enlargedImage.src = selectedImage.src;
+        enlargedImage.alt = selectedImage.alt;
+        zoomDialog.classList.remove("is-zoomed");
+        zoomToggle.textContent = "Zoom in";
+        zoomToggle.setAttribute("aria-pressed", "false");
+        previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+        zoomDialog.showModal();
+        zoomViewport.scrollTo(0, 0);
+      });
+      zoomToggle.addEventListener("click", () => {
+        const zoomed = zoomDialog.classList.toggle("is-zoomed");
+        zoomToggle.textContent = zoomed ? "Fit to screen" : "Zoom in";
+        zoomToggle.setAttribute("aria-pressed", String(zoomed));
+        zoomViewport.scrollTo(0, 0);
+      });
+      zoomDialog.querySelector(".screen-zoom-close").addEventListener("click", () => zoomDialog.close());
+      zoomDialog.addEventListener("click", (event) => {
+        if (event.target !== zoomDialog) return;
+        const bounds = zoomDialog.getBoundingClientRect();
+        if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) zoomDialog.close();
+      });
+      zoomDialog.addEventListener("close", () => {
+        document.body.style.overflow = previousOverflow;
+        zoomTrigger.focus({ preventScroll: true });
+      });
       const screens = project.sections.find((section) => section.variant === "web-preview").gallery;
       document.querySelectorAll(".screen-choice").forEach((button) => {
         button.addEventListener("click", () => {
