@@ -1558,6 +1558,7 @@ main.background-page {
 .footer .footer-links a:hover,
 .footer .footer-links a:focus-visible { background: #171717; color: #fff; border-color: #171717; text-decoration: none; }
 .footer-links a span { font-size: 18px; flex-shrink: 0; }
+.footer-link-icon { width: 20px; height: 20px; flex-shrink: 0; }
 .footer-links-heading { flex-basis: 100%; margin-bottom: 4px; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--soft-ink); }
 
 @media (max-width: 540px) {

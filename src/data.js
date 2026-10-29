@@ -692,7 +692,6 @@ window.PORTFOLIO_PROFILE = {
     { label: "Portfolio", url: "https://yichencao.com/" },
     { label: "GitHub", url: "https://github.com/yichehnc" },
     { label: "LinkedIn", url: "https://linkedin.com/in/ycaoc" },
-    { label: "MLAI Founder Update - Live Project", url: "https://mlai.au/vibe-raising" },
     { label: "Email", url: "mailto:yichenc2017@gmail.com" },
   ],
 };

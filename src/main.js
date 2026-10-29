@@ -536,6 +536,16 @@
     window.requestAnimationFrame(loop);
   }
 
+  function footerLinkIcon(label) {
+    const icons = {
+      Portfolio: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z"/>',
+      GitHub: '<path d="M9 19c-4 1-4-2-6-2m12 5v-4a3.5 3.5 0 0 0-1-3c3-.3 6-1.5 6-6a4.7 4.7 0 0 0-1.3-3.3A4.3 4.3 0 0 0 18.6 2S17.5 1.7 15 3a12 12 0 0 0-6 0C6.5 1.7 5.4 2 5.4 2a4.3 4.3 0 0 0-.1 3.7A4.7 4.7 0 0 0 4 9c0 4.5 3 5.7 6 6a3.5 3.5 0 0 0-1 3v4"/>',
+      LinkedIn: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7.5 10v7M11 17v-7m0 3a3 3 0 0 1 6 0v4"/><circle cx="7.5" cy="7" r=".75" fill="currentColor" stroke="none"/>',
+      Email: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/>',
+    };
+    return `<svg class="footer-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${icons[label] || icons.Portfolio}</svg>`;
+  }
+
   function shell(content) {
     return `
       <div class="interactive-grid-bg" aria-hidden="true"></div>
@@ -595,7 +605,7 @@
         </a>
         <nav class="footer-links" aria-label="Find me online">
           <span class="footer-links-heading">Find me online</span>
-          ${(profile.links || []).map((link) => `<a href="${link.url}"${link.url.startsWith("mailto:") ? "" : ' target="_blank" rel="noreferrer"'}>${link.label}<span aria-hidden="true">↗</span></a>`).join("")}
+          ${(profile.links || []).map((link) => `<a href="${link.url}"${link.url.startsWith("mailto:") ? "" : ' target="_blank" rel="noreferrer"'}>${footerLinkIcon(link.label)}${link.label}<span aria-hidden="true">↗</span></a>`).join("")}
         </nav>
         <div class="footer-meta">
           <a href="${homeHref()}">Yichen Cao</a>
