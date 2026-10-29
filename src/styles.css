@@ -1463,13 +1463,33 @@ main.background-page {
   paint-order: stroke fill;
 }
 
-.footer-spark {
-  transform-origin: 1035px 57px;
-  transition: transform 280ms ease-out;
+.doodle-hit {
+  fill: transparent;
+  stroke: none;
+  pointer-events: all;
 }
-
-.footer-art-link:is(:hover, :focus-visible) .footer-spark {
-  transform: rotate(18deg);
+.doodle-motion { pointer-events: none; transform-box: fill-box; transform-origin: center; }
+@media (prefers-reduced-motion: no-preference) {
+  .footer-eye:hover .doodle-motion,
+  .footer-art-link:focus-visible .footer-eye .doodle-motion { animation: footer-blink 850ms ease-in-out; }
+  .footer-spark:hover .doodle-motion,
+  .footer-art-link:focus-visible .footer-spark .doodle-motion { animation: footer-twinkle 700ms ease-in-out; }
+  .footer-smile:hover .doodle-motion,
+  .footer-art-link:focus-visible .footer-smile .doodle-motion { animation: footer-bounce 750ms ease-in-out; }
+}
+@keyframes footer-blink {
+  0%, 35%, 65%, 100% { transform: scaleY(1); }
+  48%, 52% { transform: scaleY(.12); }
+}
+@keyframes footer-twinkle {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  40% { transform: rotate(18deg) scale(1.18); }
+  70% { transform: rotate(-8deg) scale(.95); }
+}
+@keyframes footer-bounce {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  35% { transform: translateY(-8px) rotate(-5deg); }
+  65% { transform: translateY(-3px) rotate(4deg); }
 }
 
 .footer-cursor-tab {
