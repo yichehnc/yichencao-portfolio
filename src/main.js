@@ -256,10 +256,10 @@
     const speeds = [-1, 1, -0.6, 0.8, -0.9, 0.7];
     // in / out windows (0-1 of the pinned scroll) for each beat
     const timeline = [
-      { in: [0, 0.12], out: [0.26, 0.34] },
-      { in: [0.3, 0.4], out: [0.52, 0.6] },
-      { in: [0.56, 0.68], out: [0.78, 0.86] },
-      { in: [0.82, 0.93], out: null },
+      { in: [0, 0.04], out: [0.24, 0.32] },
+      { in: [0.26, 0.33], out: [0.50, 0.58] },
+      { in: [0.52, 0.59], out: [0.76, 0.84] },
+      { in: [0.78, 0.85], out: null },
     ];
 
     section.classList.add("is-live");
@@ -285,7 +285,8 @@
       // As the closing headline arrives, the collage eases outward to clear the centre.
       const push = 1 + 0.08 * easeInOut(seg(d, 0.8, 0.95));
       items.forEach((item, index) => {
-        const t = easeOut(seg(d, 0.02 * index, 0.26 + 0.02 * index));
+        const stagger = small ? 0.008 : 0.012;
+        const t = easeOut(seg(d, stagger * index, (small ? 0.16 : 0.20) + stagger * index));
         const fx = parseFloat(small ? item.dataset.mx : item.dataset.fx);
         const fy = parseFloat(small ? item.dataset.my : item.dataset.fy);
         const drift = (d - 0.5) * speeds[index % speeds.length] * height * 0.1;
@@ -298,7 +299,7 @@
       beatEls.forEach((beat, index) => {
         const plan = timeline[index];
         if (!plan) return;
-        const enter = easeOut(seg(d, plan.in[0], plan.in[1]));
+        const enter = index === 0 ? 1 : easeOut(seg(d, plan.in[0], plan.in[1]));
         const exit = plan.out ? easeInOut(seg(d, plan.out[0], plan.out[1])) : 0;
         const alpha = enter * (1 - exit);
         beat.style.opacity = alpha.toFixed(3);
@@ -310,7 +311,8 @@
     function tick() {
       frame = 0;
       const diff = target - shown;
-      shown = Math.abs(diff) < 0.0004 ? target : shown + diff * 0.14;
+      // Touch scrolling already has inertia; follow it directly instead of adding a second lag.
+      shown = mobile.matches || Math.abs(diff) < 0.001 ? target : shown + diff * 0.32;
       render(shown);
       if (shown !== target) frame = window.requestAnimationFrame(tick);
     }

@@ -2807,8 +2807,8 @@ dd {
 }
 
 .stat-section.is-live {
-  height: 400vh;
-  height: 400svh;
+  height: 320vh;
+  height: 320svh;
 }
 
 .stat-section.is-live .stat-stage {
@@ -2866,6 +2866,7 @@ dd {
 }
 
 @media (max-width: 679px) {
+  .stat-section.is-live { height: 260vh; height: 260svh; }
   .stat-section.is-live .stat-item { width: calc(var(--mw) * 1%); }
   .stat-section.is-live .stat-logo { width: 42px; }
   .stat-section.is-live .stat-item[data-hide-mobile] { display: none; }
