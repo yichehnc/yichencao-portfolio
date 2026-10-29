@@ -41,7 +41,7 @@ window.PORTFOLIO_PROJECTS = [
         eyebrow: "03 / Mobile walkthrough",
         title: "See the whole experience in motion.",
         body: "<p>Watch the full mobile prototype recording. Play, pause or expand the walkthrough to explore the interface at your own pace.</p>",
-        video: "assets/mlai/chat-mobile-walkthrough.mp4",
+        video: "assets/mlai/chat-mobile-walkthrough-clean.mp4",
         poster: "assets/mlai/chat-mobile-home.png",
       },
       {
