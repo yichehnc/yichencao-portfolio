@@ -1,5 +1,34 @@
 window.PORTFOLIO_PROJECTS = [
   {
+    slug: "mlai-chat",
+    title: "MLAI Chat",
+    cardTitle: "MLAI Chat",
+    cardImage: "assets/mlai/chat-cover.svg",
+    heroImage: "assets/mlai/chat-cover.svg",
+    heroImageAlt: "MLAI Chat typographic project cover with an outlined conversation symbol",
+    date: "2026",
+    roles: "Product Design Engineer",
+    client: "MLAI / Stone & Chalk",
+    category: "Product · UX/UI",
+    filters: ["Product", "Startup", "UX", "UI"],
+    aspect: "1200 / 900",
+    internalPage: true,
+    summary: "A reusable design system as Startup Pulse evolves into MLAI Chat.",
+    subtitle: "Carrying the Startup Pulse experience into MLAI Chat, with a reusable design system across web, tablet and mobile.",
+    meta: [
+      { label: "Role", value: "Product Design Engineer" },
+      { label: "Organisation", value: "MLAI / Stone & Chalk" },
+      { label: "Focus", value: "Design systems · Responsive product design" },
+    ],
+    sections: [
+      {
+        eyebrow: "01 / Overview",
+        title: "A consistent experience across screens.",
+        body: "<p>As Startup Pulse moved into MLAI Chat, I built a reusable design system and adapted the experience for web, tablet and mobile.</p><p>The work connects product design and front-end implementation within my role at MLAI / Stone &amp; Chalk.</p>",
+      },
+    ],
+  },
+  {
     slug: "mlai-founder-tools",
     title: "MLAI Founder Tools - Vibe Raising",
     cardTitle: "MLAI Founder Tools",

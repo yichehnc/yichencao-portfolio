@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" fill="#f2f1ed"/>
+  <g fill="none" stroke="#deddd7" stroke-width="1">
+    <path d="M80 0v900M1120 0v900M0 80h1200M0 820h1200"/>
+  </g>
+  <circle cx="113" cy="127" r="7" fill="#ff4704"/>
+  <text x="140" y="136" fill="#65655f" font-family="Arial, Helvetica, sans-serif" font-size="25" letter-spacing="3">PRODUCT DESIGN</text>
+  <g transform="translate(850 260)" fill="none" stroke="#20221f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0 24Q0 0 24 0h142q24 0 24 24v100q0 24-24 24H66l-42 36v-36Q0 148 0 124Z"/>
+    <path d="M44 56h102M44 88h65"/>
+  </g>
+  <text x="104" y="492" fill="#20221f" font-family="Arial, Helvetica, sans-serif" font-size="132" letter-spacing="-7">MLAI Chat</text>
+  <text x="110" y="565" fill="#65655f" font-family="Arial, Helvetica, sans-serif" font-size="30">From Startup Pulse to MLAI Chat.</text>
+  <path d="M110 715h980" stroke="#d3d3cc"/>
+  <text x="110" y="766" fill="#65655f" font-family="Arial, Helvetica, sans-serif" font-size="23">Design systems</text>
+  <text x="1090" y="766" text-anchor="end" fill="#65655f" font-family="Arial, Helvetica, sans-serif" font-size="23">Web / Tablet / Mobile</text>
+</svg>
