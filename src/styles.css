@@ -1943,6 +1943,45 @@ dd {
   margin: 0;
 }
 
+.case-study-mlai-chat .hero-image {
+  aspect-ratio: 1832 / 912;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+}
+
+.case-study-mlai-chat :is(.case-section-mobile-preview, .case-section-web-preview) .case-section-copy {
+  grid-column: 2 / -1;
+  min-width: 0;
+}
+
+.case-study-mlai-chat .case-gallery {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 40px;
+}
+
+.case-study-mlai-chat .case-gallery img {
+  display: block;
+  height: auto;
+  max-height: none;
+}
+
+.case-study-mlai-chat .case-section-mobile-preview .case-gallery {
+  max-width: 360px;
+  margin-inline: auto;
+}
+
+.case-study-mlai-chat .case-gallery figcaption {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+@media (max-width: 679px) {
+  .case-study-mlai-chat :is(.case-section-mobile-preview, .case-section-web-preview) .case-section-copy {
+    grid-column: 1 / -1;
+  }
+}
+
 .case-gallery img {
   width: 100%;
   max-height: 520px;
