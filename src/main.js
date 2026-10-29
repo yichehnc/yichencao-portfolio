@@ -1308,7 +1308,19 @@
                     </div>
                     ${
                       section.gallery
-                        ? `<div class="case-gallery">
+                        ? project.slug === "mlai-chat" && section.variant === "web-preview"
+                          ? `<div class="screen-showcase">
+                              <div class="screen-showcase-heading"><span>THE PRODUCT, IN FIVE MOMENTS</span><span class="screen-counter">01 / 05</span></div>
+                              <div class="screen-feature" id="chat-screen-feature">${deviceMockup(section.gallery[0].src, section.gallery[0].alt, "laptop", false)}</div>
+                              <p class="screen-caption" aria-live="polite">${section.gallery[0].caption}</p>
+                              <div class="screen-picker" role="group" aria-label="Explore MLAI Chat screens">
+                                ${section.gallery.map((item, i) => `<button type="button" class="screen-choice" aria-pressed="${i === 0}" aria-controls="chat-screen-feature" data-screen-index="${i}">
+                                  <img src="${assetUrl(item.src)}" alt="" loading="lazy" />
+                                  <span>${item.caption}</span>
+                                </button>`).join("")}
+                              </div>
+                            </div>`
+                          : `<div class="case-gallery">
                             ${section.gallery
                               .map(
                                 (item) => `
@@ -1334,6 +1346,21 @@
       </main>
     `);
 
+    if (project.slug === "mlai-chat") {
+      const screens = project.sections.find((section) => section.variant === "web-preview").gallery;
+      document.querySelectorAll(".screen-choice").forEach((button) => {
+        button.addEventListener("click", () => {
+          const index = Number(button.dataset.screenIndex);
+          const screen = screens[index];
+          const image = document.querySelector(".screen-feature img");
+          image.src = assetUrl(screen.src);
+          image.alt = screen.alt;
+          document.querySelector(".screen-caption").textContent = screen.caption;
+          document.querySelector(".screen-counter").textContent = `${String(index + 1).padStart(2, "0")} / 05`;
+          document.querySelectorAll(".screen-choice").forEach((choice) => choice.setAttribute("aria-pressed", String(choice === button)));
+        });
+      });
+    }
     animateProofNumbers();
   }
 
