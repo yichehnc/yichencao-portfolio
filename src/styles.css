@@ -2000,6 +2000,32 @@ dd {
 
 .device-mockup { position: relative; width: 100%; }
 
+.case-study-mlai-chat .case-section-mobile-walkthrough .case-section-copy {
+  grid-column: 2 / -1;
+  min-width: 0;
+}
+.mobile-walkthrough { margin: 32px 0 0; }
+.mobile-walkthrough .device-phone { max-width: 340px; }
+.mobile-walkthrough video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1125 / 2436;
+  object-fit: contain;
+  background: #fff;
+}
+.mobile-walkthrough figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 14px;
+}
+@media (max-width: 679px) {
+  .case-study-mlai-chat .case-section-mobile-walkthrough .case-section-copy { grid-column: 1 / -1; }
+}
+
 .device-screen {
   overflow: hidden;
   background: #fff;

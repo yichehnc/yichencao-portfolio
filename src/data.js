@@ -37,8 +37,16 @@ window.PORTFOLIO_PROJECTS = [
         ],
       },
       {
+        variant: "mobile-walkthrough",
+        eyebrow: "03 / Mobile walkthrough",
+        title: "See the whole experience in motion.",
+        body: "<p>Watch the full mobile prototype recording. Play, pause or expand the walkthrough to explore the interface at your own pace.</p>",
+        video: "assets/mlai/chat-mobile-walkthrough.mp4",
+        poster: "assets/mlai/chat-mobile-home.png",
+      },
+      {
         variant: "web-preview",
-        eyebrow: "03 / Web",
+        eyebrow: "04 / Web",
         title: "From a first draft to a shared update.",
         body: "<p>The web experience gives founders room to browse community updates, choose a drafting approach, tell their story and decide who can see it.</p>",
         gallery: [

@@ -1308,7 +1308,21 @@
                       }
                     </div>
                     ${
-                      section.gallery
+                      section.video
+                        ? `<figure class="mobile-walkthrough">
+                            <div class="device-stage device-stage-phone">
+                              <div class="device-mockup device-phone">
+                                <div class="device-screen">
+                                  <video controls playsinline preload="none" poster="${assetUrl(section.poster)}" aria-label="MLAI Chat full mobile prototype walkthrough">
+                                    <source src="${assetUrl(section.video)}" type="video/mp4" />
+                                    Your browser does not support video. <a href="${assetUrl(section.video)}">Open the mobile walkthrough</a>.
+                                  </video>
+                                </div>
+                              </div>
+                            </div>
+                            <figcaption>Mobile prototype · Full walkthrough <a class="text-link" href="${assetUrl(section.video)}" target="_blank" rel="noreferrer">Open video ↗</a></figcaption>
+                          </figure>`
+                        : section.gallery
                         ? project.slug === "mlai-chat" && section.variant === "web-preview"
                           ? `<div class="screen-showcase">
                               <div class="screen-showcase-heading"><span>THE PRODUCT, IN FIVE MOMENTS</span><span class="screen-counter">01 / 05</span></div>
