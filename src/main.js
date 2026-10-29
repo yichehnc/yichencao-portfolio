@@ -549,10 +549,12 @@
         </nav>
       </header>
       ${content}
+      <nav class="page-return" aria-label="Page navigation">
+        <a class="back-to-top" href="#top">Back to top <span aria-hidden="true">↑</span></a>
+      </nav>
       <footer class="footer">
         <div class="footer-opening">
           <p class="footer-invitation">Good things start with a conversation.</p>
-          <a class="back-to-top" href="#top">Back to top <span aria-hidden="true">↑</span></a>
           ${!isProjectPage && !isBackgroundPage && !isResumePage ? `<img class="landing-doodle footer-doodle" src="${assetUrl("assets/illustrations/yichen-ux-flow.webp")}" width="448" height="448" alt="" aria-hidden="true" loading="lazy" decoding="async" draggable="false" />` : ""}
         </div>
         <a class="footer-art-link" href="mailto:yichenc2017@gmail.com" aria-label="Let's chat — email Yichen Cao">

@@ -1943,7 +1943,15 @@ dd {
   margin: 0;
 }
 
-.back-to-top {
+.page-return {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  width: min(var(--max), calc(100% - 56px));
+  margin: 0 auto 32px;
+}
+.page-return .back-to-top {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1957,7 +1965,8 @@ dd {
   font-size: 14px;
   white-space: nowrap;
 }
-.back-to-top:hover { background: var(--ink); color: var(--white); }
+.page-return .back-to-top:hover,
+.page-return .back-to-top:active { background: #171717; color: #fff; border-color: #171717; }
 .back-to-top:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .footer-opening { flex-wrap: wrap; gap: 20px; }
 
