@@ -586,6 +586,9 @@
           </svg>
           <span class="footer-cursor-tab">Let's chat <span aria-hidden="true">↗</span></span>
         </a>
+        <nav class="footer-links" aria-label="Find me online">
+          ${(profile.links || []).map((link) => `<a href="${link.url}"${link.url.startsWith("mailto:") ? "" : ' target="_blank" rel="noreferrer"'}>${link.label}<span aria-hidden="true">↗</span></a>`).join("")}
+        </nav>
         <div class="footer-meta">
           <a href="${homeHref()}">Yichen Cao</a>
           <p>© 2026 · Made with curiosity.</p>
@@ -1078,7 +1081,6 @@
   function renderResume() {
     setPageContext("resume");
     const skillGroups = profile.skills || [];
-    const links = profile.links || [];
 
     document.title = "About Me - Yichen Cao";
     app.innerHTML = shell(`
@@ -1153,21 +1155,6 @@
                         <h3>${group.label}</h3>
                         <p>${group.items.join(", ")}</p>
                       </article>
-                    `
-                  )
-                  .join("")}
-              </div>
-            </section>
-            <section class="about-links" aria-labelledby="about-links-title">
-              <p class="case-section-eyebrow" id="about-links-title">Links</p>
-              <div class="link-list">
-                ${links
-                  .map(
-                    (link) => `
-                      <a href="${link.url}" target="_blank" rel="noreferrer">
-                        <span>${link.label}</span>
-                        <small>${link.url.replace(/^mailto:/, "").replace(/^https?:\/\//, "")}</small>
-                      </a>
                     `
                   )
                   .join("")}

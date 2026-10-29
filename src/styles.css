@@ -1517,6 +1517,25 @@ main.background-page {
   text-align: left;
 }
 
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+}
+.footer .footer-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  color: var(--soft-ink);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.footer .footer-links a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 5px; }
+.footer-links a span { font-size: 12px; }
+
 @media (max-width: 540px) {
   .footer-art-link {
     padding-top: 32px;
