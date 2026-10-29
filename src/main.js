@@ -594,6 +594,7 @@
           <span class="footer-cursor-tab">Let's chat <span aria-hidden="true">↗</span></span>
         </a>
         <nav class="footer-links" aria-label="Find me online">
+          <span class="footer-links-heading">Find me online</span>
           ${(profile.links || []).map((link) => `<a href="${link.url}"${link.url.startsWith("mailto:") ? "" : ' target="_blank" rel="noreferrer"'}>${link.label}<span aria-hidden="true">↗</span></a>`).join("")}
         </nav>
         <div class="footer-meta">

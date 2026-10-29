@@ -1535,21 +1535,30 @@ main.background-page {
 .footer-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 28px;
-  padding: 24px 0;
+  gap: 12px;
+  padding: 28px 0 32px;
   border-top: 1px solid var(--line);
 }
 .footer .footer-links a {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  min-height: 44px;
-  color: var(--soft-ink);
-  font-size: 14px;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 48px;
+  max-width: 100%;
+  padding: 12px 18px;
+  border: 1px solid #b8b8b3;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 600;
   line-height: 1.5;
 }
-.footer .footer-links a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 5px; }
-.footer-links a span { font-size: 12px; }
+.footer .footer-links a:hover,
+.footer .footer-links a:focus-visible { background: #171717; color: #fff; border-color: #171717; text-decoration: none; }
+.footer-links a span { font-size: 18px; flex-shrink: 0; }
+.footer-links-heading { flex-basis: 100%; margin-bottom: 4px; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--soft-ink); }
 
 @media (max-width: 540px) {
   .footer-art-link {
